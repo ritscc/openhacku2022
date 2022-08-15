@@ -1,0 +1,31 @@
+version: "3"
+services:
+  db-local:
+    build: ./mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: "openhacku2022"
+      MYSQL_USER: "openhacku2022"
+      MYSQL_PASSWORD: "openhacku2022"
+      MYSQL_ROOT_PASSWORD: "openhacku2022"
+      TZ: "Asia/Tokyo"
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql/conf.d:/etc/mysql/conf.d
+      - ./mysql/log/local:/var/log/mysql
+      - ./mysql/db:/var/lib/mysql
+  db-test:
+    build: ./mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: "openhacku2022"
+      MYSQL_USER: "openhacku2022"
+      MYSQL_PASSWORD: "openhacku2022"
+      MYSQL_ROOT_PASSWORD: "openhacku2022"
+      TZ: "Asia/Tokyo"
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./mysql/conf.d:/etc/mysql/conf.d
+      - ./mysql/log/test:/var/log/mysql
