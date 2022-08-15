@@ -38,9 +38,10 @@ import { MatTabsModule } from "@angular/material/tabs";
 
 // components
 import { HeaderComponent } from "./component/header/header.component";
+import { UserIconComponent } from "./component/user-icon/user-icon.component";
 
 @NgModule({
-    declarations: [HeaderComponent],
+    declarations: [HeaderComponent, UserIconComponent],
     imports: [
         // modules
         CommonModule,
