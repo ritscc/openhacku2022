@@ -36,8 +36,11 @@ import { DragDropModule } from "@angular/cdk/drag-drop";
 import { TextFieldModule } from "@angular/cdk/text-field";
 import { MatTabsModule } from "@angular/material/tabs";
 
+// components
+import { HeaderComponent } from "./component/header/header.component";
+
 @NgModule({
-    declarations: [],
+    declarations: [HeaderComponent],
     imports: [
         // modules
         CommonModule,
@@ -111,6 +114,9 @@ import { MatTabsModule } from "@angular/material/tabs";
         DragDropModule,
         TextFieldModule,
         MatTabsModule,
+
+        // components
+        HeaderComponent,
     ],
     providers: [
         { provide: ApiConfiguration, useValue: { rootUrl: environment.API_ROOT_URL } },
