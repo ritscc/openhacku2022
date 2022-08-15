@@ -1,0 +1,5 @@
+test {
+    useJUnitPlatform()
+    systemProperty "spring.profiles.active", "test"
+    systemProperties System.properties
+}
