@@ -1,0 +1,11 @@
+exception:
+  bad_request:
+    validation_error: "不正なリクエストです。問題が解決しない場合は、管理者までご連絡ください。"
+    invalid_request_parameter: "不正なリクエストです。問題が解決しない場合は、管理者までご連絡ください。"
+  unauthorized:
+    user_not_logged_in: "ユーザはログインしていません。問題が解決しない場合は、管理者までご連絡ください。"
+    incorrect_email_or_password: "メールアドレスかパスワードが間違っています。"
+  not_found:
+    api: "APIが見つかりません。"
+  internal_server_error:
+    unexpected_error: "予期しないエラーが発生しました。問題が解決しない場合は、管理者までご連絡ください。"

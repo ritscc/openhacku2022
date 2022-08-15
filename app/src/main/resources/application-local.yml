@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/openhacku2022?useSSL=false&allowPublicKeyRetrieval=true&enabledTLSProtocols=TLSv1.2
+    username: openhacku2022
+    password: openhacku2022
+    driver-class-name: com.mysql.cj.jdbc.Driver
