@@ -1,19 +1,19 @@
-create table user
+CREATE TABLE `user`
 (
-    id         int auto_increment
-        primary key,
-    first_name varchar(255)                         not null,
-    last_name  varchar(255)                         not null,
-    tel        varchar(255)                         not null,
-    email      varchar(255)                         not null,
-    password   varchar(255)                         not null,
-    icon_url   varchar(2048)                        null,
-    created_at datetime   default CURRENT_TIMESTAMP not null,
-    updated_at datetime   default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP,
-    is_admin   tinyint(1) default 0                 not null,
-    constraint user_email_uindex
-        unique (email),
-    constraint user_tel_uindex
-        unique (tel)
+    `id`         INT AUTO_INCREMENT
+        PRIMARY KEY,
+    `first_name` VARCHAR(255)                       NOT NULL,
+    `last_name`  VARCHAR(255)                       NOT NULL,
+    `tel`        VARCHAR(255)                       NOT NULL,
+    `email`      VARCHAR(255)                       NOT NULL,
+    `password`   VARCHAR(255)                       NOT NULL,
+    `icon_url`   VARCHAR(2048)                      NULL,
+    `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP,
+    `is_admin`   BOOLEAN  DEFAULT FALSE             NOT NULL,
+    CONSTRAINT user_email_uindex
+        UNIQUE (`email`),
+    CONSTRAINT user_tel_uindex
+        UNIQUE (`tel`)
 );
 

@@ -1,16 +1,20 @@
-create table order_product
+CREATE TABLE `order_product`
 (
-    order_id   int                                not null,
-    product_id int                                not null,
-    name       varchar(255)                       not null,
-    price      int unsigned                       not null,
-    quantity   int unsigned                       not null,
-    created_at datetime default CURRENT_TIMESTAMP not null,
-    updated_at datetime default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP,
-    primary key (order_id, product_id),
-    constraint order_product_order_id_fk
-        foreign key (order_id) references `order` (id),
-    constraint order_product_product_id_fk
-        foreign key (product_id) references product (id)
+    `order_id`   INT                                NOT NULL,
+    `product_id` INT                                NOT NULL,
+    `name`       VARCHAR(255)                       NOT NULL,
+    `price`      INT UNSIGNED                       NOT NULL,
+    `quantity`   INT UNSIGNED                       NOT NULL,
+    `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`order_id`, `product_id`),
+    CONSTRAINT order_product_order_id_fk
+        FOREIGN KEY (`order_id`) REFERENCES `order` (`id`)
+            ON DELETE CASCADE
+            ON UPDATE NO ACTION,
+    CONSTRAINT order_product_product_id_fk
+        FOREIGN KEY (`product_id`) REFERENCES product (`id`)
+            ON DELETE CASCADE
+            ON UPDATE NO ACTION
 );
 

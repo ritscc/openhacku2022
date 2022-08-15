@@ -1,17 +1,21 @@
-create table `order`
+CREATE TABLE `order`
 (
-    id           int auto_increment
-        primary key,
-    shop_id      int                                not null,
-    user_id      int                                not null,
-    price        int unsigned                       not null,
-    ordered_date datetime                           null,
-    created_at   datetime default CURRENT_TIMESTAMP not null,
-    updated_at   datetime default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP,
-    status       int                                not null,
-    constraint order_shop_id_fk
-        foreign key (shop_id) references shop (id),
-    constraint order_user_id_fk
-        foreign key (user_id) references user (id)
+    `id`           INT AUTO_INCREMENT
+        PRIMARY KEY,
+    `shop_id`      INT                                NOT NULL,
+    `user_id`      INT                                NOT NULL,
+    `price`        INT UNSIGNED                       NOT NULL,
+    `ordered_date` DATETIME                           NULL,
+    `created_at`   DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    `updated_at`   DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP,
+    `status`       INT                                NOT NULL,
+    CONSTRAINT order_shop_id_fk
+        FOREIGN KEY (`shop_id`) REFERENCES shop (`id`)
+            ON DELETE CASCADE
+            ON UPDATE NO ACTION,
+    CONSTRAINT order_user_id_fk
+        FOREIGN KEY (`user_id`) REFERENCES user (`id`)
+            ON DELETE CASCADE
+            ON UPDATE NO ACTION
 );
 

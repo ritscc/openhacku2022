@@ -1,12 +1,12 @@
-create table shop
+CREATE TABLE `shop`
 (
-    id          int auto_increment
-        primary key,
-    code        varchar(16)                        not null,
-    name        varchar(64)                        not null,
-    description text                               null,
-    tel         varchar(255)                       not null,
-    updated_at  datetime default CURRENT_TIMESTAMP null on update CURRENT_TIMESTAMP,
-    created_at  datetime default CURRENT_TIMESTAMP not null
+    `id`          INT AUTO_INCREMENT
+        PRIMARY KEY,
+    `code`        VARCHAR(16)                        NOT NULL,
+    `name`        VARCHAR(64)                        NOT NULL,
+    `description` TEXT                               NULL,
+    `tel`         VARCHAR(255)                       NOT NULL,
+    `created_at`  DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    `updated_at`  DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP
 );
 
