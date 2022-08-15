@@ -1,27 +1,58 @@
-# Client
+# フロントエンド
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.2.
+## 開発
 
-## Development server
+### 開発環境
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- Node.js 18
+- Angular 14
+- yarn
 
-## Code scaffolding
+### ビルド方法
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+ビルドに成功すると、`dist`直下に静的 HTML ファイルが生成されます。
 
-## Build
+```sh
+$ yarn build
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### 起動方法
 
-## Running unit tests
+起動に成功すると、[localhost:4200](http://localhost:4200)からアクセスできます。
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```sh
+$ yarn start
+```
 
-## Running end-to-end tests
+### テスト & コードチェック
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```sh
+# テスト
+$ yarn run test:ci
 
-## Further help
+# コードチェック
+$ yarn run check
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+# フォーマット
+$ yarn run format
+```
+
+### 依存関係のアップデート
+
+```sh
+# outdatedな依存関係をリストアップ
+$ yarn outdated
+
+# 依存関係をアップデート
+$ yarn upgrade-interactive --latest
+```
+
+### OpenAPIからコード生成
+
+コード生成するためにはローカル環境でSpring Bootアプリケーションを起動しておく必要があります。
+
+起動が完了したら、下記コマンドでコード生成を実行してください。
+
+```sh
+$ yarn openapi-gen
+```
