@@ -29,7 +29,7 @@ class FileStorageUtil_UT extends BaseSpecification {
         this.sut.upload(fileModel)
 
         then:
-        1 * this.gcpProperty.cloudStorage >> cloudStorageProperty
+        2 * this.gcpProperty.cloudStorage >> cloudStorageProperty
         noExceptionThrown()
     }
 
