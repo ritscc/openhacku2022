@@ -62,7 +62,12 @@ abstract class BaseRestController_IT extends BaseSpecification {
     /**
      * ログインユーザのメールアドレス
      */
-    static final LOGIN_USER_EMAIL = "login_user@example.com"
+    static final LOGIN_USER_EMAIL = RandomHelper.email()
+
+    /**
+     * ログインユーザのパスワード
+     */
+    static final LOGIN_USER_PASSWORD = RandomHelper.password()
 
     /**
      * GET request
