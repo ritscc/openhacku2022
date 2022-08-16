@@ -13,6 +13,7 @@ class AuthRestController_IT extends BaseRestController_IT {
     // API PATH
     static final String BASE_PATH = "/api"
     static final String LOGIN_PATH = BASE_PATH + "/login"
+    static final String LOGOUT_PATH = BASE_PATH + "/logout"
 
     def "ログインAPI: 正常系 ログインに成功するとセッションに記録される"() {
         given:
@@ -48,6 +49,24 @@ class AuthRestController_IT extends BaseRestController_IT {
         inputEmail               | inputPassword
         LOGIN_USER_EMAIL + "xxx" | LOGIN_USER_PASSWORD
         LOGIN_USER_EMAIL         | LOGIN_USER_PASSWORD + "xxx"
+    }
+
+    def "ログアウトAPI: 正常系 ログアウトするとセッションが廃棄される"() {
+        given:
+        this.createLoginUser()
+
+        when:
+        final request = this.postRequest(LOGOUT_PATH)
+        this.execute(request, HttpStatus.OK)
+
+        then:
+        this.session.isInvalid()
+    }
+
+    def "ログアウトAPI: 異常系 ログインしていない場合は401エラー"() {
+        expect:
+        final request = this.postRequest(LOGOUT_PATH)
+        this.execute(request, new UnauthorizedException(ErrorCode.USER_NOT_LOGGED_IN))
     }
 
 }
