@@ -127,6 +127,9 @@ dependencies {
     // logging
     implementation "ch.qos.logback:logback-classic:1.2.3"
 
+    // google cloud
+    implementation "com.google.cloud:google-cloud-storage:2.11.3"
+
     // util
     implementation "com.google.guava:guava:31.1-jre"
     implementation "org.apache.commons:commons-lang3:3.12.0"
