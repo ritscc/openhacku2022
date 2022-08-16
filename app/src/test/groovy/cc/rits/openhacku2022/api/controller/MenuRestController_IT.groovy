@@ -2,6 +2,7 @@ package cc.rits.openhacku2022.api.controller
 
 import cc.rits.openhacku2022.api.response.MenusResponse
 import cc.rits.openhacku2022.exception.ErrorCode
+import cc.rits.openhacku2022.exception.NotFoundException
 import cc.rits.openhacku2022.exception.UnauthorizedException
 import cc.rits.openhacku2022.helper.TableHelper
 import org.springframework.http.HttpStatus
@@ -35,6 +36,15 @@ class MenuRestController_IT extends BaseRestController_IT {
         response.menus*.id == [1, 2]
         response.menus*.shopId == [1, 1]
         response.menus*.price == [100, 100]
+    }
+
+    def "メニューリスト取得API: 異常系 店舗が存在しない場合は404エラー"() {
+        given:
+        this.login()
+
+        expect:
+        final request = this.getRequest(String.format(GET_MENUS_PATH, 0))
+        this.execute(request, new NotFoundException(ErrorCode.NOT_FOUND_SHOP))
     }
 
     def "メニューリスト取得API: 異常系 ログインしていない場合は401エラー"() {

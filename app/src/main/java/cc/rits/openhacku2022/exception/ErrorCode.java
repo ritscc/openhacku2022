@@ -35,6 +35,8 @@ public enum ErrorCode {
      */
     NOT_FOUND_API(HttpStatus.NOT_FOUND, "exception.not_found.api"),
 
+    NOT_FOUND_SHOP(HttpStatus.NOT_FOUND, "exception.not_found.shop"),
+
     /**
      * 500 Internal Server Error
      */

@@ -9,6 +9,7 @@ exception:
     incorrect_code_or_password: "店舗コードかパスワードが間違っています。"
   not_found:
     api: "APIが見つかりません。"
+    shop: "店舗が見つかりません。"
   internal_server_error:
     unexpected_error: "予期しないエラーが発生しました。問題が解決しない場合は、管理者までご連絡ください。"
     failed_to_upload_file: "ファイルのアップロードに失敗しました。"
