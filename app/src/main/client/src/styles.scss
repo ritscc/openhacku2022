@@ -1,6 +1,22 @@
+@use "@angular/material" as material;
+@use "@angular/material/theming" as theming;
+
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
+@import "assets/theme";
+@import "assets/colors.scss";
+
+// カスタムカラーテーマを有効化
+@include material.core();
+@include material.all-component-colors($theme);
 
 html,
 body {
     margin: 0;
+}
+
+body {
+    @include font-color-black;
+    word-wrap: break-word;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    overflow: hidden;
 }
