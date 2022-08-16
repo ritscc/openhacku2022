@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import cc.rits.openhacku2022.api.response.MenuResponse;
 import cc.rits.openhacku2022.api.response.MenusResponse;
+import cc.rits.openhacku2022.model.TransactionModel;
 import cc.rits.openhacku2022.service.MenuService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -29,14 +30,16 @@ public class MenuRestController {
      * メニューリスト取得API
      *
      * @param shopId 店舗ID
+     * @param transaction 取引
      * @return メニューリスト
      */
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
     public MenusResponse getMenus( //
-        @PathVariable("shop_id") final Integer shopId //
+        @PathVariable("shop_id") final Integer shopId, //
+        final TransactionModel transaction //
     ) {
-        final var menus = this.menuService.getMenus(shopId).stream() //
+        final var menus = this.menuService.getMenus(shopId, transaction).stream() //
             .map(MenuResponse::new) //
             .collect(Collectors.toList());
         return new MenusResponse(menus);

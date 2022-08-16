@@ -255,183 +255,63 @@ public class OrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andShopIdIsNull() {
-            addCriterion("shop_id is null");
+        public Criteria andTransactionIdIsNull() {
+            addCriterion("transaction_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andShopIdIsNotNull() {
-            addCriterion("shop_id is not null");
+        public Criteria andTransactionIdIsNotNull() {
+            addCriterion("transaction_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andShopIdEqualTo(Integer value) {
-            addCriterion("shop_id =", value, "shopId");
+        public Criteria andTransactionIdEqualTo(Integer value) {
+            addCriterion("transaction_id =", value, "transactionId");
             return (Criteria) this;
         }
 
-        public Criteria andShopIdNotEqualTo(Integer value) {
-            addCriterion("shop_id <>", value, "shopId");
+        public Criteria andTransactionIdNotEqualTo(Integer value) {
+            addCriterion("transaction_id <>", value, "transactionId");
             return (Criteria) this;
         }
 
-        public Criteria andShopIdGreaterThan(Integer value) {
-            addCriterion("shop_id >", value, "shopId");
+        public Criteria andTransactionIdGreaterThan(Integer value) {
+            addCriterion("transaction_id >", value, "transactionId");
             return (Criteria) this;
         }
 
-        public Criteria andShopIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("shop_id >=", value, "shopId");
+        public Criteria andTransactionIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("transaction_id >=", value, "transactionId");
             return (Criteria) this;
         }
 
-        public Criteria andShopIdLessThan(Integer value) {
-            addCriterion("shop_id <", value, "shopId");
+        public Criteria andTransactionIdLessThan(Integer value) {
+            addCriterion("transaction_id <", value, "transactionId");
             return (Criteria) this;
         }
 
-        public Criteria andShopIdLessThanOrEqualTo(Integer value) {
-            addCriterion("shop_id <=", value, "shopId");
+        public Criteria andTransactionIdLessThanOrEqualTo(Integer value) {
+            addCriterion("transaction_id <=", value, "transactionId");
             return (Criteria) this;
         }
 
-        public Criteria andShopIdIn(List<Integer> values) {
-            addCriterion("shop_id in", values, "shopId");
+        public Criteria andTransactionIdIn(List<Integer> values) {
+            addCriterion("transaction_id in", values, "transactionId");
             return (Criteria) this;
         }
 
-        public Criteria andShopIdNotIn(List<Integer> values) {
-            addCriterion("shop_id not in", values, "shopId");
+        public Criteria andTransactionIdNotIn(List<Integer> values) {
+            addCriterion("transaction_id not in", values, "transactionId");
             return (Criteria) this;
         }
 
-        public Criteria andShopIdBetween(Integer value1, Integer value2) {
-            addCriterion("shop_id between", value1, value2, "shopId");
+        public Criteria andTransactionIdBetween(Integer value1, Integer value2) {
+            addCriterion("transaction_id between", value1, value2, "transactionId");
             return (Criteria) this;
         }
 
-        public Criteria andShopIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("shop_id not between", value1, value2, "shopId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdIsNull() {
-            addCriterion("user_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdIsNotNull() {
-            addCriterion("user_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdEqualTo(Integer value) {
-            addCriterion("user_id =", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdNotEqualTo(Integer value) {
-            addCriterion("user_id <>", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdGreaterThan(Integer value) {
-            addCriterion("user_id >", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("user_id >=", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdLessThan(Integer value) {
-            addCriterion("user_id <", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdLessThanOrEqualTo(Integer value) {
-            addCriterion("user_id <=", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdIn(List<Integer> values) {
-            addCriterion("user_id in", values, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdNotIn(List<Integer> values) {
-            addCriterion("user_id not in", values, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdBetween(Integer value1, Integer value2) {
-            addCriterion("user_id between", value1, value2, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("user_id not between", value1, value2, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusIsNull() {
-            addCriterion("status is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusIsNotNull() {
-            addCriterion("status is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusEqualTo(Integer value) {
-            addCriterion("status =", value, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusNotEqualTo(Integer value) {
-            addCriterion("status <>", value, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusGreaterThan(Integer value) {
-            addCriterion("status >", value, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusGreaterThanOrEqualTo(Integer value) {
-            addCriterion("status >=", value, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusLessThan(Integer value) {
-            addCriterion("status <", value, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusLessThanOrEqualTo(Integer value) {
-            addCriterion("status <=", value, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusIn(List<Integer> values) {
-            addCriterion("status in", values, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusNotIn(List<Integer> values) {
-            addCriterion("status not in", values, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusBetween(Integer value1, Integer value2) {
-            addCriterion("status between", value1, value2, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusNotBetween(Integer value1, Integer value2) {
-            addCriterion("status not between", value1, value2, "status");
+        public Criteria andTransactionIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("transaction_id not between", value1, value2, "transactionId");
             return (Criteria) this;
         }
 

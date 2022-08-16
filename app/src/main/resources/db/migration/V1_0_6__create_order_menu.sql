@@ -3,6 +3,7 @@ CREATE TABLE IF NOT EXISTS `order_menu`
     `order_id`   INT UNSIGNED NOT NULL,
     `menu_id`    INT UNSIGNED NOT NULL,
     `quantity`   INT UNSIGNED NOT NULL,
+    `status`     INT UNSIGNED NOT NULL,
     `created_at` DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`menu_id`, `order_id`),

@@ -28,7 +28,7 @@ public enum ErrorCode {
      */
     USER_NOT_LOGGED_IN(HttpStatus.UNAUTHORIZED, "exception.unauthorized.user_not_logged_in"),
 
-    INCORRECT_EMAIL_OR_PASSWORD(HttpStatus.UNAUTHORIZED, "exception.unauthorized.incorrect_email_or_password"),
+    INCORRECT_CODE_OR_PASSWORD(HttpStatus.UNAUTHORIZED, "exception.unauthorized.incorrect_code_or_password"),
 
     /**
      * 404 Not Found
