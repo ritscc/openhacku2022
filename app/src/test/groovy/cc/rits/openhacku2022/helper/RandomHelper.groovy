@@ -40,6 +40,15 @@ class RandomHelper {
     }
 
     /**
+     * ランダムなUUIDを生成
+     *
+     * @return UUID
+     */
+    static String uuid() {
+        return UUID.randomUUID().toString()
+    }
+
+    /**
      * ランダム値を格納したモックオブジェクトを返す
      *
      * @param clazz

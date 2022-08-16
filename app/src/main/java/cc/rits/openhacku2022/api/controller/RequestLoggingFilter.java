@@ -1,11 +1,9 @@
 package cc.rits.openhacku2022.api.controller;
 
 import java.util.Objects;
-import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.AbstractRequestLoggingFilter;
 
@@ -73,15 +71,6 @@ public class RequestLoggingFilter extends AbstractRequestLoggingFilter {
         final var queryString = request.getQueryString();
         if (Objects.nonNull(queryString)) {
             message.append('?').append(queryString);
-        }
-
-        // クライアント情報
-        final var authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (Objects.nonNull(authentication)) {
-            final var email = Optional.ofNullable(authentication.getName()).orElse(ANONYMOUS_USER);
-            if (!email.equals(ANONYMOUS_USER)) {
-                message.append(", email=").append(email);
-            }
         }
 
         message.append(suffix);

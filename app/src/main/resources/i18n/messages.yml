@@ -6,7 +6,7 @@ exception:
     password_is_too_simple: "パスワードには大文字・小文字・数字を含める必要があります。"
   unauthorized:
     user_not_logged_in: "ユーザはログインしていません。問題が解決しない場合は、管理者までご連絡ください。"
-    incorrect_email_or_password: "メールアドレスかパスワードが間違っています。"
+    incorrect_code_or_password: "店舗コードかパスワードが間違っています。"
   not_found:
     api: "APIが見つかりません。"
   internal_server_error:

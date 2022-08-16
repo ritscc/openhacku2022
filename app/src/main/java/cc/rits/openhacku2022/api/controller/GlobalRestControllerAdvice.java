@@ -132,7 +132,7 @@ public class GlobalRestControllerAdvice extends ResponseEntityExceptionHandler {
      */
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<Object> handleBadCredentialsException(final BadCredentialsException exception) {
-        return this.buildResponseEntity(ErrorCode.INCORRECT_EMAIL_OR_PASSWORD, true);
+        return this.buildResponseEntity(ErrorCode.INCORRECT_CODE_OR_PASSWORD, true);
     }
 
     /**

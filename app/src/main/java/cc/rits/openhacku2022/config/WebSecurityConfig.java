@@ -5,11 +5,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import cc.rits.openhacku2022.auth.CustomAuthenticationProvider;
-import cc.rits.openhacku2022.auth.CustomUserDetailsService;
 import cc.rits.openhacku2022.auth.UnauthorizedAuthenticationEntryPoint;
 import lombok.RequiredArgsConstructor;
 
@@ -23,10 +20,6 @@ public class WebSecurityConfig {
 
     private final UnauthorizedAuthenticationEntryPoint authenticationEntryPoint;
 
-    private final CustomUserDetailsService userDetailsService;
-
-    private final PasswordEncoder passwordEncoder;
-
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web.ignoring().antMatchers("/v3/api-docs/**", "/swagger-resources/**", "/swagger-ui/**", "/webjars/**");
@@ -39,21 +32,13 @@ public class WebSecurityConfig {
 
         // アクセス許可
         http.authorizeRequests() //
-            .antMatchers("/api/login", "/api/admin/login", "/api/health").permitAll() //
+            .antMatchers("/api/admin/login").permitAll() //
             .antMatchers("/api/admin/**").hasRole("ADMIN") //
-            .antMatchers("/api/**").hasRole("USER") //
+            .antMatchers("/api/**").permitAll() //
             .anyRequest().authenticated() //
             .and().exceptionHandling().authenticationEntryPoint(this.authenticationEntryPoint);
 
         return http.build();
-    }
-
-    @Bean
-    public CustomAuthenticationProvider authenticationProvider() {
-        final var authenticationProvider = new CustomAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(this.userDetailsService);
-        authenticationProvider.setPasswordEncoder(this.passwordEncoder);
-        return authenticationProvider;
     }
 
 }

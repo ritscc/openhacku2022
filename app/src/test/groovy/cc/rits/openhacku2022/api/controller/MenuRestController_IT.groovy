@@ -15,19 +15,15 @@ class MenuRestController_IT extends BaseRestController_IT {
     static final String BASE_PATH = "/api/shop/%d/menus"
     static final String GET_MENUS_PATH = BASE_PATH
 
-    def "メニューリスト取得API: 正常系　顧客がメニューリストを取得できる"() {
+    def "メニューリスト取得API: 正常系 顧客がメニューリストを取得できる"() {
         given:
-        this.createLoginUser()
+        this.login()
 
         // @formatter:off
-        TableHelper.insert sql, "shop", {
-            id | code | name | description | password
-            1  | "A"  | ""   | ""          | ""
-        }
         TableHelper.insert sql, "menu", {
-            id | shop_id | name | description | price | image_url
-            1  | 1       | ""   | ""          | 100   | ""
-            2  | 1       | ""   | ""          | 100   | ""
+            id | shop_id | name | price | image_url
+            1  | 1       | ""   | 100   | ""
+            2  | 1       | ""   | 100   | ""
         }
         // @formatter:on
 
@@ -42,6 +38,7 @@ class MenuRestController_IT extends BaseRestController_IT {
     }
 
     def "メニューリスト取得API: 異常系 ログインしていない場合は401エラー"() {
+        expect:
         final request = this.getRequest(String.format(GET_MENUS_PATH, 1))
         this.execute(request, new UnauthorizedException(ErrorCode.USER_NOT_LOGGED_IN))
     }
