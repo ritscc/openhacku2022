@@ -18,6 +18,12 @@ public class TransactionRepository {
 
     private final TransactionMapper transactionMapper;
 
+    /**
+     * 取引コードから取引を取得
+     * 
+     * @param code 取引コード
+     * @return 取引
+     */
     public Optional<TransactionModel> selectByCode(final String code) {
         final var example = new TransactionExample();
         example.createCriteria().andCodeEqualTo(code);
@@ -25,4 +31,14 @@ public class TransactionRepository {
             .map(TransactionModel::new) //
             .findFirst();
     }
+
+    /**
+     * 取引を削除
+     * 
+     * @param transactionModel 取引
+     */
+    public void delete(final TransactionModel transactionModel) {
+        this.transactionMapper.deleteByPrimaryKey(transactionModel.getId());
+    }
+
 }
