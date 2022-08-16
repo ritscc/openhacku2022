@@ -1,0 +1,9 @@
+<div *ngIf="loginUser" fxLayout="column" fxLayoutAlign="center">
+    <button [matMenuTriggerFor]="menu" mat-button mat-icon-button>
+        <mat-icon> account_circle </mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item>プロフィール</button>
+        <button mat-menu-item>ログアウト</button>
+    </mat-menu>
+</div>

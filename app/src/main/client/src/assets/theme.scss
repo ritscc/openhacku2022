@@ -1,0 +1,48 @@
+@use "@angular/material" as material;
+@use "@angular/material/theming" as theming;
+
+@import "./colors.scss";
+
+// カラーパレット
+$primary-palette: material.define-palette(material.$indigo-palette);
+$accent-palette: material.define-palette(material.$pink-palette);
+$warn-palette: material.define-palette(material.$red-palette);
+
+// カラーテーマ
+$theme: material.define-light-theme(
+    (
+        color: (
+            primary: material.define-palette(material.$indigo-palette),
+            accent: material.define-palette(material.$pink-palette),
+            warn: material.define-palette(material.$red-palette),
+        ),
+    )
+);
+
+// フォント色を上書き
+$default-color: map-get(
+    $map: $theme,
+    $key: color,
+);
+$default-foreground: map-get(
+    $map: $default-color,
+    $key: foreground,
+);
+$foreground: map-merge(
+    $default-foreground,
+    (
+        text: $font-color-black,
+    )
+);
+$color: map-merge(
+    $default-color,
+    (
+        foreground: $foreground,
+    )
+);
+$theme: map-merge(
+    $theme,
+    (
+        color: $color,
+    )
+);
