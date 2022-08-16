@@ -18,6 +18,8 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 public class RequestLoggingFilter extends AbstractRequestLoggingFilter {
 
+    private static final String ANONYMOUS_USER = "anonymousUser";
+
     /**
      * ロギングがアクティブか取得
      *
@@ -73,7 +75,14 @@ public class RequestLoggingFilter extends AbstractRequestLoggingFilter {
             message.append('?').append(queryString);
         }
 
-        // TODO: クライアント情報をロギング
+        // クライアント情報
+        final var authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (Objects.nonNull(authentication)) {
+            final var email = Optional.ofNullable(authentication.getName()).orElse(ANONYMOUS_USER);
+            if (!email.equals(ANONYMOUS_USER)) {
+                message.append(", email=").append(email);
+            }
+        }
 
         message.append(suffix);
         return message.toString();

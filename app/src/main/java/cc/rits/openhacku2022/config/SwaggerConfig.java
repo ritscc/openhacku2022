@@ -4,9 +4,9 @@ import org.springdoc.core.GroupedOpenApi;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import cc.rits.openhacku2022.property.ProjectProperty;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
-import cc.rits.openhacku2022.property.ProjectProperty;
 import lombok.RequiredArgsConstructor;
 
 /**

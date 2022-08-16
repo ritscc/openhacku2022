@@ -5,8 +5,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import cc.rits.openhacku2022.auth.CustomAuthenticationProvider;
+import cc.rits.openhacku2022.auth.CustomUserDetailsService;
+import cc.rits.openhacku2022.auth.UnauthorizedAuthenticationEntryPoint;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -16,6 +20,12 @@ import lombok.RequiredArgsConstructor;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class WebSecurityConfig {
+
+    private final UnauthorizedAuthenticationEntryPoint authenticationEntryPoint;
+
+    private final CustomUserDetailsService userDetailsService;
+
+    private final PasswordEncoder passwordEncoder;
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
@@ -29,10 +39,21 @@ public class WebSecurityConfig {
 
         // アクセス許可
         http.authorizeRequests() //
-            .antMatchers("/api/**").permitAll() //
-            .anyRequest().authenticated();
+            .antMatchers("/api/login", "/api/admin/login", "/api/health").permitAll() //
+            .antMatchers("/api/admin/**").hasRole("ADMIN") //
+            .antMatchers("/api/**").hasRole("USER") //
+            .anyRequest().authenticated() //
+            .and().exceptionHandling().authenticationEntryPoint(this.authenticationEntryPoint);
 
         return http.build();
+    }
+
+    @Bean
+    public CustomAuthenticationProvider authenticationProvider() {
+        final var authenticationProvider = new CustomAuthenticationProvider();
+        authenticationProvider.setUserDetailsService(this.userDetailsService);
+        authenticationProvider.setPasswordEncoder(this.passwordEncoder);
+        return authenticationProvider;
     }
 
 }
