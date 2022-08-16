@@ -2,14 +2,20 @@ package cc.rits.openhacku2022.api.controller
 
 import cc.rits.openhacku2022.BaseSpecification
 import cc.rits.openhacku2022.api.response.ErrorResponse
+import cc.rits.openhacku2022.auth.LoginUserDetails
 import cc.rits.openhacku2022.exception.BaseException
 import cc.rits.openhacku2022.helper.JsonConvertHelper
+import cc.rits.openhacku2022.helper.RandomHelper
+import cc.rits.openhacku2022.model.UserModel
+import cc.rits.openhacku2022.util.AuthUtil
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.MessageSource
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.mock.web.MockHttpSession
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication
+import org.springframework.security.core.authority.AuthorityUtils
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.MvcResult
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder
@@ -39,11 +45,29 @@ abstract class BaseRestController_IT extends BaseSpecification {
     @Autowired
     private MessageSource messageSource
 
+    @Autowired
+    protected AuthUtil authUtil
+
     @Shared
     protected MockHttpSession session = new MockHttpSession()
 
     @Shared
     protected Authentication authentication
+
+    /**
+     * ログインユーザのID
+     */
+    static final LOGIN_USER_ID = 1
+
+    /**
+     * ログインユーザのメールアドレス
+     */
+    static final LOGIN_USER_EMAIL = RandomHelper.email()
+
+    /**
+     * ログインユーザのパスワード
+     */
+    static final LOGIN_USER_PASSWORD = RandomHelper.password()
 
     /**
      * GET request
@@ -197,6 +221,35 @@ abstract class BaseRestController_IT extends BaseSpecification {
             this.session.invalidate()
         }
         this.authentication = null
+    }
+
+    /**
+     * ログインユーザを作成
+     *
+     * @return ログインユーザ
+     */
+    protected UserModel createLoginUser() {
+        final loginUser = UserModel.builder()
+            .id(LOGIN_USER_ID)
+            .firstName(RandomHelper.alphanumeric(10))
+            .lastName(RandomHelper.alphanumeric(10))
+            .email(LOGIN_USER_EMAIL)
+            .password(RandomHelper.password())
+            .build()
+
+        sql.dataSet("user").add(
+            id: loginUser.id,
+            first_name: loginUser.firstName,
+            last_name: loginUser.lastName,
+            email: loginUser.email,
+            password: this.authUtil.hashingPassword(loginUser.password)
+        )
+
+        final authorities = AuthorityUtils.createAuthorityList("ROLE_USER")
+        final loginUserDetails = new LoginUserDetails(loginUser, authorities)
+        this.authentication = new UsernamePasswordAuthenticationToken(loginUserDetails, loginUser.password, authorities)
+
+        return loginUser
     }
 
     /**

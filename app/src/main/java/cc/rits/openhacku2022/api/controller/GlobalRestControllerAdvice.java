@@ -21,10 +21,10 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import io.swagger.v3.oas.annotations.Hidden;
 import cc.rits.openhacku2022.api.response.ErrorResponse;
 import cc.rits.openhacku2022.exception.BaseException;
 import cc.rits.openhacku2022.exception.ErrorCode;
+import io.swagger.v3.oas.annotations.Hidden;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
