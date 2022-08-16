@@ -38,14 +38,14 @@ public class MenuResponse {
     /**
      * 画像
      */
-    String image;
+    String imageUrl;
 
     public MenuResponse(final MenuModel menuModel) {
         this.id = menuModel.getId();
         this.shopId = menuModel.getShopId();
         this.name = menuModel.getName();
         this.price = menuModel.getPrice();
-        this.image = menuModel.getImage();
+        this.imageUrl = menuModel.getImageUrl();
     }
 
 }

@@ -12,8 +12,8 @@ import org.springframework.http.HttpStatus
 class MenuRestController_IT extends BaseRestController_IT {
 
     // API PATH
-    static final String BASE_PATH = "/api/shop/%d"
-    static final String GET_MENUS_PATH = BASE_PATH + "/menus"
+    static final String BASE_PATH = "/api/shop/%d/menus"
+    static final String GET_MENUS_PATH = BASE_PATH
 
     def "メニューリスト取得API: 正常系　顧客がメニューリストを取得できる"() {
         given:

@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
  */
 @Tag(name = "Menu", description = "メニュー")
 @RestController
-@RequestMapping(path = "/api/shop/{shop_id}", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = "/api/shop/{shop_id}/menus", produces = MediaType.APPLICATION_JSON_VALUE)
 @Validated
 @RequiredArgsConstructor
 public class MenuRestController {
@@ -31,7 +31,7 @@ public class MenuRestController {
      * @param shopId 店舗ID
      * @return メニューリスト
      */
-    @GetMapping("/menus")
+    @GetMapping()
     @ResponseStatus(HttpStatus.OK)
     public MenusResponse getMenus( //
         @PathVariable("shop_id") final Integer shopId //
