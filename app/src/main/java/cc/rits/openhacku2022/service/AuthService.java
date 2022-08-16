@@ -1,6 +1,7 @@
 package cc.rits.openhacku2022.service;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,6 +22,8 @@ public class AuthService {
 
     private final HttpServletRequest httpServletRequest;
 
+    private final HttpSession session;
+
     /**
      * ログイン
      *
@@ -34,6 +37,14 @@ public class AuthService {
 
         // セッションハイジャック対策として、セッションIDを変更
         this.httpServletRequest.changeSessionId();
+    }
+
+    /**
+     * ログアウト
+     */
+    public void logout() {
+        SecurityContextHolder.clearContext();
+        this.session.invalidate();
     }
 
 }
