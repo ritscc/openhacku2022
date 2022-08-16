@@ -222,6 +222,7 @@ abstract class BaseRestController_IT extends BaseSpecification {
         }
         // @formatter:on
 
+        this.session = new MockHttpSession()
         this.session.setAttribute(PRINCIPAL_NAME_INDEX_NAME, transaction.code)
 
         return transaction
