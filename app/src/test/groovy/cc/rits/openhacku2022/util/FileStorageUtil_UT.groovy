@@ -1,6 +1,9 @@
 package cc.rits.openhacku2022.util
 
 import cc.rits.openhacku2022.BaseSpecification
+import cc.rits.openhacku2022.exception.BaseException
+import cc.rits.openhacku2022.exception.ErrorCode
+import cc.rits.openhacku2022.exception.InternalServerErrorException
 import cc.rits.openhacku2022.helper.RandomHelper
 import cc.rits.openhacku2022.model.FileModel
 import cc.rits.openhacku2022.property.GcpProperty
@@ -31,6 +34,24 @@ class FileStorageUtil_UT extends BaseSpecification {
         then:
         1 * this.gcpProperty.cloudStorage >> cloudStorageProperty
         noExceptionThrown()
+    }
+
+    def "upload: StorageExceptionが発生した場合は500エラー"() {
+        given:
+        final fileModel = RandomHelper.mock(FileModel)
+
+        final cloudStorageProperty = RandomHelper.mock(GcpProperty.CloudStorage)
+        cloudStorageProperty.enabled = true
+        cloudStorageProperty.bucketName = RandomHelper.alphanumeric(10)
+
+        when:
+        this.sut.upload(fileModel)
+
+        then:
+        2 * this.gcpProperty.cloudStorage >> cloudStorageProperty
+        1 * this.gcpProperty.projectId >> RandomHelper.alphanumeric(10)
+        final BaseException exception = thrown()
+        verifyException(exception, new InternalServerErrorException(ErrorCode.FAILED_TO_UPLOAD_FILE))
     }
 
 }
