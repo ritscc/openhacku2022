@@ -35,4 +35,13 @@ public class AdminAuthRestController {
         this.adminAuthService.login(requestBody);
     }
 
+    /**
+     * ログアウトAPI
+     */
+    @PostMapping("logout")
+    @ResponseStatus(HttpStatus.OK)
+    public void logout() {
+        this.adminAuthService.logout();
+    }
+
 }
