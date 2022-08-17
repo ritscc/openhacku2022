@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { QrLoaderDialogComponent } from "@shared/component/qr-loader-dialog/qr-loader-dialog.component";
+import { FormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 
 @Component({
     selector: "app-home",
@@ -8,11 +9,19 @@ import { QrLoaderDialogComponent } from "@shared/component/qr-loader-dialog/qr-l
     styleUrls: ["./home.component.scss"],
 })
 export class HomeComponent implements OnInit {
-    numPeopleList: number[] = [1, 2, 3, 4];
+    /**
+     * フォーム
+     */
+    form!: UntypedFormGroup;
 
-    constructor(private matDialog: MatDialog) {}
+    constructor(private matDialog: MatDialog, private formBuilder: FormBuilder) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        // フォームを作成
+        this.form = this.formBuilder.group({
+            numberOfPeople: [1, [Validators.required, Validators.min(0)]],
+        });
+    }
 
     /**
      * ログインボタンをクリック

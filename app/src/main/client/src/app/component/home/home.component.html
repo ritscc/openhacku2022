@@ -1,4 +1,13 @@
-<mat-stepper fxLayout="column" fxLayoutAlign="start center">
+<mat-horizontal-stepper fxLayout="column" fxLayoutAlign="start center" linear="true">
+    <!-- Icon overrides. -->
+    <ng-template matStepperIcon="phone">
+        <mat-icon>call_end</mat-icon>
+    </ng-template>
+    <ng-template matStepperIcon="chat">
+        <mat-icon>forum</mat-icon>
+    </ng-template>
+
+    <!-- 画面遷移1つ目 プロダクト説明画面 -->
     <mat-step label="はじめに" state="phone">
         <div fxLayout="column" fxLayoutAlign="center center">
             <img class="icon" src="https://cdn.worldvectorlogo.com/logos/angular-icon-1.svg" />
@@ -14,24 +23,26 @@
         </div>
     </mat-step>
 
-    <mat-step label="人数決定" state="chat">
-        <div fxLayout="column" fxLayoutAlign="center center">
-            <h4>来店人数を入力してください</h4>
-            <mat-form-field appearance="fill">
-                <mat-label>来店人数</mat-label>
-                <mat-select>
-                    <mat-option *ngFor="let numPeople of numPeopleList" [value]="numPeople">
-                        {{ numPeople }}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-        <div fxLayout="row" fxLayoutAlign="space-around center">
-            <button class="next-button" mat-stroked-button matStepperPrevious>戻る</button>
-            <button class="next-button" color="primary" mat-flat-button matStepperNext>次へ</button>
-        </div>
+    <!-- 画面遷移2つ目 人数決定フォーム入力画面-->
+    <mat-step [stepControl]="form" label="人数決定" state="number">
+        <form [formGroup]="form">
+            <div fxLayout="column" fxLayoutAlign="center center">
+                <h4>来店人数を入力してください</h4>
+                <mat-form-field appearance="outline">
+                    <mat-label>来店人数を入力</mat-label>
+                    <input formControlName="numberOfPeople" matInput />
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-around center">
+                <button class="next-button" mat-stroked-button matStepperPrevious>戻る</button>
+                <button class="next-button" color="primary" mat-flat-button matStepperNext>
+                    次へ
+                </button>
+            </div>
+        </form>
     </mat-step>
 
+    <!-- 画面遷移3つ目 QRコード画面 -->
     <mat-step label="QRコード">
         <ol>
             <li>カメラを許可してください</li>
@@ -42,16 +53,8 @@
         <div fxLayout="row" fxLayoutAlign="space-around center">
             <button class="next-button" mat-stroked-button matStepperPrevious>戻る</button>
             <button (click)="onClickLogin()" class="next-button" color="primary" mat-flat-button>
-                次へ
+                読み取る
             </button>
         </div>
     </mat-step>
-
-    <!-- Icon overrides. -->
-    <ng-template matStepperIcon="phone">
-        <mat-icon>home</mat-icon>
-    </ng-template>
-    <ng-template matStepperIcon="chat">
-        <mat-icon>forum</mat-icon>
-    </ng-template>
-</mat-stepper>
+</mat-horizontal-stepper>
