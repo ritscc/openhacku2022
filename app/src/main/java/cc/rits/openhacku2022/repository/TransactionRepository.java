@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import cc.rits.openhacku2022.db.entity.TransactionExample;
 import cc.rits.openhacku2022.db.mapper.TransactionMapper;
+import cc.rits.openhacku2022.factory.TransactionFactory;
 import cc.rits.openhacku2022.model.TransactionModel;
 import lombok.RequiredArgsConstructor;
 
@@ -17,6 +18,8 @@ import lombok.RequiredArgsConstructor;
 public class TransactionRepository {
 
     private final TransactionMapper transactionMapper;
+
+    private final TransactionFactory transactionFactory;
 
     /**
      * 取引コードから取引を取得
@@ -30,6 +33,16 @@ public class TransactionRepository {
         return this.transactionMapper.selectByExample(example).stream() //
             .map(TransactionModel::new) //
             .findFirst();
+    }
+
+    /**
+     * 取引を作成
+     * 
+     * @param transactionModel 取引
+     */
+    public void insert(final TransactionModel transactionModel) {
+        final var transaction = this.transactionFactory.createTransaction(transactionModel);
+        this.transactionMapper.insertSelective(transaction);
     }
 
     /**

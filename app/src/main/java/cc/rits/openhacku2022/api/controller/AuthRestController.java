@@ -3,11 +3,10 @@ package cc.rits.openhacku2022.api.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import cc.rits.openhacku2022.api.request.LoginRequest;
+import cc.rits.openhacku2022.api.validation.RequestValidation;
 import cc.rits.openhacku2022.model.TransactionModel;
 import cc.rits.openhacku2022.service.AuthService;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -25,6 +24,19 @@ import lombok.RequiredArgsConstructor;
 public class AuthRestController {
 
     private final AuthService authService;
+
+    /**
+     * ログインAPI
+     * 
+     * @param requestBody ログインリクエスト
+     */
+    @PostMapping("login")
+    @ResponseStatus(HttpStatus.OK)
+    public void login( //
+        @RequestValidation @RequestBody final LoginRequest requestBody //
+    ) {
+        this.authService.login(requestBody);
+    }
 
     /**
      * ログアウトAPI

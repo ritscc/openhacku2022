@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `table`
+CREATE TABLE IF NOT EXISTS `shop_table`
 (
     `id`         INT UNSIGNED NOT NULL AUTO_INCREMENT,
     `shop_id`    INT UNSIGNED NOT NULL,
@@ -6,8 +6,8 @@ CREATE TABLE IF NOT EXISTS `table`
     `created_at` DATETIME     NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` DATETIME     NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`),
-    INDEX `fk_table_shop_id_idx` (`shop_id` ASC) VISIBLE,
-    CONSTRAINT `fk_table_shop_id`
+    INDEX `fk_shop_table_shop_id_idx` (`shop_id` ASC) VISIBLE,
+    CONSTRAINT `fk_shop_table_shop_id`
         FOREIGN KEY (`shop_id`)
             REFERENCES `shop` (`id`)
             ON DELETE CASCADE
