@@ -21,23 +21,19 @@ public class TransactionModel {
      * 取引ID
      */
     private Integer id;
-
     /**
      * 店舗ID
      */
     private Integer shopId;
-
     /**
      * テーブルID
      */
     private Integer tableId;
-
     /**
      * 取引コード
      */
     @Builder.Default
     private String code = UUID.randomUUID().toString();
-
     /**
      * 利用人数
      */

@@ -35,6 +35,11 @@ public enum ErrorCode {
     INCORRECT_CODE_OR_PASSWORD(HttpStatus.UNAUTHORIZED, "exception.unauthorized.incorrect_code_or_password"),
 
     /**
+     * 403 Forbidden
+     */
+    USER_HAS_NO_PERMISSION(HttpStatus.FORBIDDEN, "exception.forbidden.user_has_no_permission"),
+
+    /**
      * 404 Not Found
      */
     NOT_FOUND_API(HttpStatus.NOT_FOUND, "exception.not_found.api"),
