@@ -32,4 +32,18 @@ public class ShopRepository {
             .findFirst();
     }
 
+    /**
+     * 店舗コードから店舗を取得
+     *
+     * @param code 店舗コード
+     * @return 店舗
+     */
+    public Optional<ShopModel> selectByCode(final String code) {
+        final var example = new ShopExample();
+        example.createCriteria().andCodeEqualTo(code);
+        return this.shopMapper.selectByExample(example).stream() //
+            .map(ShopModel::new) //
+            .findFirst();
+    }
+
 }

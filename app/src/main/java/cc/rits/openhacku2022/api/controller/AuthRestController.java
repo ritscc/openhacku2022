@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import cc.rits.openhacku2022.model.TransactionModel;
 import cc.rits.openhacku2022.service.AuthService;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
@@ -33,7 +34,7 @@ public class AuthRestController {
     @PostMapping("logout")
     @ResponseStatus(HttpStatus.OK)
     public void logout( //
-        final TransactionModel transaction //
+        @Parameter(hidden = true) final TransactionModel transaction //
     ) {
         this.authService.logout(transaction);
     }

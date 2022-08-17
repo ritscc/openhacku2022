@@ -14,6 +14,7 @@ import cc.rits.openhacku2022.exception.NotFoundException;
 import cc.rits.openhacku2022.model.TransactionModel;
 import cc.rits.openhacku2022.repository.ShopRepository;
 import cc.rits.openhacku2022.service.MenuService;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
@@ -42,7 +43,7 @@ public class MenuRestController {
     @ResponseStatus(HttpStatus.OK)
     public MenusResponse getMenus( //
         @PathVariable("shop_id") final Integer shopId, //
-        final TransactionModel transaction //
+        @Parameter(hidden = true) final TransactionModel transaction //
     ) {
         // 店舗の存在チェック
         this.shopRepository.selectById(shopId) //
