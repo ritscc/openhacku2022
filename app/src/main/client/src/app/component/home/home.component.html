@@ -1,0 +1,62 @@
+<mat-horizontal-stepper fxLayout="column" fxLayoutAlign="start center" linear="true">
+    <!-- Icon overrides. -->
+    <ng-template matStepperIcon="edit">
+        <mat-icon>check</mat-icon>
+    </ng-template>
+
+    <!-- 画面遷移1つ目 プロダクト説明画面 -->
+    <mat-step label="はじめに" state="phone">
+        <div fxLayout="column" fxLayoutAlign="center center">
+            <img class="icon" src="https://cdn.worldvectorlogo.com/logos/angular-icon-1.svg" />
+            <h2 class="title">"プロダクト名"へようこそ</h2>
+            <ol class="list">
+                <li>感染防止対策のため<br />適度に間隔を保った座席を決定</li>
+                <li>待ち時間を少なく<br />メニューが決まったらその場で注文</li>
+                <li>お持ちの現金や電子決済に応じて<br />非対面で会計を行います</li>
+            </ol>
+            <button class="start-button" color="primary" mat-flat-button matStepperNext>
+                開始する
+            </button>
+        </div>
+    </mat-step>
+
+    <!-- 画面遷移2つ目 人数決定フォーム入力画面-->
+    <mat-step [stepControl]="form" label="人数決定" state="number">
+        <form [formGroup]="form">
+            <div fxLayout="column" fxLayoutAlign="center center">
+                <img class="icon" src="https://cdn.worldvectorlogo.com/logos/angular-icon-1.svg" />
+                <h4>来店人数を入力してください</h4>
+                <mat-form-field appearance="outline">
+                    <mat-label>来店人数を入力</mat-label>
+                    <input formControlName="numberOfPeople" matInput />
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-around center">
+                <button class="next-button" mat-stroked-button matStepperPrevious>戻る</button>
+                <button class="next-button" color="primary" mat-flat-button matStepperNext>
+                    次へ
+                </button>
+            </div>
+        </form>
+    </mat-step>
+
+    <!-- 画面遷移3つ目 QRコード画面 -->
+    <mat-step label="QRコード">
+        <ol>
+            <li>カメラを許可してください</li>
+            <div fxLayout="column" fxLayoutAlign="center">
+                <img class="image-access-icon" src="assets/image_access.png" />
+            </div>
+            <li>QRコードを読み取ってください</li>
+            <div class="qr-code" fxLayout="column" fxLayoutAlign="center">
+                <mat-icon class="qr-code-icon">qr_code_scanner</mat-icon>
+            </div>
+        </ol>
+        <div fxLayout="row" fxLayoutAlign="space-around center">
+            <button class="next-button" mat-stroked-button matStepperPrevious>戻る</button>
+            <button (click)="onClickLogin()" class="next-button" color="primary" mat-flat-button>
+                読み取る
+            </button>
+        </div>
+    </mat-step>
+</mat-horizontal-stepper>
