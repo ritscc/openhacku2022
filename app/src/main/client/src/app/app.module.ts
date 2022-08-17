@@ -11,9 +11,18 @@ import { AppComponent } from "@app/app.component";
 import { PageContainerComponent } from "./component/page-container/page-container.component";
 import { HomeComponent } from "./component/home/home.component";
 import { PaymentWithQrComponent } from "./component/payment-with-qr/payment-with-qr.component";
+import { OrderComponent } from "@app/component/order/order.component";
+import { MenusComponent } from "@app/component/order/menus/menus.component";
 
 @NgModule({
-    declarations: [AppComponent, PageContainerComponent, HomeComponent, PaymentWithQrComponent],
+    declarations: [
+        AppComponent,
+        PageContainerComponent,
+        HomeComponent,
+        PaymentWithQrComponent,
+        OrderComponent,
+        MenusComponent,
+    ],
     imports: [SharedModule, AppRoutingModule, BrowserModule, BrowserAnimationsModule],
     providers: [],
     bootstrap: [AppComponent],
