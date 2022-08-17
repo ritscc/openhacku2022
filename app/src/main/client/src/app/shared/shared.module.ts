@@ -44,6 +44,9 @@ import { UserIconComponent } from "./component/user-icon/user-icon.component";
 import { SnackBarComponent } from "./component/snack-bar/snack-bar.component";
 import { QrLoaderDialogComponent } from "./component/qr-loader-dialog/qr-loader-dialog.component";
 
+// other imports
+import { QRCodeModule } from "angularx-qrcode";
+
 @NgModule({
     declarations: [HeaderComponent, UserIconComponent, SnackBarComponent, QrLoaderDialogComponent],
     imports: [
@@ -85,6 +88,9 @@ import { QrLoaderDialogComponent } from "./component/qr-loader-dialog/qr-loader-
         MatTabsModule,
         ZXingScannerModule,
         MatStepperModule,
+
+        // other modules
+        QRCodeModule,
     ],
     exports: [
         CommonModule,
@@ -125,6 +131,9 @@ import { QrLoaderDialogComponent } from "./component/qr-loader-dialog/qr-loader-
 
         // components
         HeaderComponent,
+
+        // other modules
+        QRCodeModule,
     ],
     providers: [
         { provide: ApiConfiguration, useValue: { rootUrl: environment.API_ROOT_URL } },

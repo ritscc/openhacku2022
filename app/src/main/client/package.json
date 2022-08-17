@@ -35,6 +35,7 @@
         "@zxing/browser": "^0.1.1",
         "@zxing/library": "^0.19.1",
         "@zxing/ngx-scanner": "^3.6.2",
+        "angularx-qrcode": "^14.0.0",
         "husky": "^8.0.1",
         "moment": "^2.29.4",
         "rxjs": "~7.5.6",
