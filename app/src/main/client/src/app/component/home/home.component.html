@@ -43,9 +43,13 @@
     <mat-step label="QRコード">
         <ol>
             <li>カメラを許可してください</li>
-            <img class="icon" src="https://cdn.worldvectorlogo.com/logos/angular-icon-1.svg" />
+            <div fxLayout="column" fxLayoutAlign="center">
+                <img class="image-access-icon" src="assets/image_access.png" />
+            </div>
             <li>QRコードを読み取ってください</li>
-            <img class="icon" src="https://cdn.worldvectorlogo.com/logos/angular-icon-1.svg" />
+            <div class="qr-code" fxLayout="column" fxLayoutAlign="center">
+                <mat-icon class="qr-code-icon">qr_code_scanner</mat-icon>
+            </div>
         </ol>
         <div fxLayout="row" fxLayoutAlign="space-around center">
             <button class="next-button" mat-stroked-button matStepperPrevious>戻る</button>
