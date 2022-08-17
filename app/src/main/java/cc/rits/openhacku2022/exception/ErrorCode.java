@@ -23,6 +23,10 @@ public enum ErrorCode {
 
     PASSWORD_IS_TOO_SIMPLE(HttpStatus.BAD_REQUEST, "exception.bad_request.password_is_too_simple"),
 
+    INVALID_NUMBER_OF_PEOPLE(HttpStatus.BAD_REQUEST, "exception.bad_request.invalid_number_of_people"),
+
+    ALL_TABLES_ARE_BOOKED(HttpStatus.BAD_REQUEST, "exception.bad_request.all_tables_are_booked"),
+
     /**
      * 401 Unauthorized
      */

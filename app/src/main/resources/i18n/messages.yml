@@ -4,6 +4,8 @@ exception:
     invalid_request_parameter: "不正なリクエストです。問題が解決しない場合は、管理者までご連絡ください。"
     invalid_password_length: "パスワードの長さは8~32文字にしてください。"
     password_is_too_simple: "パスワードには大文字・小文字・数字を含める必要があります。"
+    invalid_number_of_people: "不正な利用人数です。"
+    all_tables_are_booked: "満席のためご利用いただけません。"
   unauthorized:
     user_not_logged_in: "ユーザはログインしていません。問題が解決しない場合は、管理者までご連絡ください。"
     incorrect_code_or_password: "店舗コードかパスワードが間違っています。"

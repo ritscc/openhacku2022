@@ -216,7 +216,7 @@ abstract class BaseRestController_IT extends BaseSpecification {
             id | name                          | code                                   | password
             1  | RandomHelper.alphanumeric(10) | RandomHelper.alphanumeric(10) | RandomHelper.alphanumeric(10)
         }
-        TableHelper.insert sql, "table", {
+        TableHelper.insert sql, "shop_table", {
             id | shop_id | capacity
             1  | 1       | 4
         }

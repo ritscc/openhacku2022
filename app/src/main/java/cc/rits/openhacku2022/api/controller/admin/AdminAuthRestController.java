@@ -6,6 +6,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import cc.rits.openhacku2022.api.request.AdminLoginRequest;
+import cc.rits.openhacku2022.api.validation.RequestValidation;
 import cc.rits.openhacku2022.service.AdminAuthService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +31,7 @@ public class AdminAuthRestController {
     @PostMapping("login")
     @ResponseStatus(HttpStatus.OK)
     public void login( //
-        @Validated @RequestBody final AdminLoginRequest requestBody //
+        @RequestValidation @RequestBody final AdminLoginRequest requestBody //
     ) {
         this.adminAuthService.login(requestBody);
     }

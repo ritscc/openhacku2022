@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.rits.openhacku2022.db.mapper.ShopTableMapper">
+    <resultMap id="BaseResultMap" type="cc.rits.openhacku2022.db.entity.ShopTable"
+               extends="cc.rits.openhacku2022.db.mapper.base.ShopTableBaseMapper.BaseResultMap"/>
+    <resultMap id="ShopTableWithTransactionResultMap" type="cc.rits.openhacku2022.db.entity.join.ShopTableWithTransaction"
+               extends="BaseResultMap">
+        <result property="transactionId" column="transaction__id" javaType="java.lang.Integer"/>
+    </resultMap>
+
+    <select id="selectByShopId" parameterType="java.lang.Integer"
+            resultMap="ShopTableWithTransactionResultMap">
+        SELECT DISTINCT shop_table.*,
+
+                        transaction.id AS transaction__id
+
+        FROM shop_table
+                 LEFT JOIN transaction ON transaction.table_id = shop_table.id
+        WHERE shop_table.shop_id = #{shopId}
+    </select>
+
+</mapper>
