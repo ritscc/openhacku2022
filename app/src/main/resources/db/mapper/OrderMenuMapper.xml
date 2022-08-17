@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.rits.openhacku2022.db.mapper.OrderMenuMapper">
+    <resultMap id="BaseResultMap" type="cc.rits.openhacku2022.db.entity.OrderMenu"
+               extends="cc.rits.openhacku2022.db.mapper.base.OrderBaseMapper.BaseResultMap"/>
+    <resultMap id="MenuResultMap" type="cc.rits.openhacku2022.db.entity.Menu"
+               extends="cc.rits.openhacku2022.db.mapper.base.MenuBaseMapper.BaseResultMap"/>
+    <resultMap id="OrderMenuWithMenuResultMap" type="cc.rits.openhacku2022.db.entity.join.OrderMenuWitMenu"
+               extends="BaseResultMap">
+        <association property="menu" resultMap="MenuResultMap" columnPrefix="menu__"/>
+    </resultMap>
+</mapper>
