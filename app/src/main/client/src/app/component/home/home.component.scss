@@ -1,0 +1,45 @@
+.icon {
+    width: 150px;
+    height: 150px;
+    margin-top: 10px;
+}
+
+.title {
+    font-size: 1.4rem;
+}
+
+.description {
+    font-size: 1rem;
+    text-align: center;
+    line-height: 18px;
+}
+
+.list {
+    margin-top: 0em;
+}
+
+ul.list {
+    counter-reset: li;
+    padding: 0.5em 0.5em 0.5em 2em;
+    width: 350px;
+    list-style: none;
+}
+
+.list li {
+    position: relative;
+    padding: 10px 4px 10px 20px;
+    margin-top: 0.8em;
+    border-bottom: 1px dashed #ccc;
+    font-size: 14px;
+    color: #333;
+}
+
+.start-button {
+    margin-top: 10px;
+    width: 200px;
+}
+
+.next-button {
+    margin-top: 10px;
+    width: 100px;
+}

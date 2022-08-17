@@ -35,13 +35,17 @@ import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { DragDropModule } from "@angular/cdk/drag-drop";
 import { TextFieldModule } from "@angular/cdk/text-field";
 import { MatTabsModule } from "@angular/material/tabs";
+import { ZXingScannerModule } from "@zxing/ngx-scanner";
+import { MatStepperModule } from "@angular/material/stepper";
 
 // components
 import { HeaderComponent } from "./component/header/header.component";
 import { UserIconComponent } from "./component/user-icon/user-icon.component";
+import { SnackBarComponent } from "./component/snack-bar/snack-bar.component";
+import { QrLoaderDialogComponent } from "./component/qr-loader-dialog/qr-loader-dialog.component";
 
 @NgModule({
-    declarations: [HeaderComponent, UserIconComponent],
+    declarations: [HeaderComponent, UserIconComponent, SnackBarComponent, QrLoaderDialogComponent],
     imports: [
         // modules
         CommonModule,
@@ -79,6 +83,8 @@ import { UserIconComponent } from "./component/user-icon/user-icon.component";
         MatChipsModule,
         TextFieldModule,
         MatTabsModule,
+        ZXingScannerModule,
+        MatStepperModule,
     ],
     exports: [
         CommonModule,
@@ -115,6 +121,7 @@ import { UserIconComponent } from "./component/user-icon/user-icon.component";
         DragDropModule,
         TextFieldModule,
         MatTabsModule,
+        MatStepperModule,
 
         // components
         HeaderComponent,
