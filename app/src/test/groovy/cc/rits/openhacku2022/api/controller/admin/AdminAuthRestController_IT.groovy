@@ -14,6 +14,7 @@ class AdminAuthRestController_IT extends BaseRestController_IT {
     // API PATH
     static final String BASE_PATH = "/api/admin"
     static final String LOGIN_PATH = BASE_PATH + "/login"
+    static final String LOGOUT_PATH = BASE_PATH + "/logout"
 
     def "ログインAPI: 正常系 店舗にログイン"() {
         given:
@@ -52,6 +53,24 @@ class AdminAuthRestController_IT extends BaseRestController_IT {
         isCodeIncorrect | isPasswordIncorrect || expectedErrorCode
         true            | false               || ErrorCode.INCORRECT_CODE_OR_PASSWORD
         false           | true                || ErrorCode.INCORRECT_CODE_OR_PASSWORD
+    }
+
+    def "ログアウトAPI: 正常系 ログアウトするとセッションが廃棄される"() {
+        given:
+        this.loginShop()
+
+        when:
+        final request = this.postRequest(LOGOUT_PATH)
+        this.execute(request, HttpStatus.OK)
+
+        then:
+        this.session.isInvalid()
+    }
+
+    def "ログアウトAPI: 異常系 ログインしていない場合は401エラー"() {
+        expect:
+        final request = this.postRequest(LOGOUT_PATH)
+        this.execute(request, new UnauthorizedException(ErrorCode.USER_NOT_LOGGED_IN))
     }
 
 }
