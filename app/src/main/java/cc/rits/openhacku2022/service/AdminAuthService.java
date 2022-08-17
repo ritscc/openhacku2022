@@ -39,4 +39,12 @@ public class AdminAuthService {
         this.httpServletRequest.changeSessionId();
     }
 
+    /**
+     * ログアウト
+     */
+    public void logout() {
+        // セッションを無効にする
+        this.httpSession.invalidate();
+    }
+
 }
