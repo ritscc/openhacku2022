@@ -1,5 +1,6 @@
 package cc.rits.openhacku2022.api.response;
 
+import cc.rits.openhacku2022.db.entity.Menu;
 import cc.rits.openhacku2022.model.MenuModel;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
@@ -46,12 +47,20 @@ public class MenuResponse {
     @Schema(required = true)
     String imageUrl;
 
-    public MenuResponse(final MenuModel menuModel) {
-        this.id = menuModel.getId();
-        this.shopId = menuModel.getShopId();
-        this.name = menuModel.getName();
-        this.price = menuModel.getPrice();
-        this.imageUrl = menuModel.getImageUrl();
+    public MenuResponse(final MenuModel menu) {
+        this.id = menu.getId();
+        this.shopId = menu.getShopId();
+        this.name = menu.getName();
+        this.price = menu.getPrice();
+        this.imageUrl = menu.getImageUrl();
+    }
+
+    public MenuResponse(final Menu menu) {
+        this.id = menu.getId();
+        this.shopId = menu.getShopId();
+        this.name = menu.getName();
+        this.price = menu.getPrice();
+        this.imageUrl = menu.getImageUrl();
     }
 
 }

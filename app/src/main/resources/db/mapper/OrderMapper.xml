@@ -7,7 +7,6 @@
                extends="cc.rits.openhacku2022.db.mapper.OrderMenuMapper.OrderMenuWithMenuResultMap"/>
     <resultMap id="OrderWithOrderMenusResultMap" type="cc.rits.openhacku2022.db.entity.join.OrderWithOrderMenus"
                extends="BaseResultMap">
-        <collection property="orderMenus" resultMap="OrderMenuResultMap" columnPrefix="order_menu__">
-        </collection>
+        <collection property="orderMenus" resultMap="OrderMenuResultMap" columnPrefix="order_menu__"/>
     </resultMap>
 </mapper>

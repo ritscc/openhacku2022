@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cc.rits.openhacku2022.db.mapper.TransactionMapper">
     <resultMap id="BaseResultMap" type="cc.rits.openhacku2022.db.entity.Transaction"
-               extends="cc.rits.openhacku2022.db.mapper.base.TransactionBaseMapper.BaseResult"/>
+               extends="cc.rits.openhacku2022.db.mapper.base.TransactionBaseMapper.BaseResultMap"/>
     <resultMap id="OrderResultMap" type="cc.rits.openhacku2022.db.entity.join.OrderWithOrderMenus"
                extends="cc.rits.openhacku2022.db.mapper.OrderMapper.OrderWithOrderMenusResultMap"/>
-    <resultMap id="TableResultMap" type="cc.rits.openhacku2022.db.entity.Table"
-               extends="cc.rits.openhacku2022.db.mapper.base.TransactionBaseMapper.BaseResult"/>
+    <resultMap id="TableResultMap" type="cc.rits.openhacku2022.db.entity.ShopTable"
+               extends="cc.rits.openhacku2022.db.mapper.base.ShopTableBaseMapper.BaseResultMap"/>
     <resultMap id="TransactionWithShopNameAndOrdersAndTableResultMap"
                type="cc.rits.openhacku2022.db.entity.join.TransactionWithShopNameAndOrdersAndTable"
                extends="BaseResultMap">
@@ -36,9 +36,9 @@
                         menu.price             AS order__order_menu__menu__price,
                         menu.image_url         AS order__order_menu__menu__image_url,
 
-                        `table`.id             AS table__id,
-                        `table`.shop_id        AS table__shop_id,
-                        `table`.capacity       AS table__capacity,
+                        shop_table.id          AS table__id,
+                        shop_table.shop_id     AS table__shop_id,
+                        shop_table.capacity    AS table__capacity,
 
                         shop.name              AS shop__name
 
@@ -46,7 +46,7 @@
                  LEFT JOIN `order` ON `order`.transaction_id = transaction.id
                  LEFT JOIN order_menu ON order_menu.order_id = `order`.id
                  LEFT JOIN menu ON menu.id = order_menu.menu_id
-                 LEFT JOIN `table` ON `table`.id = transaction.table_id
+                 LEFT JOIN shop_table ON shop_table.id = transaction.table_id
                  LEFT JOIN shop ON shop.id = transaction.id
         WHERE transaction.id = #{id}
           AND transaction.shop_id = #{shopId}

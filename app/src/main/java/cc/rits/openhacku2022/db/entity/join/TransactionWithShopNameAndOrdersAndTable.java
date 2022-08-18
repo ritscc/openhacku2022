@@ -2,7 +2,7 @@ package cc.rits.openhacku2022.db.entity.join;
 
 import java.util.List;
 
-import cc.rits.openhacku2022.db.entity.Table;
+import cc.rits.openhacku2022.db.entity.ShopTable;
 import cc.rits.openhacku2022.db.entity.Transaction;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -29,6 +29,6 @@ public class TransactionWithShopNameAndOrdersAndTable extends Transaction {
     /**
      * テーブル
      */
-    Table table;
+    ShopTable table;
 
 }
