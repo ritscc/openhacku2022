@@ -9,6 +9,8 @@ exception:
   unauthorized:
     user_not_logged_in: "ユーザはログインしていません。問題が解決しない場合は、管理者までご連絡ください。"
     incorrect_code_or_password: "店舗コードかパスワードが間違っています。"
+  forbidden:
+    user_has_no_permission: "その動作は許可されていません。"
   not_found:
     api: "APIが見つかりません。"
     shop: "店舗が見つかりません。"
