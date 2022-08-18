@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
  */
 @Tag(name = "Transaction", description = "取引")
 @RestController
-@RequestMapping(path = "/api/shop/{shop_id}/transactions/me", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = "/api/shops/{shop_id}/transactions", produces = MediaType.APPLICATION_JSON_VALUE)
 @Validated
 @RequiredArgsConstructor
 public class TransactionRestController {
@@ -31,7 +31,7 @@ public class TransactionRestController {
      * @param transaction 取引
      * @return 取引
      */
-    @GetMapping
+    @GetMapping("/me")
     @ResponseStatus(HttpStatus.OK)
     public TransactionResponse getTransaction( //
         @PathVariable("shop_id") Integer shopId, //
