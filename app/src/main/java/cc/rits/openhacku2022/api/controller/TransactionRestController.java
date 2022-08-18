@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import cc.rits.openhacku2022.api.response.TransactionResponse;
 import cc.rits.openhacku2022.model.TransactionModel;
-import cc.rits.openhacku2022.query_service.TransactionQueryService;
+import cc.rits.openhacku2022.service.TransactionService;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class TransactionRestController {
 
-    private final TransactionQueryService transactionQueryService;
+    private final TransactionService transactionService;
 
     /**
      * 取引取得API
@@ -38,7 +38,7 @@ public class TransactionRestController {
         @Parameter(hidden = true) final TransactionModel transaction //
     ) {
         // 取引取得
-        return this.transactionQueryService.getTransaction(shopId, transaction);
+        return new TransactionResponse(this.transactionService.getTransaction(shopId, transaction));
     }
 
 }

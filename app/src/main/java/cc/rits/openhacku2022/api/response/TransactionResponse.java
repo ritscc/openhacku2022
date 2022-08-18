@@ -3,7 +3,7 @@ package cc.rits.openhacku2022.api.response;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import cc.rits.openhacku2022.db.entity.join.TransactionWithShopNameAndOrdersAndTable;
+import cc.rits.openhacku2022.query_service.dto.TransactionWithOrderDto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -32,10 +32,10 @@ public class TransactionResponse {
     Integer shopId;
 
     /**
-     * テーブル
+     * テーブルID
      */
     @Schema(required = true)
-    TableResponse table;
+    Integer tableId;
 
     /**
      * 取引コード
@@ -61,10 +61,10 @@ public class TransactionResponse {
     @Schema(required = true)
     List<OrderResponse> orders;
 
-    public TransactionResponse(final TransactionWithShopNameAndOrdersAndTable transaction) {
+    public TransactionResponse(final TransactionWithOrderDto transaction) {
         this.id = transaction.getId();
         this.shopId = transaction.getShopId();
-        this.table = new TableResponse(transaction.getTable());
+        this.tableId = transaction.getTableId();
         this.code = transaction.getCode();
         this.numberOfPeople = transaction.getNumberOfPeople();
         this.shopName = transaction.getShopName();

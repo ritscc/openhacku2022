@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import cc.rits.openhacku2022.db.entity.join.OrderWithOrderMenus;
+import cc.rits.openhacku2022.query_service.dto.OrderWIthOrderMenuDto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,13 +25,6 @@ public class OrderResponse {
      */
     @Schema(required = true)
     Integer id;
-
-    /**
-     * 取引ID
-     */
-    @Schema(required = true)
-    Integer transactionId;
-
     /**
      * 注文日
      */
@@ -42,13 +35,12 @@ public class OrderResponse {
      * 注文メニューリスト
      */
     @Schema(required = true)
-    List<OrderMenuResponse> orderMenus;
+    List<OrderMenuResponse> menus;
 
-    public OrderResponse(final OrderWithOrderMenus order) {
+    public OrderResponse(final OrderWIthOrderMenuDto order) {
         this.id = order.getId();
-        this.transactionId = order.getTransactionId();
         this.orderedDate = order.getOrderedDate();
-        this.orderMenus = order.getOrderMenus().stream() //
+        this.menus = order.getMenus().stream() //
             .map(OrderMenuResponse::new) //
             .collect(Collectors.toList());
     }

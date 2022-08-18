@@ -1,6 +1,6 @@
 package cc.rits.openhacku2022.api.response;
 
-import cc.rits.openhacku2022.db.entity.join.OrderMenuWitMenu;
+import cc.rits.openhacku2022.query_service.dto.OrderMenuDto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,22 +17,28 @@ import lombok.NoArgsConstructor;
 public class OrderMenuResponse {
 
     /**
-     * メニュー
+     * メニューID
      */
     @Schema(required = true)
-    MenuResponse menu;
+    Integer id;
 
     /**
-     * 注文ID
+     * メニュー名
      */
     @Schema(required = true)
-    Integer orderId;
+    String name;
 
     /**
-     * ステータス
+     * 価格
      */
     @Schema(required = true)
-    Integer status;
+    Integer price;
+
+    /**
+     * 画像URL
+     */
+    @Schema(required = true)
+    String imageUrl;
 
     /**
      * 注文数
@@ -40,9 +46,17 @@ public class OrderMenuResponse {
     @Schema(required = true)
     Integer quantity;
 
-    public OrderMenuResponse(final OrderMenuWitMenu orderMenu) {
-        this.menu = new MenuResponse(orderMenu.getMenu());
-        this.orderId = orderMenu.getOrderId();
+    /**
+     * ステータス
+     */
+    @Schema(required = true)
+    Integer status;
+
+    public OrderMenuResponse(final OrderMenuDto orderMenu) {
+        this.id = orderMenu.getId();
+        this.name = orderMenu.getName();
+        this.price = orderMenu.getPrice();
+        this.imageUrl = orderMenu.getImageUrl();
         this.status = orderMenu.getStatus();
         this.quantity = orderMenu.getQuantity();
     }

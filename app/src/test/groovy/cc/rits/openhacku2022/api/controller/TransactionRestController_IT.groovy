@@ -47,13 +47,12 @@ class TransactionRestController_IT extends BaseRestController_IT {
 
         then:
         response.id == 1
-        response.table.id == 1
-        response.table.capacity == 4
+        response.tableId == 1
         response.orders*.id == [1, 2]
-        response.orders*.transactionId == [1, 1]
-        response.orders*.orderMenus.menu*.id == [[1], [1, 2]]
-        response.orders*.orderMenus.menu*.price == [[100], [100, 200]]
-        response.orders*.orderMenus*.quantity == [[3], [4, 5]]
+        response.orders*.id == [1, 2]
+        response.orders*.menus*.id == [[1], [1, 2]]
+        response.orders*.menus*.price == [[100], [100, 200]]
+        response.orders*.menus*.quantity == [[3], [4, 5]]
     }
 
     def "取引取得API: 異常系 取引中の店舗でない場合は403エラー"() {
