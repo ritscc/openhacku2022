@@ -15,8 +15,8 @@ import org.springframework.http.HttpStatus
 class TransactionRestController_IT extends BaseRestController_IT {
 
     // API PATH
-    static final String BASE_PATH = "/api/shop/%d/transactions/me"
-    static final String GET_TRANSACTION_PATH = BASE_PATH
+    static final String BASE_PATH = "/api/shops/%d/transactions"
+    static final String GET_TRANSACTION_PATH = BASE_PATH + "/me"
 
     def "取引取得API: 正常系 顧客が取引を取得できる"() {
         given:
@@ -56,7 +56,7 @@ class TransactionRestController_IT extends BaseRestController_IT {
         response.orders*.orderMenus*.quantity == [[3], [4, 5]]
     }
 
-    def "取引取得API: 異常系 取引中の店舗出ない場合は403エラー"() {
+    def "取引取得API: 異常系 取引中の店舗でない場合は403エラー"() {
         given:
         this.login()
 
