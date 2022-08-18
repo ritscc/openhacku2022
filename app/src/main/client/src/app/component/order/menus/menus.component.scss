@@ -1,0 +1,19 @@
+.menu-container {
+    height: 120px;
+    margin: 0 10px 0 10px;
+}
+
+.menu-container__image {
+    height: 100px;
+    width: 130px;
+    object-fit: cover;
+}
+
+.menu-container__detail {
+    height: 80px;
+    width: 100%;
+}
+
+.menu-container__detail__name {
+    font-size: 0.9rem;
+}

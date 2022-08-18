@@ -37,18 +37,29 @@ import { TextFieldModule } from "@angular/cdk/text-field";
 import { MatTabsModule } from "@angular/material/tabs";
 import { ZXingScannerModule } from "@zxing/ngx-scanner";
 import { MatStepperModule } from "@angular/material/stepper";
+import { QRCodeModule } from "angularx-qrcode";
+
+// pipes
+import { NumberPipe } from "./pipe/number.pipe";
 
 // components
 import { HeaderComponent } from "./component/header/header.component";
 import { UserIconComponent } from "./component/user-icon/user-icon.component";
 import { SnackBarComponent } from "./component/snack-bar/snack-bar.component";
 import { QrLoaderDialogComponent } from "./component/qr-loader-dialog/qr-loader-dialog.component";
-
-// other imports
-import { QRCodeModule } from "angularx-qrcode";
+import { ButtonComponent } from "./component/button/button.component";
+import { FooterComponent } from "./component/footer/footer.component";
 
 @NgModule({
-    declarations: [HeaderComponent, UserIconComponent, SnackBarComponent, QrLoaderDialogComponent],
+    declarations: [
+        HeaderComponent,
+        UserIconComponent,
+        SnackBarComponent,
+        QrLoaderDialogComponent,
+        NumberPipe,
+        ButtonComponent,
+        FooterComponent,
+    ],
     imports: [
         // modules
         CommonModule,
@@ -88,8 +99,6 @@ import { QRCodeModule } from "angularx-qrcode";
         MatTabsModule,
         ZXingScannerModule,
         MatStepperModule,
-
-        // other modules
         QRCodeModule,
     ],
     exports: [
@@ -128,12 +137,15 @@ import { QRCodeModule } from "angularx-qrcode";
         TextFieldModule,
         MatTabsModule,
         MatStepperModule,
+        QRCodeModule,
+
+        // pipes
+        NumberPipe,
 
         // components
         HeaderComponent,
-
-        // other modules
-        QRCodeModule,
+        ButtonComponent,
+        FooterComponent,
     ],
     providers: [
         { provide: ApiConfiguration, useValue: { rootUrl: environment.API_ROOT_URL } },

@@ -5,6 +5,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { HomeComponent } from "@app/component/home/home.component";
 import { PaymentWithQrComponent } from "@app/component/payment-with-qr/payment-with-qr.component";
 import { PageContainerComponent } from "@app/component/page-container/page-container.component";
+import { OrderComponent } from "@app/component/order/order.component";
 
 const routes: Routes = [
     {
@@ -14,6 +15,10 @@ const routes: Routes = [
             {
                 path: "",
                 component: HomeComponent,
+            },
+            {
+                path: "order",
+                component: OrderComponent,
             },
             {
                 path: "payment/qr",

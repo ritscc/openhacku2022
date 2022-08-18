@@ -1,0 +1,32 @@
+<div fxLayout="column" fxLayoutGap="30px">
+    <div>
+        <div *ngFor="let element of menus">
+            <div
+                class="menu-container"
+                fxLayout="row"
+                fxLayoutAlign="space-between center"
+                fxLayoutGap="10px"
+            >
+                <img [src]="element.imageUrl" class="menu-container__image" />
+
+                <div
+                    class="menu-container__detail"
+                    fxLayout="column"
+                    fxLayoutAlign="space-between start"
+                >
+                    <span class="menu-container__detail__name">{{ element.name }}</span>
+
+                    <span class="menu-container__detail__price"
+                        >￥{{ element.price | number }}</span
+                    >
+                </div>
+            </div>
+            <mat-divider></mat-divider>
+        </div>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px">
+        <app-button [reverseColor]="true" icon="add" label="カートに追加"></app-button>
+        <app-button label="注文する"></app-button>
+    </div>
+</div>
