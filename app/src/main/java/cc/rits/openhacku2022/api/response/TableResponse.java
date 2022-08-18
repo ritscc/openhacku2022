@@ -1,6 +1,6 @@
 package cc.rits.openhacku2022.api.response;
 
-import cc.rits.openhacku2022.db.entity.ShopTable;
+import cc.rits.openhacku2022.model.TableModel;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,10 +34,17 @@ public class TableResponse {
     @Schema(required = true)
     Integer capacity;
 
-    public TableResponse(final ShopTable table) {
+    /**
+     * 利用中フラグ
+     */
+    @Schema(required = true)
+    Boolean isUsed;
+
+    public TableResponse(final TableModel table) {
         this.id = table.getId();
         this.shopId = table.getShopId();
         this.capacity = table.getCapacity();
+        this.isUsed = table.getIsUsed();
     }
 
 }
