@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.rits.openhacku2022.db.mapper.TransactionMapper">
+    <resultMap id="BaseResultMap" type="cc.rits.openhacku2022.db.entity.Transaction"
+               extends="cc.rits.openhacku2022.db.mapper.base.TransactionBaseMapper.BaseResultMap"/>
+    <resultMap id="OrderResultMap" type="cc.rits.openhacku2022.db.entity.join.OrderWithOrderMenus"
+               extends="cc.rits.openhacku2022.db.mapper.OrderMapper.OrderWithOrderMenusResultMap"/>
+    <resultMap id="TableResultMap" type="cc.rits.openhacku2022.db.entity.ShopTable"
+               extends="cc.rits.openhacku2022.db.mapper.base.ShopTableBaseMapper.BaseResultMap"/>
+    <resultMap id="TransactionWithShopNameAndOrdersAndTableResultMap"
+               type="cc.rits.openhacku2022.db.entity.join.TransactionWithShopNameAndOrdersAndTable"
+               extends="BaseResultMap">
+        <result property="shopName" javaType="java.lang.String" column="shop__name"/>
+        <association property="table" resultMap="TableResultMap" columnPrefix="table__">
+        </association>
+        <collection property="orders" resultMap="OrderResultMap" columnPrefix="order__">
+        </collection>
+    </resultMap>
+
+    <select id="selectByIdAndShopId" parameterType="java.lang.Integer"
+            resultMap="TransactionWithShopNameAndOrdersAndTableResultMap">
+        SELECT DISTINCT transaction.*,
+
+                        `order`.id             AS order__id,
+                        `order`.transaction_id AS order__transaction_id,
+                        `order`.ordered_date   AS order__ordered_date,
+
+                        order_menu.order_id    AS order__order_menu__order_id,
+                        order_menu.menu_id     AS order__order_menu__menu_id,
+                        order_menu.status      AS order__order_menu__status,
+                        order_menu.quantity    AS order__order_menu__quantity,
+
+                        menu.id                AS order__order_menu__menu__id,
+                        menu.shop_id           AS order__order_menu__menu__shop_id,
+                        menu.name              AS order__order_menu__menu__name,
+                        menu.price             AS order__order_menu__menu__price,
+                        menu.image_url         AS order__order_menu__menu__image_url,
+
+                        shop_table.id          AS table__id,
+                        shop_table.shop_id     AS table__shop_id,
+                        shop_table.capacity    AS table__capacity,
+
+                        shop.name              AS shop__name
+
+        FROM transaction
+                 LEFT JOIN `order` ON `order`.transaction_id = transaction.id
+                 LEFT JOIN order_menu ON order_menu.order_id = `order`.id
+                 LEFT JOIN menu ON menu.id = order_menu.menu_id
+                 LEFT JOIN shop_table ON shop_table.id = transaction.table_id
+                 LEFT JOIN shop ON shop.id = transaction.id
+        WHERE transaction.id = #{id}
+          AND transaction.shop_id = #{shopId}
+    </select>
+
+</mapper>
