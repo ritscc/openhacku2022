@@ -4,7 +4,7 @@
 <generatorConfiguration>
     <context id="schema" targetRuntime="MyBatis3" defaultModelType="flat">
         <property name="javaFileEncoding" value="UTF-8"/>
-        <property name="autoDelimitKeyWords" value="true"/>
+        <property name="autoDelimitKeywords" value="true"/>
         <property name="beginningDelimiter" value="`"/>
         <property name="endingDelimiter" value="`"/>
 
@@ -32,7 +32,7 @@
         <javaClientGenerator targetPackage="${generator.client.package}" targetProject="${generator.client.project}"
                              type="${generator.client.type}"/>
 
-        <table tableName="%">
+        <table tableName="%" delimitIdentifiers="true" delimitAllColumns="true">
             <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
             <ignoreColumn column="created_at"/>
             <ignoreColumn column="updated_at"/>
