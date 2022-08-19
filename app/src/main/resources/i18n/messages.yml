@@ -17,6 +17,7 @@ exception:
     api: "APIが見つかりません。"
     shop: "店舗が見つかりません。"
     menu: "メニューが見つかりません。"
+    transaction: "取引が見つかりません。"
   internal_server_error:
     unexpected_error: "予期しないエラーが発生しました。問題が解決しない場合は、管理者までご連絡ください。"
     failed_to_upload_file: "ファイルのアップロードに失敗しました。"

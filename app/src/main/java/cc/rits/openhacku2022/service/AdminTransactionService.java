@@ -8,41 +8,43 @@ import org.springframework.transaction.annotation.Transactional;
 import cc.rits.openhacku2022.exception.ErrorCode;
 import cc.rits.openhacku2022.exception.ForbiddenException;
 import cc.rits.openhacku2022.exception.NotFoundException;
-import cc.rits.openhacku2022.model.TransactionModel;
+import cc.rits.openhacku2022.model.ShopModel;
 import cc.rits.openhacku2022.query_service.TransactionQueryService;
 import cc.rits.openhacku2022.query_service.dto.TransactionWithOrderDto;
 import cc.rits.openhacku2022.repository.ShopRepository;
 import lombok.RequiredArgsConstructor;
 
 /**
- * トランザクションサービス
+ * 取引サービス(管理者用)
  */
 @RequiredArgsConstructor
 @Service
 @Transactional
-public class TransactionService {
-
-    private final TransactionQueryService transactionQueryService;
+public class AdminTransactionService {
 
     private final ShopRepository shopRepository;
 
+    private final TransactionQueryService transactionQueryService;
+
     /**
      * 取引を取得
-     *
+     * 
      * @param shopId 店舗ID
-     * @param transaction 取引
+     * @param transactionId 取引ID
+     * @param shop 店舗
      * @return 取引
      */
-    public TransactionWithOrderDto getTransaction(final Integer shopId, final TransactionModel transaction) {
+    public TransactionWithOrderDto getTransaction(final Integer shopId, final Integer transactionId, final ShopModel shop) {
         // 店舗の存在チェック
         this.shopRepository.selectById(shopId) //
             .orElseThrow(() -> new NotFoundException(ErrorCode.NOT_FOUND_SHOP));
 
-        // 取引中の店舗かチェック
-        if (!Objects.equals(shopId, transaction.getShopId())) {
+        // ログイン中の店舗と店舗IDが一致するかチェック
+        if (!Objects.equals(shop.getId(), shopId)) {
             throw new ForbiddenException(ErrorCode.USER_HAS_NO_PERMISSION);
         }
-        return this.transactionQueryService.getTransaction(shopId, transaction.getId());
+
+        return this.transactionQueryService.getTransaction(shopId, transactionId);
     }
 
 }
