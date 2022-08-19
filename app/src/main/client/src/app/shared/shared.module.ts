@@ -56,6 +56,7 @@ import { ButtonComponent } from "@shared/component/button/button.component";
 import { FooterComponent } from "@shared/component/footer/footer.component";
 import { PageContainerComponent } from "@shared/component/page-container/page-container.component";
 import { ProgressSpinnerComponent } from "@shared/component/progress-spinner/progress-spinner.component";
+import { SharedInputComponent } from "./component/shared-input/shared-input.component";
 
 @NgModule({
     declarations: [
@@ -68,6 +69,7 @@ import { ProgressSpinnerComponent } from "@shared/component/progress-spinner/pro
         FooterComponent,
         PageContainerComponent,
         ProgressSpinnerComponent,
+        SharedInputComponent,
     ],
     imports: [
         // modules
@@ -156,6 +158,7 @@ import { ProgressSpinnerComponent } from "@shared/component/progress-spinner/pro
         ButtonComponent,
         FooterComponent,
         PageContainerComponent,
+        SharedInputComponent,
     ],
     providers: [
         { provide: ApiConfiguration, useValue: { rootUrl: environment.API_ROOT_URL } },
