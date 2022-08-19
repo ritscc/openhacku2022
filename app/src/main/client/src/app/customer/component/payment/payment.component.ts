@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
-import { QrDialogComponent } from "@app/component/qr-dialog/qr-dialog.component";
+import { QrDialogComponent } from "@customer/component/qr-dialog/qr-dialog.component";
 
 @Component({
     selector: "app-payment",

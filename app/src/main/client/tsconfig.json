@@ -28,6 +28,12 @@
             "@shared/*": [
                 "src/app/shared/*"
             ],
+            "@customer/*": [
+                "src/app/customer/*"
+            ],
+            "@admin/*": [
+                "src/app/admin/*"
+            ],
             "@app/*": [
                 "src/app/*"
             ]

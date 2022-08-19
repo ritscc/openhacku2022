@@ -2,32 +2,25 @@ import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
+// components
+import { AppComponent } from "@app/app.component";
+
 // modules
 import { SharedModule } from "@shared/shared.module";
 import { AppRoutingModule } from "@app/app-routing.module";
-
-// components
-import { AppComponent } from "@app/app.component";
-import { PageContainerComponent } from "./component/page-container/page-container.component";
-import { HomeComponent } from "./component/home/home.component";
-import { PaymentWithQrComponent } from "./component/payment-with-qr/payment-with-qr.component";
-import { QrDialogComponent } from "./component/qr-dialog/qr-dialog.component";
-import { PaymentComponent } from "./component/payment/payment.component";
-import { OrderComponent } from "@app/component/order/order.component";
-import { MenusComponent } from "@app/component/order/menus/menus.component";
+import { CustomerModule } from "@customer/customer.module";
+import { AdminModule } from "@admin/admin.module";
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        PageContainerComponent,
-        HomeComponent,
-        PaymentWithQrComponent,
-        QrDialogComponent,
-        PaymentComponent,
-        OrderComponent,
-        MenusComponent,
+    declarations: [AppComponent],
+    imports: [
+        SharedModule,
+        CustomerModule,
+        AdminModule,
+        AppRoutingModule,
+        BrowserModule,
+        BrowserAnimationsModule,
     ],
-    imports: [SharedModule, AppRoutingModule, BrowserModule, BrowserAnimationsModule],
     providers: [],
     bootstrap: [AppComponent],
 })

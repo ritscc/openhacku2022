@@ -49,6 +49,7 @@ import { SnackBarComponent } from "./component/snack-bar/snack-bar.component";
 import { QrLoaderDialogComponent } from "./component/qr-loader-dialog/qr-loader-dialog.component";
 import { ButtonComponent } from "./component/button/button.component";
 import { FooterComponent } from "./component/footer/footer.component";
+import { PageContainerComponent } from "@shared/component/page-container/page-container.component";
 
 @NgModule({
     declarations: [
@@ -59,6 +60,7 @@ import { FooterComponent } from "./component/footer/footer.component";
         NumberPipe,
         ButtonComponent,
         FooterComponent,
+        PageContainerComponent,
     ],
     imports: [
         // modules
@@ -146,6 +148,7 @@ import { FooterComponent } from "./component/footer/footer.component";
         HeaderComponent,
         ButtonComponent,
         FooterComponent,
+        PageContainerComponent,
     ],
     providers: [
         { provide: ApiConfiguration, useValue: { rootUrl: environment.API_ROOT_URL } },
