@@ -4,10 +4,13 @@ import { NgModule, ModuleWithProviders, SkipSelf, Optional } from "@angular/core
 import { HttpClient } from "@angular/common/http";
 import { ApiConfiguration, ApiConfigurationParams } from "./api-configuration";
 
+import { OrderService } from "./services/order.service";
 import { AuthService } from "./services/auth.service";
 import { AdminAuthService } from "./services/admin-auth.service";
+import { TransactionService } from "./services/transaction.service";
 import { MenuService } from "./services/menu.service";
 import { HealthCheckService } from "./services/health-check.service";
+import { AdminTransactionService } from "./services/admin-transaction.service";
 
 /**
  * Module that provides all services and configuration.
@@ -16,7 +19,16 @@ import { HealthCheckService } from "./services/health-check.service";
     imports: [],
     exports: [],
     declarations: [],
-    providers: [AuthService, AdminAuthService, MenuService, HealthCheckService, ApiConfiguration],
+    providers: [
+        OrderService,
+        AuthService,
+        AdminAuthService,
+        TransactionService,
+        MenuService,
+        HealthCheckService,
+        AdminTransactionService,
+        ApiConfiguration,
+    ],
 })
 export class ApiModule {
     static forRoot(params: ApiConfigurationParams): ModuleWithProviders<ApiModule> {
