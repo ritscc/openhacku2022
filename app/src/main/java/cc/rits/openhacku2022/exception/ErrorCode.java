@@ -52,6 +52,8 @@ public enum ErrorCode {
 
     NOT_FOUND_MENU(HttpStatus.NOT_FOUND, "exception.not_found.menu"),
 
+    NOT_FOUND_TRANSACTION(HttpStatus.NOT_FOUND, "exception.not_found.transaction"),
+
     /**
      * 500 Internal Server Error
      */
