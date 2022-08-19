@@ -1,0 +1,44 @@
+<!-- レシート生成 -->
+<div class="sheet-container">
+    <div fxLayout="column" fxLayoutAlign="space-around center">
+        <h2>店の名前</h2>
+
+        <div class="orders">
+            <!-- TODO: 実際はループさせる -->
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+                <div>商品.name</div>
+                <div>商品.value</div>
+            </div>
+        </div>
+
+        <div class="additional">
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+                <div>小計</div>
+                <div>￥オーダー総額</div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+                <div>内税対象額</div>
+                <div>￥同じ額</div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+                <div>内税</div>
+                <div>￥内税対象額×0.1</div>
+            </div>
+            <div class="total" fxLayout="row" fxLayoutAlign="space-between center">
+                <div>合計</div>
+                <div>￥内税対象額×1.1</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h4>ご確認の上、お会計を押してください</h4>
+
+<div fxLayout="row" fxLayoutAlign="center">
+    <div fxLayout="row" fxLayoutAlign="space-around center">
+        <button class="next-button" mat-raised-button>戻る</button>
+        <button (click)="openQrcodeDialog()" class="next-button" color="accent" mat-raised-button>
+            お会計
+        </button>
+    </div>
+</div>
