@@ -23,7 +23,7 @@ public class TransactionQueryService {
      * 取引を取得
      *
      * @param shopId 店舗ID
-     * @param transaction 取引
+     * @param transactionId 取引ID
      * @return 取引
      */
     public TransactionWithOrderDto getTransaction(final Integer shopId, final Integer transactionId) {
