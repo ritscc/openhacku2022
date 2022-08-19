@@ -11,6 +11,7 @@ import cc.rits.openhacku2022.api.response.MenuResponse;
 import cc.rits.openhacku2022.api.response.MenusResponse;
 import cc.rits.openhacku2022.model.TransactionModel;
 import cc.rits.openhacku2022.service.MenuService;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
@@ -19,7 +20,7 @@ import lombok.RequiredArgsConstructor;
  */
 @Tag(name = "Menu", description = "メニュー")
 @RestController
-@RequestMapping(path = "/api/shop/{shop_id}/menus", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = "/api/shops/{shop_id}/menus", produces = MediaType.APPLICATION_JSON_VALUE)
 @Validated
 @RequiredArgsConstructor
 public class MenuRestController {
@@ -37,7 +38,7 @@ public class MenuRestController {
     @ResponseStatus(HttpStatus.OK)
     public MenusResponse getMenus( //
         @PathVariable("shop_id") final Integer shopId, //
-        final TransactionModel transaction //
+        @Parameter(hidden = true) final TransactionModel transaction //
     ) {
         final var menus = this.menuService.getMenus(shopId, transaction).stream() //
             .map(MenuResponse::new) //

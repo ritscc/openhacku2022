@@ -196,182 +196,182 @@ public class OrderExample {
         }
 
         public Criteria andIdIsNull() {
-            addCriterion("id is null");
+            addCriterion("`id` is null");
             return (Criteria) this;
         }
 
         public Criteria andIdIsNotNull() {
-            addCriterion("id is not null");
+            addCriterion("`id` is not null");
             return (Criteria) this;
         }
 
         public Criteria andIdEqualTo(Integer value) {
-            addCriterion("id =", value, "id");
+            addCriterion("`id` =", value, "id");
             return (Criteria) this;
         }
 
         public Criteria andIdNotEqualTo(Integer value) {
-            addCriterion("id <>", value, "id");
+            addCriterion("`id` <>", value, "id");
             return (Criteria) this;
         }
 
         public Criteria andIdGreaterThan(Integer value) {
-            addCriterion("id >", value, "id");
+            addCriterion("`id` >", value, "id");
             return (Criteria) this;
         }
 
         public Criteria andIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("id >=", value, "id");
+            addCriterion("`id` >=", value, "id");
             return (Criteria) this;
         }
 
         public Criteria andIdLessThan(Integer value) {
-            addCriterion("id <", value, "id");
+            addCriterion("`id` <", value, "id");
             return (Criteria) this;
         }
 
         public Criteria andIdLessThanOrEqualTo(Integer value) {
-            addCriterion("id <=", value, "id");
+            addCriterion("`id` <=", value, "id");
             return (Criteria) this;
         }
 
         public Criteria andIdIn(List<Integer> values) {
-            addCriterion("id in", values, "id");
+            addCriterion("`id` in", values, "id");
             return (Criteria) this;
         }
 
         public Criteria andIdNotIn(List<Integer> values) {
-            addCriterion("id not in", values, "id");
+            addCriterion("`id` not in", values, "id");
             return (Criteria) this;
         }
 
         public Criteria andIdBetween(Integer value1, Integer value2) {
-            addCriterion("id between", value1, value2, "id");
+            addCriterion("`id` between", value1, value2, "id");
             return (Criteria) this;
         }
 
         public Criteria andIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("id not between", value1, value2, "id");
+            addCriterion("`id` not between", value1, value2, "id");
             return (Criteria) this;
         }
 
         public Criteria andTransactionIdIsNull() {
-            addCriterion("transaction_id is null");
+            addCriterion("`transaction_id` is null");
             return (Criteria) this;
         }
 
         public Criteria andTransactionIdIsNotNull() {
-            addCriterion("transaction_id is not null");
+            addCriterion("`transaction_id` is not null");
             return (Criteria) this;
         }
 
         public Criteria andTransactionIdEqualTo(Integer value) {
-            addCriterion("transaction_id =", value, "transactionId");
+            addCriterion("`transaction_id` =", value, "transactionId");
             return (Criteria) this;
         }
 
         public Criteria andTransactionIdNotEqualTo(Integer value) {
-            addCriterion("transaction_id <>", value, "transactionId");
+            addCriterion("`transaction_id` <>", value, "transactionId");
             return (Criteria) this;
         }
 
         public Criteria andTransactionIdGreaterThan(Integer value) {
-            addCriterion("transaction_id >", value, "transactionId");
+            addCriterion("`transaction_id` >", value, "transactionId");
             return (Criteria) this;
         }
 
         public Criteria andTransactionIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("transaction_id >=", value, "transactionId");
+            addCriterion("`transaction_id` >=", value, "transactionId");
             return (Criteria) this;
         }
 
         public Criteria andTransactionIdLessThan(Integer value) {
-            addCriterion("transaction_id <", value, "transactionId");
+            addCriterion("`transaction_id` <", value, "transactionId");
             return (Criteria) this;
         }
 
         public Criteria andTransactionIdLessThanOrEqualTo(Integer value) {
-            addCriterion("transaction_id <=", value, "transactionId");
+            addCriterion("`transaction_id` <=", value, "transactionId");
             return (Criteria) this;
         }
 
         public Criteria andTransactionIdIn(List<Integer> values) {
-            addCriterion("transaction_id in", values, "transactionId");
+            addCriterion("`transaction_id` in", values, "transactionId");
             return (Criteria) this;
         }
 
         public Criteria andTransactionIdNotIn(List<Integer> values) {
-            addCriterion("transaction_id not in", values, "transactionId");
+            addCriterion("`transaction_id` not in", values, "transactionId");
             return (Criteria) this;
         }
 
         public Criteria andTransactionIdBetween(Integer value1, Integer value2) {
-            addCriterion("transaction_id between", value1, value2, "transactionId");
+            addCriterion("`transaction_id` between", value1, value2, "transactionId");
             return (Criteria) this;
         }
 
         public Criteria andTransactionIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("transaction_id not between", value1, value2, "transactionId");
+            addCriterion("`transaction_id` not between", value1, value2, "transactionId");
             return (Criteria) this;
         }
 
         public Criteria andOrderedDateIsNull() {
-            addCriterion("ordered_date is null");
+            addCriterion("`ordered_date` is null");
             return (Criteria) this;
         }
 
         public Criteria andOrderedDateIsNotNull() {
-            addCriterion("ordered_date is not null");
+            addCriterion("`ordered_date` is not null");
             return (Criteria) this;
         }
 
         public Criteria andOrderedDateEqualTo(Date value) {
-            addCriterion("ordered_date =", value, "orderedDate");
+            addCriterion("`ordered_date` =", value, "orderedDate");
             return (Criteria) this;
         }
 
         public Criteria andOrderedDateNotEqualTo(Date value) {
-            addCriterion("ordered_date <>", value, "orderedDate");
+            addCriterion("`ordered_date` <>", value, "orderedDate");
             return (Criteria) this;
         }
 
         public Criteria andOrderedDateGreaterThan(Date value) {
-            addCriterion("ordered_date >", value, "orderedDate");
+            addCriterion("`ordered_date` >", value, "orderedDate");
             return (Criteria) this;
         }
 
         public Criteria andOrderedDateGreaterThanOrEqualTo(Date value) {
-            addCriterion("ordered_date >=", value, "orderedDate");
+            addCriterion("`ordered_date` >=", value, "orderedDate");
             return (Criteria) this;
         }
 
         public Criteria andOrderedDateLessThan(Date value) {
-            addCriterion("ordered_date <", value, "orderedDate");
+            addCriterion("`ordered_date` <", value, "orderedDate");
             return (Criteria) this;
         }
 
         public Criteria andOrderedDateLessThanOrEqualTo(Date value) {
-            addCriterion("ordered_date <=", value, "orderedDate");
+            addCriterion("`ordered_date` <=", value, "orderedDate");
             return (Criteria) this;
         }
 
         public Criteria andOrderedDateIn(List<Date> values) {
-            addCriterion("ordered_date in", values, "orderedDate");
+            addCriterion("`ordered_date` in", values, "orderedDate");
             return (Criteria) this;
         }
 
         public Criteria andOrderedDateNotIn(List<Date> values) {
-            addCriterion("ordered_date not in", values, "orderedDate");
+            addCriterion("`ordered_date` not in", values, "orderedDate");
             return (Criteria) this;
         }
 
         public Criteria andOrderedDateBetween(Date value1, Date value2) {
-            addCriterion("ordered_date between", value1, value2, "orderedDate");
+            addCriterion("`ordered_date` between", value1, value2, "orderedDate");
             return (Criteria) this;
         }
 
         public Criteria andOrderedDateNotBetween(Date value1, Date value2) {
-            addCriterion("ordered_date not between", value1, value2, "orderedDate");
+            addCriterion("`ordered_date` not between", value1, value2, "orderedDate");
             return (Criteria) this;
         }
     }

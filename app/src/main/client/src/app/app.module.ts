@@ -13,6 +13,8 @@ import { HomeComponent } from "./component/home/home.component";
 import { PaymentWithQrComponent } from "./component/payment-with-qr/payment-with-qr.component";
 import { QrDialogComponent } from "./component/qr-dialog/qr-dialog.component";
 import { PaymentComponent } from "./component/payment/payment.component";
+import { OrderComponent } from "@app/component/order/order.component";
+import { MenusComponent } from "@app/component/order/menus/menus.component";
 
 @NgModule({
     declarations: [
@@ -22,6 +24,8 @@ import { PaymentComponent } from "./component/payment/payment.component";
         PaymentWithQrComponent,
         QrDialogComponent,
         PaymentComponent,
+        OrderComponent,
+        MenusComponent,
     ],
     imports: [SharedModule, AppRoutingModule, BrowserModule, BrowserAnimationsModule],
     providers: [],

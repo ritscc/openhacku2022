@@ -1,0 +1,11 @@
+<button
+    [class.color-reverse-button]="reverseColor"
+    [class.normal-button]="!reverseColor"
+    [disabled]="disabled"
+    [style.min-width]="width"
+    [type]="type"
+    mat-flat-button
+>
+    <mat-icon *ngIf="icon">{{ icon }}</mat-icon>
+    <span>{{ label }}</span>
+</button>

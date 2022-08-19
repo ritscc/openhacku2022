@@ -195,242 +195,242 @@ public class OrderMenuExample {
         }
 
         public Criteria andMenuIdIsNull() {
-            addCriterion("menu_id is null");
+            addCriterion("`menu_id` is null");
             return (Criteria) this;
         }
 
         public Criteria andMenuIdIsNotNull() {
-            addCriterion("menu_id is not null");
+            addCriterion("`menu_id` is not null");
             return (Criteria) this;
         }
 
         public Criteria andMenuIdEqualTo(Integer value) {
-            addCriterion("menu_id =", value, "menuId");
+            addCriterion("`menu_id` =", value, "menuId");
             return (Criteria) this;
         }
 
         public Criteria andMenuIdNotEqualTo(Integer value) {
-            addCriterion("menu_id <>", value, "menuId");
+            addCriterion("`menu_id` <>", value, "menuId");
             return (Criteria) this;
         }
 
         public Criteria andMenuIdGreaterThan(Integer value) {
-            addCriterion("menu_id >", value, "menuId");
+            addCriterion("`menu_id` >", value, "menuId");
             return (Criteria) this;
         }
 
         public Criteria andMenuIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("menu_id >=", value, "menuId");
+            addCriterion("`menu_id` >=", value, "menuId");
             return (Criteria) this;
         }
 
         public Criteria andMenuIdLessThan(Integer value) {
-            addCriterion("menu_id <", value, "menuId");
+            addCriterion("`menu_id` <", value, "menuId");
             return (Criteria) this;
         }
 
         public Criteria andMenuIdLessThanOrEqualTo(Integer value) {
-            addCriterion("menu_id <=", value, "menuId");
+            addCriterion("`menu_id` <=", value, "menuId");
             return (Criteria) this;
         }
 
         public Criteria andMenuIdIn(List<Integer> values) {
-            addCriterion("menu_id in", values, "menuId");
+            addCriterion("`menu_id` in", values, "menuId");
             return (Criteria) this;
         }
 
         public Criteria andMenuIdNotIn(List<Integer> values) {
-            addCriterion("menu_id not in", values, "menuId");
+            addCriterion("`menu_id` not in", values, "menuId");
             return (Criteria) this;
         }
 
         public Criteria andMenuIdBetween(Integer value1, Integer value2) {
-            addCriterion("menu_id between", value1, value2, "menuId");
+            addCriterion("`menu_id` between", value1, value2, "menuId");
             return (Criteria) this;
         }
 
         public Criteria andMenuIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("menu_id not between", value1, value2, "menuId");
+            addCriterion("`menu_id` not between", value1, value2, "menuId");
             return (Criteria) this;
         }
 
         public Criteria andOrderIdIsNull() {
-            addCriterion("order_id is null");
+            addCriterion("`order_id` is null");
             return (Criteria) this;
         }
 
         public Criteria andOrderIdIsNotNull() {
-            addCriterion("order_id is not null");
+            addCriterion("`order_id` is not null");
             return (Criteria) this;
         }
 
         public Criteria andOrderIdEqualTo(Integer value) {
-            addCriterion("order_id =", value, "orderId");
+            addCriterion("`order_id` =", value, "orderId");
             return (Criteria) this;
         }
 
         public Criteria andOrderIdNotEqualTo(Integer value) {
-            addCriterion("order_id <>", value, "orderId");
+            addCriterion("`order_id` <>", value, "orderId");
             return (Criteria) this;
         }
 
         public Criteria andOrderIdGreaterThan(Integer value) {
-            addCriterion("order_id >", value, "orderId");
+            addCriterion("`order_id` >", value, "orderId");
             return (Criteria) this;
         }
 
         public Criteria andOrderIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("order_id >=", value, "orderId");
+            addCriterion("`order_id` >=", value, "orderId");
             return (Criteria) this;
         }
 
         public Criteria andOrderIdLessThan(Integer value) {
-            addCriterion("order_id <", value, "orderId");
+            addCriterion("`order_id` <", value, "orderId");
             return (Criteria) this;
         }
 
         public Criteria andOrderIdLessThanOrEqualTo(Integer value) {
-            addCriterion("order_id <=", value, "orderId");
+            addCriterion("`order_id` <=", value, "orderId");
             return (Criteria) this;
         }
 
         public Criteria andOrderIdIn(List<Integer> values) {
-            addCriterion("order_id in", values, "orderId");
+            addCriterion("`order_id` in", values, "orderId");
             return (Criteria) this;
         }
 
         public Criteria andOrderIdNotIn(List<Integer> values) {
-            addCriterion("order_id not in", values, "orderId");
+            addCriterion("`order_id` not in", values, "orderId");
             return (Criteria) this;
         }
 
         public Criteria andOrderIdBetween(Integer value1, Integer value2) {
-            addCriterion("order_id between", value1, value2, "orderId");
+            addCriterion("`order_id` between", value1, value2, "orderId");
             return (Criteria) this;
         }
 
         public Criteria andOrderIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("order_id not between", value1, value2, "orderId");
+            addCriterion("`order_id` not between", value1, value2, "orderId");
             return (Criteria) this;
         }
 
         public Criteria andQuantityIsNull() {
-            addCriterion("quantity is null");
+            addCriterion("`quantity` is null");
             return (Criteria) this;
         }
 
         public Criteria andQuantityIsNotNull() {
-            addCriterion("quantity is not null");
+            addCriterion("`quantity` is not null");
             return (Criteria) this;
         }
 
         public Criteria andQuantityEqualTo(Integer value) {
-            addCriterion("quantity =", value, "quantity");
+            addCriterion("`quantity` =", value, "quantity");
             return (Criteria) this;
         }
 
         public Criteria andQuantityNotEqualTo(Integer value) {
-            addCriterion("quantity <>", value, "quantity");
+            addCriterion("`quantity` <>", value, "quantity");
             return (Criteria) this;
         }
 
         public Criteria andQuantityGreaterThan(Integer value) {
-            addCriterion("quantity >", value, "quantity");
+            addCriterion("`quantity` >", value, "quantity");
             return (Criteria) this;
         }
 
         public Criteria andQuantityGreaterThanOrEqualTo(Integer value) {
-            addCriterion("quantity >=", value, "quantity");
+            addCriterion("`quantity` >=", value, "quantity");
             return (Criteria) this;
         }
 
         public Criteria andQuantityLessThan(Integer value) {
-            addCriterion("quantity <", value, "quantity");
+            addCriterion("`quantity` <", value, "quantity");
             return (Criteria) this;
         }
 
         public Criteria andQuantityLessThanOrEqualTo(Integer value) {
-            addCriterion("quantity <=", value, "quantity");
+            addCriterion("`quantity` <=", value, "quantity");
             return (Criteria) this;
         }
 
         public Criteria andQuantityIn(List<Integer> values) {
-            addCriterion("quantity in", values, "quantity");
+            addCriterion("`quantity` in", values, "quantity");
             return (Criteria) this;
         }
 
         public Criteria andQuantityNotIn(List<Integer> values) {
-            addCriterion("quantity not in", values, "quantity");
+            addCriterion("`quantity` not in", values, "quantity");
             return (Criteria) this;
         }
 
         public Criteria andQuantityBetween(Integer value1, Integer value2) {
-            addCriterion("quantity between", value1, value2, "quantity");
+            addCriterion("`quantity` between", value1, value2, "quantity");
             return (Criteria) this;
         }
 
         public Criteria andQuantityNotBetween(Integer value1, Integer value2) {
-            addCriterion("quantity not between", value1, value2, "quantity");
+            addCriterion("`quantity` not between", value1, value2, "quantity");
             return (Criteria) this;
         }
 
         public Criteria andStatusIsNull() {
-            addCriterion("status is null");
+            addCriterion("`status` is null");
             return (Criteria) this;
         }
 
         public Criteria andStatusIsNotNull() {
-            addCriterion("status is not null");
+            addCriterion("`status` is not null");
             return (Criteria) this;
         }
 
         public Criteria andStatusEqualTo(Integer value) {
-            addCriterion("status =", value, "status");
+            addCriterion("`status` =", value, "status");
             return (Criteria) this;
         }
 
         public Criteria andStatusNotEqualTo(Integer value) {
-            addCriterion("status <>", value, "status");
+            addCriterion("`status` <>", value, "status");
             return (Criteria) this;
         }
 
         public Criteria andStatusGreaterThan(Integer value) {
-            addCriterion("status >", value, "status");
+            addCriterion("`status` >", value, "status");
             return (Criteria) this;
         }
 
         public Criteria andStatusGreaterThanOrEqualTo(Integer value) {
-            addCriterion("status >=", value, "status");
+            addCriterion("`status` >=", value, "status");
             return (Criteria) this;
         }
 
         public Criteria andStatusLessThan(Integer value) {
-            addCriterion("status <", value, "status");
+            addCriterion("`status` <", value, "status");
             return (Criteria) this;
         }
 
         public Criteria andStatusLessThanOrEqualTo(Integer value) {
-            addCriterion("status <=", value, "status");
+            addCriterion("`status` <=", value, "status");
             return (Criteria) this;
         }
 
         public Criteria andStatusIn(List<Integer> values) {
-            addCriterion("status in", values, "status");
+            addCriterion("`status` in", values, "status");
             return (Criteria) this;
         }
 
         public Criteria andStatusNotIn(List<Integer> values) {
-            addCriterion("status not in", values, "status");
+            addCriterion("`status` not in", values, "status");
             return (Criteria) this;
         }
 
         public Criteria andStatusBetween(Integer value1, Integer value2) {
-            addCriterion("status between", value1, value2, "status");
+            addCriterion("`status` between", value1, value2, "status");
             return (Criteria) this;
         }
 
         public Criteria andStatusNotBetween(Integer value1, Integer value2) {
-            addCriterion("status not between", value1, value2, "status");
+            addCriterion("`status` not between", value1, value2, "status");
             return (Criteria) this;
         }
     }

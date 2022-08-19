@@ -2,10 +2,12 @@ package cc.rits.openhacku2022.api.controller
 
 import cc.rits.openhacku2022.BaseSpecification
 import cc.rits.openhacku2022.api.response.ErrorResponse
+import cc.rits.openhacku2022.auth.AdminUserDetails
 import cc.rits.openhacku2022.exception.BaseException
 import cc.rits.openhacku2022.helper.JsonConvertHelper
 import cc.rits.openhacku2022.helper.RandomHelper
 import cc.rits.openhacku2022.helper.TableHelper
+import cc.rits.openhacku2022.model.ShopModel
 import cc.rits.openhacku2022.model.TransactionModel
 import cc.rits.openhacku2022.util.AuthUtil
 import org.springframework.beans.factory.annotation.Autowired
@@ -13,7 +15,9 @@ import org.springframework.context.MessageSource
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.mock.web.MockHttpSession
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication
+import org.springframework.security.core.authority.AuthorityUtils
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.MvcResult
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder
@@ -212,7 +216,7 @@ abstract class BaseRestController_IT extends BaseSpecification {
             id | name                          | code                                   | password
             1  | RandomHelper.alphanumeric(10) | RandomHelper.alphanumeric(10) | RandomHelper.alphanumeric(10)
         }
-        TableHelper.insert sql, "table", {
+        TableHelper.insert sql, "shop_table", {
             id | shop_id | capacity
             1  | 1       | 4
         }
@@ -222,9 +226,35 @@ abstract class BaseRestController_IT extends BaseSpecification {
         }
         // @formatter:on
 
+        this.session = new MockHttpSession()
         this.session.setAttribute(PRINCIPAL_NAME_INDEX_NAME, transaction.code)
 
         return transaction
+    }
+
+    /**
+     * 店舗ログイン
+     */
+    protected ShopModel loginShop() {
+        final shop = ShopModel.builder()
+            .id(1)
+            .name(RandomHelper.alphanumeric(10))
+            .code(RandomHelper.alphanumeric(10))
+            .password(RandomHelper.password())
+            .build()
+
+        sql.dataSet("shop").add(
+            id: shop.id,
+            name: shop.name,
+            code: shop.code,
+            password: this.authUtil.hashingPassword(shop.password)
+        )
+
+        final authorities = AuthorityUtils.createAuthorityList("ROLE_ADMIN")
+        final adminUserDetails = new AdminUserDetails(shop, authorities)
+        this.authentication = new UsernamePasswordAuthenticationToken(adminUserDetails, shop.password, authorities)
+
+        return shop
     }
 
     /**

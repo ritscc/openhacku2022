@@ -1,6 +1,7 @@
 # Open Hack U 2022
 
 ![CI](https://github.com/ritscc/openhacku2022/workflows/CI/badge.svg)
+![deploy](https://github.com/ritscc/openhacku2022/workflows/deploy/badge.svg)
 ![version](https://img.shields.io/badge/version-1.0.0__SNAPSHOT-yellow.svg)
 
 ## 概要

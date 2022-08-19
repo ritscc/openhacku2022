@@ -5,6 +5,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { HomeComponent } from "@app/component/home/home.component";
 import { PageContainerComponent } from "@app/component/page-container/page-container.component";
 import { PaymentComponent } from "@app/component/payment/payment.component";
+import { OrderComponent } from "@app/component/order/order.component";
 
 const routes: Routes = [
     {
@@ -17,8 +18,11 @@ const routes: Routes = [
             },
             {
                 path: "payment",
-                component: PaymentComponent,
+                component: PaymentComponent
             },
+                path: "order",
+                component: OrderComponent,
+            }
         ],
     },
 ];
