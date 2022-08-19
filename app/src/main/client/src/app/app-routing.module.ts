@@ -3,8 +3,8 @@ import { RouterModule, Routes } from "@angular/router";
 
 // components
 import { HomeComponent } from "@app/component/home/home.component";
-import { PaymentWithQrComponent } from "@app/component/payment-with-qr/payment-with-qr.component";
 import { PageContainerComponent } from "@app/component/page-container/page-container.component";
+import { PaymentComponent } from "@app/component/payment/payment.component";
 import { OrderComponent } from "@app/component/order/order.component";
 
 const routes: Routes = [
@@ -21,8 +21,8 @@ const routes: Routes = [
                 component: OrderComponent,
             },
             {
-                path: "payment/qr",
-                component: PaymentWithQrComponent,
+                path: "payment",
+                component: PaymentComponent,
             },
         ],
     },
