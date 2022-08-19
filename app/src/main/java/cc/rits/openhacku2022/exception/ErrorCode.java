@@ -27,6 +27,10 @@ public enum ErrorCode {
 
     ALL_TABLES_ARE_BOOKED(HttpStatus.BAD_REQUEST, "exception.bad_request.all_tables_are_booked"),
 
+    ORDER_MENUS_MUST_NOT_BE_EMPTY(HttpStatus.BAD_REQUEST, "exception.bad_request.order_menus_must_not_be_empty"),
+
+    INVALID_ORDER_MENU_QUANTITY(HttpStatus.BAD_REQUEST, "exception.bad_request.invalid_order_menu_quantity"),
+
     /**
      * 401 Unauthorized
      */
@@ -45,6 +49,8 @@ public enum ErrorCode {
     NOT_FOUND_API(HttpStatus.NOT_FOUND, "exception.not_found.api"),
 
     NOT_FOUND_SHOP(HttpStatus.NOT_FOUND, "exception.not_found.shop"),
+
+    NOT_FOUND_MENU(HttpStatus.NOT_FOUND, "exception.not_found.menu"),
 
     /**
      * 500 Internal Server Error

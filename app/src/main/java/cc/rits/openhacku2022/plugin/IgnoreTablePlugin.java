@@ -14,9 +14,9 @@ import org.mybatis.generator.api.dom.java.TopLevelClass;
 public class IgnoreTablePlugin extends PluginAdapter {
 
     private final List<String> IGNORE_TABLES = List.of( //
-        "flyway_schema_history", //
-        "SPRING_SESSION", //
-        "SPRING_SESSION_ATTRIBUTES" //
+        "`flyway_schema_history`", //
+        "`SPRING_SESSION`", //
+        "`SPRING_SESSION_ATTRIBUTES`" //
     );
 
     @Override
