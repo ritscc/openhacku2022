@@ -1,5 +1,12 @@
 <div fxLayout="column" fxLayoutAlign="center center">
-    <div class="qr-code"></div>
+    <div class="qr-code">
+        <qrcode
+            [errorCorrectionLevel]="'M'"
+            [imageSrc]="'assets/angular-logo.png'"
+            [qrdata]="'1'"
+            [width]="256"
+        ></qrcode>
+    </div>
     <div>
         店入口のレジでQRコードをお見せください<br />
         ご来店ありがとうございました
