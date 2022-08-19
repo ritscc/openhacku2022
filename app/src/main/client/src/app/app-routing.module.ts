@@ -17,12 +17,13 @@ const routes: Routes = [
                 component: HomeComponent,
             },
             {
-                path: "payment",
-                component: PaymentComponent
-            },
                 path: "order",
                 component: OrderComponent,
-            }
+            },
+            {
+                path: "payment",
+                component: PaymentComponent,
+            },
         ],
     },
 ];
