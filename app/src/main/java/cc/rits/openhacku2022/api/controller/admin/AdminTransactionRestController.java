@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
  */
 @Tag(name = "Admin Transaction", description = "取引")
 @RestController
-@RequestMapping(path = "/api/shops/{shop_id}/transactions", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = "/api/admin/shops/{shop_id}/transactions", produces = MediaType.APPLICATION_JSON_VALUE)
 @Validated
 @RequiredArgsConstructor
 public class AdminTransactionRestController {

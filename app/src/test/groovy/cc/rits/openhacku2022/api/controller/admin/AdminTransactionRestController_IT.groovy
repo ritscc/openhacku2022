@@ -17,7 +17,7 @@ import spock.lang.Unroll
  */
 class AdminTransactionRestController_IT extends BaseRestController_IT {
     // API PATH
-    static final String BASE_PATH = "/api/shops/%d/transactions"
+    static final String BASE_PATH = "/api/admin/shops/%d/transactions"
     static final String GET_TRANSACTION_PATH = BASE_PATH + "/%d"
 
     def "取引取得API: 正常系 店舗側が取引を取得できる"() {
