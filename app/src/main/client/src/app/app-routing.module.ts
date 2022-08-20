@@ -2,10 +2,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
 // components
-import { HomeComponent } from "@app/component/home/home.component";
-import { PageContainerComponent } from "@app/component/page-container/page-container.component";
-import { PaymentComponent } from "@app/component/payment/payment.component";
-import { OrderComponent } from "@app/component/order/order.component";
+import { PageContainerComponent } from "@shared/component/page-container/page-container.component";
 
 const routes: Routes = [
     {
@@ -14,15 +11,15 @@ const routes: Routes = [
         children: [
             {
                 path: "",
-                component: HomeComponent,
+                loadChildren: () =>
+                    import("@customer/customer-routing.module").then(
+                        (m) => m.CustomerRoutingModule
+                    ),
             },
             {
-                path: "order",
-                component: OrderComponent,
-            },
-            {
-                path: "payment",
-                component: PaymentComponent,
+                path: "admin",
+                loadChildren: () =>
+                    import("@admin/admin-routing.module").then((m) => m.AdminRoutingModule),
             },
         ],
     },

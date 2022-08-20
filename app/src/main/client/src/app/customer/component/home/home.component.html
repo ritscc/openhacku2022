@@ -26,10 +26,12 @@
             <div fxLayout="column" fxLayoutAlign="center center">
                 <img class="icon" src="https://cdn.worldvectorlogo.com/logos/angular-icon-1.svg" />
                 <h4>来店人数を入力してください</h4>
-                <mat-form-field appearance="outline">
-                    <mat-label>来店人数を入力</mat-label>
-                    <input formControlName="numberOfPeople" matInput />
-                </mat-form-field>
+
+                <app-shared-input
+                    formControlName="numberOfPeople"
+                    label="利用人数"
+                    type="number"
+                ></app-shared-input>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-around center">
                 <button class="next-button" mat-stroked-button matStepperPrevious>戻る</button>
@@ -45,7 +47,7 @@
         <ol>
             <li>カメラを許可してください</li>
             <div fxLayout="column" fxLayoutAlign="center">
-                <img class="image-access-icon" src="assets/image_access.png" />
+                <img class="image-access-icon" src="../../../../assets/image_access.png" />
             </div>
             <li>QRコードを読み取ってください</li>
             <div class="qr-code" fxLayout="column" fxLayoutAlign="center">

@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule, DatePipe } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterTestingModule } from "@angular/router/testing";
-import { HttpClientModule } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 import { ApiConfiguration } from "@api/api-configuration";
 
@@ -40,15 +40,23 @@ import { MatStepperModule } from "@angular/material/stepper";
 import { QRCodeModule } from "angularx-qrcode";
 
 // pipes
-import { NumberPipe } from "./pipe/number.pipe";
+import { NumberPipe } from "@shared/pipe/number.pipe";
+
+// interceptors
+import { ErrorResponseInterceptor } from "@shared/interceptor/error-response.interceptor";
+import { CredentialsInterceptor } from "@shared/interceptor/credentials.interceptor";
+import { LoadingIndicatorInterceptor } from "@shared/interceptor/loading-indicator.interceptor";
 
 // components
-import { HeaderComponent } from "./component/header/header.component";
-import { UserIconComponent } from "./component/user-icon/user-icon.component";
-import { SnackBarComponent } from "./component/snack-bar/snack-bar.component";
-import { QrLoaderDialogComponent } from "./component/qr-loader-dialog/qr-loader-dialog.component";
-import { ButtonComponent } from "./component/button/button.component";
-import { FooterComponent } from "./component/footer/footer.component";
+import { HeaderComponent } from "@shared/component/header/header.component";
+import { UserIconComponent } from "@shared/component/user-icon/user-icon.component";
+import { SnackBarComponent } from "@shared/component/snack-bar/snack-bar.component";
+import { QrLoaderDialogComponent } from "@shared/component/qr-loader-dialog/qr-loader-dialog.component";
+import { ButtonComponent } from "@shared/component/button/button.component";
+import { FooterComponent } from "@shared/component/footer/footer.component";
+import { PageContainerComponent } from "@shared/component/page-container/page-container.component";
+import { ProgressSpinnerComponent } from "@shared/component/progress-spinner/progress-spinner.component";
+import { SharedInputComponent } from "./component/shared-input/shared-input.component";
 
 @NgModule({
     declarations: [
@@ -59,6 +67,9 @@ import { FooterComponent } from "./component/footer/footer.component";
         NumberPipe,
         ButtonComponent,
         FooterComponent,
+        PageContainerComponent,
+        ProgressSpinnerComponent,
+        SharedInputComponent,
     ],
     imports: [
         // modules
@@ -146,10 +157,15 @@ import { FooterComponent } from "./component/footer/footer.component";
         HeaderComponent,
         ButtonComponent,
         FooterComponent,
+        PageContainerComponent,
+        SharedInputComponent,
     ],
     providers: [
         { provide: ApiConfiguration, useValue: { rootUrl: environment.API_ROOT_URL } },
         { provide: MAT_DATE_LOCALE, useValue: "ja-JP" },
+        { provide: HTTP_INTERCEPTORS, useClass: ErrorResponseInterceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: CredentialsInterceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: LoadingIndicatorInterceptor, multi: true },
         DatePipe,
     ],
 })

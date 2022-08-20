@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { QrLoaderDialogComponent } from "@shared/component/qr-loader-dialog/qr-loader-dialog.component";
 import { FormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
+import { LoginRequest } from "@api/models/login-request";
 
 @Component({
     selector: "app-home",
@@ -19,7 +20,7 @@ export class HomeComponent implements OnInit {
     ngOnInit(): void {
         // フォームを作成
         this.form = this.formBuilder.group({
-            numberOfPeople: [1, [Validators.required, Validators.min(0)]],
+            numberOfPeople: [null, [Validators.required, Validators.min(0)]],
         });
     }
 
@@ -27,8 +28,10 @@ export class HomeComponent implements OnInit {
      * ログインボタンをクリック
      */
     onClickLogin(): void {
-        // TODO: ログイン処理（QRコードリーダーを起動）
-        this.matDialog.open(QrLoaderDialogComponent);
-        console.log("ログインボタンをクリックしたよ");
+        const loginRequest: LoginRequest = {
+            numberOfPeople: this.form.value["numberOfPeople"],
+            shopId: 0,
+        };
+        this.matDialog.open(QrLoaderDialogComponent, { data: { loginRequest: loginRequest } });
     }
 }
