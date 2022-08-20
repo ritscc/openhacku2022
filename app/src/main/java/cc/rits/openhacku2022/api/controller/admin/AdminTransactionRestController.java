@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import cc.rits.openhacku2022.api.response.TransactionResponse;
 import cc.rits.openhacku2022.model.ShopModel;
-import cc.rits.openhacku2022.service.AdminTransactionService;
+import cc.rits.openhacku2022.service.admin.AdminTransactionService;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;

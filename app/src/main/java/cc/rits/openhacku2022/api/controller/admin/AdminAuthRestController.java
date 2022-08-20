@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import cc.rits.openhacku2022.api.request.AdminLoginRequest;
 import cc.rits.openhacku2022.api.validation.RequestValidation;
-import cc.rits.openhacku2022.service.AdminAuthService;
+import cc.rits.openhacku2022.service.admin.AdminAuthService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
