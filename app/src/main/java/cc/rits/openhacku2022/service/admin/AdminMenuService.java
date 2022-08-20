@@ -47,4 +47,27 @@ public class AdminMenuService {
         return this.menuRepository.selectByShopId(shopId);
     }
 
+    /**
+     * メニューを削除
+     * 
+     * @param shopId 店舗ID
+     * @param menuId メニューID
+     * @param shop 店舗
+     */
+    public void deleteMenu(final Integer shopId, final Integer menuId, final ShopModel shop) {
+        // 店舗の存在チェック
+        this.shopRepository.selectById(shopId) //
+            .orElseThrow(() -> new NotFoundException(ErrorCode.NOT_FOUND_SHOP));
+
+        // ログイン店舗と対象店舗が一致するかチェック
+        if (!Objects.equals(shopId, shop.getId())) {
+            throw new ForbiddenException(ErrorCode.USER_HAS_NO_PERMISSION);
+        }
+
+        // メニューの存在チェック & 削除
+        this.menuRepository.selectById(menuId) //
+            .orElseThrow(() -> new NotFoundException(ErrorCode.NOT_FOUND_MENU));
+        this.menuRepository.deleteById(menuId);
+    }
+
 }
