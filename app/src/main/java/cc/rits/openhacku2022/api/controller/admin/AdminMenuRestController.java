@@ -46,4 +46,21 @@ public class AdminMenuRestController {
         return new MenusResponse(menus);
     }
 
+    /**
+     * メニュー削除API
+     * 
+     * @param shopId 店舗ID
+     * @param menuId メニューID
+     * @param shop 店舗
+     */
+    @DeleteMapping("{menu_id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteMenu( //
+        @PathVariable("shop_id") Integer shopId, //
+        @PathVariable("menu_id") Integer menuId, //
+        @Parameter(hidden = true) final ShopModel shop //
+    ) {
+        this.adminMenuService.deleteMenu(shopId, menuId, shop);
+    }
+
 }
