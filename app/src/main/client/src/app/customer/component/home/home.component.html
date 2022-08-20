@@ -4,11 +4,11 @@
         <mat-icon>check</mat-icon>
     </ng-template>
 
-    <!-- 画面遷移1つ目 プロダクト説明画面 -->
-    <mat-step label="はじめに" state="phone">
+    <!-- 画面遷移1つ目 はじめに -->
+    <mat-step label="はじめに">
         <div fxLayout="column" fxLayoutAlign="center center">
-            <img class="icon" src="https://cdn.worldvectorlogo.com/logos/angular-icon-1.svg" />
-            <h2 class="title">"プロダクト名"へようこそ</h2>
+            <img class="icon" src="assets/images/biwacode-icon.svg" />
+            <h2 class="title">BIWACODE+へようこそ</h2>
             <ol class="list">
                 <li>感染防止対策のため<br />適度に間隔を保った座席を決定</li>
                 <li>待ち時間を少なく<br />メニューが決まったらその場で注文</li>
@@ -20,45 +20,37 @@
         </div>
     </mat-step>
 
-    <!-- 画面遷移2つ目 人数決定フォーム入力画面-->
-    <mat-step [stepControl]="form" label="人数決定" state="number">
-        <form [formGroup]="form">
-            <div fxLayout="column" fxLayoutAlign="center center">
-                <img class="icon" src="https://cdn.worldvectorlogo.com/logos/angular-icon-1.svg" />
+    <!-- 画面遷移2つ目 来店人数、QRコード読み取り-->
+    <mat-step [stepControl]="form" label="人数決定">
+        <form [formGroup]="form" fxLayout="column" fxLayoutGap="20px">
+            <div fxLayout="column" fxLayoutAlign="center start">
                 <h4>来店人数を入力してください</h4>
 
                 <app-shared-input
                     formControlName="numberOfPeople"
-                    label="利用人数"
+                    label="来店人数"
+                    style="width: 100%"
                     type="number"
                 ></app-shared-input>
             </div>
-            <div fxLayout="row" fxLayoutAlign="space-around center">
-                <button class="next-button" mat-stroked-button matStepperPrevious>戻る</button>
-                <button class="next-button" color="primary" mat-flat-button matStepperNext>
-                    次へ
-                </button>
+
+            <div fxLayout="column" fxLayoutAlign="center start">
+                <h4>QRコードを読み取ってください</h4>
+                <div class="camera-container" fxLayoutAlign="center center">
+                    <zxing-scanner
+                        (scanSuccess)="successToScanQRCode($event)"
+                        *ngIf="isQRCodeReaderEnable"
+                        style="width: 100%"
+                    ></zxing-scanner>
+                    <mat-icon *ngIf="!isQRCodeReaderEnable">photo_camera</mat-icon>
+                </div>
+                <app-button
+                    (click)="launchQRCodeReader()"
+                    class="camera-launch-button"
+                    label="カメラを起動"
+                    width="100%"
+                ></app-button>
             </div>
         </form>
-    </mat-step>
-
-    <!-- 画面遷移3つ目 QRコード画面 -->
-    <mat-step label="QRコード">
-        <ol>
-            <li>カメラを許可してください</li>
-            <div fxLayout="column" fxLayoutAlign="center">
-                <img class="image-access-icon" src="../../../../assets/image_access.png" />
-            </div>
-            <li>QRコードを読み取ってください</li>
-            <div class="qr-code" fxLayout="column" fxLayoutAlign="center">
-                <mat-icon class="qr-code-icon">qr_code_scanner</mat-icon>
-            </div>
-        </ol>
-        <div fxLayout="row" fxLayoutAlign="space-around center">
-            <button class="next-button" mat-stroked-button matStepperPrevious>戻る</button>
-            <button (click)="onClickLogin()" class="next-button" color="primary" mat-flat-button>
-                読み取る
-            </button>
-        </div>
     </mat-step>
 </mat-horizontal-stepper>

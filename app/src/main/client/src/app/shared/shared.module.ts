@@ -51,7 +51,6 @@ import { LoadingIndicatorInterceptor } from "@shared/interceptor/loading-indicat
 import { HeaderComponent } from "@shared/component/header/header.component";
 import { UserIconComponent } from "@shared/component/user-icon/user-icon.component";
 import { SnackBarComponent } from "@shared/component/snack-bar/snack-bar.component";
-import { QrLoaderDialogComponent } from "@shared/component/qr-loader-dialog/qr-loader-dialog.component";
 import { ButtonComponent } from "@shared/component/button/button.component";
 import { FooterComponent } from "@shared/component/footer/footer.component";
 import { PageContainerComponent } from "@shared/component/page-container/page-container.component";
@@ -63,7 +62,6 @@ import { SharedInputComponent } from "./component/shared-input/shared-input.comp
         HeaderComponent,
         UserIconComponent,
         SnackBarComponent,
-        QrLoaderDialogComponent,
         NumberPipe,
         ButtonComponent,
         FooterComponent,
@@ -149,6 +147,7 @@ import { SharedInputComponent } from "./component/shared-input/shared-input.comp
         MatTabsModule,
         MatStepperModule,
         QRCodeModule,
+        ZXingScannerModule,
 
         // pipes
         NumberPipe,
