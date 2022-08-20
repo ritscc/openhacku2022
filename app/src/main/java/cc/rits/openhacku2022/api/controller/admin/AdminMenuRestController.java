@@ -39,7 +39,7 @@ public class AdminMenuRestController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public MenusResponse getMenus( //
-        @PathVariable("shop_id") Integer shopId, //
+        @PathVariable("shop_id") final Integer shopId, //
         @Parameter(hidden = true) final ShopModel shop //
     ) {
         final var menus = this.adminMenuService.getMenus(shopId, shop).stream() //
