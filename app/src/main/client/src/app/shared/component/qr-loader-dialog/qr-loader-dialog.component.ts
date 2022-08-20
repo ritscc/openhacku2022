@@ -37,7 +37,7 @@ export class QrLoaderDialogComponent implements OnInit {
             this.data.loginRequest.shopId = Number(content);
             this.authService.login({ body: this.data.loginRequest }).subscribe(() => {
                 this.alertService.success("ログインしました");
-                this.router.navigate(["order"], { queryParamsHandling: "merge" });
+                this.router.navigate(["dashboard"], { queryParamsHandling: "merge" });
             });
         }
     }

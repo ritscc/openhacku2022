@@ -5,6 +5,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { HomeComponent } from "@customer/component/home/home.component";
 import { OrderComponent } from "@customer/component/order/order.component";
 import { PaymentComponent } from "@customer/component/payment/payment.component";
+import { AuthGuard } from "@customer/guard/auth.guard";
 
 const routes: Routes = [
     {
@@ -12,12 +13,18 @@ const routes: Routes = [
         component: HomeComponent,
     },
     {
-        path: "order",
-        component: OrderComponent,
-    },
-    {
-        path: "payment",
-        component: PaymentComponent,
+        path: "dashboard",
+        canActivate: [AuthGuard],
+        children: [
+            {
+                path: "",
+                component: OrderComponent,
+            },
+            {
+                path: "payment",
+                component: PaymentComponent,
+            },
+        ],
     },
 ];
 
