@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { AuthService } from "@api/services/auth.service";
 import { Router } from "@angular/router";
 import { LoginRequest } from "@api/models/login-request";
+import { AlertService } from "@shared/service/alert.service";
 
 type Data = {
     loginRequest: LoginRequest | undefined;
@@ -17,8 +18,9 @@ export class QrLoaderDialogComponent implements OnInit {
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: Data,
         private matDialogRef: MatDialogRef<QrLoaderDialogComponent>,
+        private router: Router,
         private authService: AuthService,
-        private router: Router
+        private alertService: AlertService
     ) {}
 
     ngOnInit(): void {}
@@ -34,6 +36,7 @@ export class QrLoaderDialogComponent implements OnInit {
         if (this.data.loginRequest) {
             this.data.loginRequest.shopId = Number(content);
             this.authService.login({ body: this.data.loginRequest }).subscribe(() => {
+                this.alertService.success("ログインしました");
                 this.router.navigate(["order"], { queryParamsHandling: "merge" });
             });
         }
