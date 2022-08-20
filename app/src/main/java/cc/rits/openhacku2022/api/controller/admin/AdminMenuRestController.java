@@ -7,8 +7,10 @@ import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import cc.rits.openhacku2022.api.request.MenuCreateRequest;
 import cc.rits.openhacku2022.api.response.MenuResponse;
 import cc.rits.openhacku2022.api.response.MenusResponse;
+import cc.rits.openhacku2022.api.validation.RequestValidation;
 import cc.rits.openhacku2022.model.ShopModel;
 import cc.rits.openhacku2022.service.admin.AdminMenuService;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -44,6 +46,23 @@ public class AdminMenuRestController {
             .map(MenuResponse::new) //
             .collect(Collectors.toList());
         return new MenusResponse(menus);
+    }
+
+    /**
+     * メニュー作成API
+     *
+     * @param shopId 店舗ID
+     * @param requestBody メニュー作成リクエスト
+     * @param shop 店舗
+     */
+    @PostMapping
+    @ResponseStatus(HttpStatus.OK)
+    public void createMenu( //
+        @PathVariable("shop_id") Integer shopId, //
+        @RequestValidation @RequestBody final MenuCreateRequest requestBody, //
+        @Parameter(hidden = true) final ShopModel shop //
+    ) {
+        this.adminMenuService.createMenu(shopId, requestBody, shop);
     }
 
     /**

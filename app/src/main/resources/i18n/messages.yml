@@ -8,6 +8,8 @@ exception:
     all_tables_are_booked: "満席のためご利用いただけません"
     order_menus_must_not_be_empty: "メニューを選択してください"
     invalid_order_menu_quantity: "不正な注文数です"
+    invalid_menu_name: "不正な名前です"
+    invalid_menu_price: "不正な金額です"
   unauthorized:
     user_not_logged_in: "ユーザはログインしていません"
     incorrect_code_or_password: "店舗コードかパスワードが間違っています"
