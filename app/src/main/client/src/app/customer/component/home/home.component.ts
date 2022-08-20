@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
     ngOnInit(): void {
         // フォームを作成
         this.form = this.formBuilder.group({
-            numberOfPeople: [null, [Validators.required, Validators.min(0)]],
+            numberOfPeople: [1, [Validators.required, Validators.min(0)]],
         });
     }
 
