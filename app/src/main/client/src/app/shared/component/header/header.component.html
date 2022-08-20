@@ -1,7 +1,23 @@
 <mat-toolbar class="header" color="primary" fxLayout="row" fxLayoutAlign="space-between center">
     <div>
-        <button mat-icon-button>
+        <button (click)="sidenav.toggle()" mat-icon-button>
             <mat-icon>menu</mat-icon>
         </button>
     </div>
 </mat-toolbar>
+
+<mat-sidenav-container>
+    <mat-sidenav #sidenav>
+        <mat-nav-list>
+            <a (click)="sidenav.close()" [routerLink]="'/dashboard'" mat-list-item
+                >ダッシュボード</a
+            >
+            <a (click)="sidenav.close()" [routerLink]="'/dashboard/payment'" mat-list-item
+                >お会計</a
+            >
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content class="main-content">
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
