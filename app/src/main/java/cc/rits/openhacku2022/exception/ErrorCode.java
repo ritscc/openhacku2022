@@ -35,6 +35,8 @@ public enum ErrorCode {
 
     INVALID_MENU_PRICE(HttpStatus.BAD_REQUEST, "exception.bad_request.invalid_menu_price"),
 
+    INVALID_ORDER_STATUS(HttpStatus.BAD_REQUEST, "exception.bad_request.invalid_order_status"),
+
     /**
      * 401 Unauthorized
      */
@@ -57,6 +59,10 @@ public enum ErrorCode {
     NOT_FOUND_MENU(HttpStatus.NOT_FOUND, "exception.not_found.menu"),
 
     NOT_FOUND_TRANSACTION(HttpStatus.NOT_FOUND, "exception.not_found.transaction"),
+
+    NOT_FOUND_ORDER(HttpStatus.NOT_FOUND, "exception.not_found.order"),
+
+    NOT_FOUND_ORDER_MENU(HttpStatus.NOT_FOUND, "exception.not_found.order_menu"),
 
     /**
      * 500 Internal Server Error

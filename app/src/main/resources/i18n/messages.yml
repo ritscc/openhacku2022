@@ -10,6 +10,7 @@ exception:
     invalid_order_menu_quantity: "不正な注文数です"
     invalid_menu_name: "不正な名前です"
     invalid_menu_price: "不正な金額です"
+    invalid_order_status: "不正な注文ステータスです"
   unauthorized:
     user_not_logged_in: "ユーザはログインしていません"
     incorrect_code_or_password: "店舗コードかパスワードが間違っています"
@@ -20,6 +21,8 @@ exception:
     shop: "店舗が見つかりません"
     menu: "メニューが見つかりません"
     transaction: "取引が見つかりません"
+    order: "注文が見つかりません。"
+    order_menu: "注文メニューが見つかりません。"
   internal_server_error:
     unexpected_error: "予期しないエラーが発生しました"
     failed_to_upload_file: "ファイルのアップロードに失敗しました"

@@ -9,4 +9,18 @@
                extends="BaseResultMap">
         <collection property="orderMenus" resultMap="OrderMenuResultMap" columnPrefix="order_menu__"/>
     </resultMap>
+
+    <select id="selectByOrderId" parameterType="java.lang.Integer"
+            resultMap="OrderWithOrderMenusResultMap">
+        SELECT DISTINCT `order`.*,
+
+                        order_menu.order_id AS order_menu__order_id,
+                        order_menu.menu_id  AS order_menu__menu_id,
+                        order_menu.quantity AS order_menu__quantity,
+                        order_menu.status   AS order_menu__status
+        FROM `order`
+                 LEFT JOIN order_menu ON order_menu.order_id = `order`.id
+        WHERE `order`.id = #{orderId}
+    </select>
+
 </mapper>
