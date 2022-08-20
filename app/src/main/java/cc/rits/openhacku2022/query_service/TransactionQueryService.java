@@ -1,5 +1,8 @@
 package cc.rits.openhacku2022.query_service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +21,18 @@ import lombok.RequiredArgsConstructor;
 public class TransactionQueryService {
 
     private final TransactionMapper transactionMapper;
+
+    /**
+     * 取引リストを取得
+     *
+     * @param shopId 店舗ID
+     * @return 取引リスト
+     */
+    public List<TransactionWithOrderDto> getTransactions(final Integer shopId) {
+        return this.transactionMapper.selectByShopId(shopId).stream() //
+            .map(TransactionWithOrderDto::new) //
+            .collect(Collectors.toList());
+    }
 
     /**
      * 取引を取得

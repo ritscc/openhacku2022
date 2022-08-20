@@ -1,5 +1,6 @@
 package cc.rits.openhacku2022.service.admin;
 
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.stereotype.Service;
@@ -25,6 +26,26 @@ public class AdminTransactionService {
     private final ShopRepository shopRepository;
 
     private final TransactionQueryService transactionQueryService;
+
+    /**
+     * 取引リストを取得
+     *
+     * @param shopId 店舗ID
+     * @param shop 店舗
+     * @return 取引リスト
+     */
+    public List<TransactionWithOrderDto> getTransactions(final Integer shopId, final ShopModel shop) {
+        // 店舗の存在チェック
+        this.shopRepository.selectById(shopId) //
+            .orElseThrow(() -> new NotFoundException(ErrorCode.NOT_FOUND_SHOP));
+
+        // ログイン中の店舗と店舗IDが一致するかチェック
+        if (!Objects.equals(shop.getId(), shopId)) {
+            throw new ForbiddenException(ErrorCode.USER_HAS_NO_PERMISSION);
+        }
+
+        return this.transactionQueryService.getTransactions(shopId);
+    }
 
     /**
      * 取引を取得
