@@ -1,4 +1,4 @@
-package cc.rits.openhacku2022.service;
+package cc.rits.openhacku2022.service.admin;
 
 import java.util.Objects;
 

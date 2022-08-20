@@ -1,4 +1,4 @@
-package cc.rits.openhacku2022.service;
+package cc.rits.openhacku2022.service.admin;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
