@@ -1,5 +1,6 @@
+@import "src/styles.scss";
+
 .icon {
-    width: 150px;
     height: 150px;
     margin-top: 10px;
 }
@@ -8,7 +9,7 @@
     font-size: 1.4rem;
 }
 
-.description {
+q .description {
     font-size: 1rem;
     text-align: center;
     line-height: 18px;
@@ -43,15 +44,19 @@ ul.list {
     margin-top: auto;
 }
 
-.image-access-icon {
-    width: 80%;
-    margin: 20px 0px 30px 0px;
+.camera-container {
+    @include font-color-gray;
+    width: 80vw;
+    min-height: 100px;
+    // border: 2px dashed #3f51b5;
+    background-color: #efefef;
 }
 
-.qr-code {
-    margin: 70px;
+.camera-launch-button {
+    width: 100%;
+    margin-top: 10px;
 }
 
-.qr-code-icon {
-    transform: scale(6);
+::ng-deep video {
+    width: 80vw;
 }
