@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import cc.rits.openhacku2022.db.entity.MenuExample;
 import cc.rits.openhacku2022.db.mapper.MenuMapper;
+import cc.rits.openhacku2022.factory.MenuFactory;
 import cc.rits.openhacku2022.model.MenuModel;
 import lombok.RequiredArgsConstructor;
 
@@ -19,6 +20,8 @@ import lombok.RequiredArgsConstructor;
 public class MenuRepository {
 
     private final MenuMapper menuMapper;
+
+    private final MenuFactory menuFactory;
 
     /**
      * 店舗IDからメニューリストを取得
@@ -49,6 +52,16 @@ public class MenuRepository {
         return this.menuMapper.selectByExample(example).stream() //
             .map(MenuModel::new) //
             .findFirst();
+    }
+
+    /**
+     * メニューを作成
+     * 
+     * @param menuModel メニュー
+     */
+    public void insert(final MenuModel menuModel) {
+        final var menu = this.menuFactory.createMenu(menuModel);
+        this.menuMapper.insertSelective(menu);
     }
 
     /**

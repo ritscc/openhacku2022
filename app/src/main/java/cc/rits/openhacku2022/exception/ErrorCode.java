@@ -31,6 +31,10 @@ public enum ErrorCode {
 
     INVALID_ORDER_MENU_QUANTITY(HttpStatus.BAD_REQUEST, "exception.bad_request.invalid_order_menu_quantity"),
 
+    INVALID_MENU_NAME(HttpStatus.BAD_REQUEST, "exception.bad_request.invalid_menu_name"),
+
+    INVALID_MENU_PRICE(HttpStatus.BAD_REQUEST, "exception.bad_request.invalid_menu_price"),
+
     /**
      * 401 Unauthorized
      */
