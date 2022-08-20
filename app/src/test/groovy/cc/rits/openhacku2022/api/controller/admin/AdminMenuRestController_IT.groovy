@@ -1,13 +1,13 @@
 package cc.rits.openhacku2022.api.controller.admin
 
 import cc.rits.openhacku2022.api.controller.BaseRestController_IT
+import cc.rits.openhacku2022.api.request.MenuCreateRequest
 import cc.rits.openhacku2022.api.response.MenusResponse
-import cc.rits.openhacku2022.exception.ErrorCode
-import cc.rits.openhacku2022.exception.ForbiddenException
-import cc.rits.openhacku2022.exception.NotFoundException
-import cc.rits.openhacku2022.exception.UnauthorizedException
+import cc.rits.openhacku2022.exception.*
+import cc.rits.openhacku2022.helper.RandomHelper
 import cc.rits.openhacku2022.helper.TableHelper
 import org.springframework.http.HttpStatus
+import spock.lang.Shared
 
 /**
  * AdminMenuRestControllerの統合テスト
@@ -17,7 +17,19 @@ class AdminMenuRestController_IT extends BaseRestController_IT {
     // API PATH
     static final String BASE_PATH = "/api/admin/shops/%d/menus"
     static final String GET_MENUS_PATH = BASE_PATH
+    static final String CREATE_MENU_PATH = BASE_PATH
     static final String DELETE_MENU_PATH = BASE_PATH + "/%d"
+
+    @Shared
+    MenuCreateRequest menuCreateRequest
+
+    def setup() {
+        this.menuCreateRequest = MenuCreateRequest.builder()
+            .name(RandomHelper.alphanumeric(10))
+            .price(1000)
+            .image(RandomHelper.base64())
+            .build()
+    }
 
     def "メニューリスト取得API: 正常系 自店舗のメニューリストを取得できる"() {
         given:
@@ -69,6 +81,71 @@ class AdminMenuRestController_IT extends BaseRestController_IT {
     def "メニューリスト取得API: 異常系 ログインしていない場合は401エラー"() {
         expect:
         final request = this.getRequest(String.format(GET_MENUS_PATH, 1))
+        this.execute(request, new UnauthorizedException(ErrorCode.USER_NOT_LOGGED_IN))
+    }
+
+    def "メニュー作成API: 正常系 メニューを作成できる"() {
+        given:
+        this.loginShop()
+
+        when:
+        final request = this.postRequest(String.format(CREATE_MENU_PATH, 1), this.menuCreateRequest)
+        this.execute(request, HttpStatus.OK)
+
+        then:
+        final createdMenu = sql.firstRow("SELECT * FROM menu")
+        createdMenu.shop_id == 1
+        createdMenu.name == this.menuCreateRequest.name
+        createdMenu.price == this.menuCreateRequest.price
+        createdMenu.image_url != null
+    }
+
+    def "メニュー作成API: 異常系 リクエストボディのバリデーション"() {
+        given:
+        this.loginShop()
+
+        this.menuCreateRequest.name = inputName
+        this.menuCreateRequest.price = inputPrice
+
+        expect:
+        final request = this.postRequest(String.format(CREATE_MENU_PATH, 1), this.menuCreateRequest)
+        this.execute(request, new BadRequestException(expectedErrorCode))
+
+        where:
+        inputName                      | inputPrice || expectedErrorCode
+        RandomHelper.alphanumeric(0)   | 1          || ErrorCode.INVALID_MENU_NAME
+        RandomHelper.alphanumeric(101) | 1          || ErrorCode.INVALID_MENU_NAME
+        RandomHelper.alphanumeric(100) | 0          || ErrorCode.INVALID_MENU_PRICE
+    }
+
+    def "メニュー作成API: 異常系 店舗が存在しない場合は404エラー"() {
+        given:
+        this.loginShop()
+
+        expect:
+        final request = this.postRequest(String.format(CREATE_MENU_PATH, 2), this.menuCreateRequest)
+        this.execute(request, new NotFoundException(ErrorCode.NOT_FOUND_SHOP))
+    }
+
+    def "メニュー作成API: 異常系 自店舗以外にアクセスした場合は403エラー"() {
+        given:
+        this.loginShop()
+
+        // @formatter:off
+        TableHelper.insert sql, "shop", {
+            id | name | code | password
+            2  | ""   | ""   | ""
+        }
+        // @formatter:on
+
+        expect:
+        final request = this.postRequest(String.format(CREATE_MENU_PATH, 2), this.menuCreateRequest)
+        this.execute(request, new ForbiddenException(ErrorCode.USER_HAS_NO_PERMISSION))
+    }
+
+    def "メニュー作成API: 異常系 ログインしていない場合は401エラー"() {
+        expect:
+        final request = this.postRequest(String.format(CREATE_MENU_PATH, 1), this.menuCreateRequest)
         this.execute(request, new UnauthorizedException(ErrorCode.USER_NOT_LOGGED_IN))
     }
 
