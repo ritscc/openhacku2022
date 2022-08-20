@@ -3,6 +3,8 @@
 }
 
 .main-content {
-    // 画面全体 - (ヘッダー + フッター)に縦幅を設定
-    height: calc(100vh - 60px - 50px);
+    // 画面全体 - ヘッダーに縦幅を設定
+    max-height: calc(100vh - 60px);
+    // フッターの高さ分、paddingを入れる
+    padding-bottom: 50px;
 }
