@@ -56,6 +56,7 @@ import { FooterComponent } from "@shared/component/footer/footer.component";
 import { PageContainerComponent } from "@shared/component/page-container/page-container.component";
 import { ProgressSpinnerComponent } from "@shared/component/progress-spinner/progress-spinner.component";
 import { SharedInputComponent } from "./component/shared-input/shared-input.component";
+import { ConfirmDialogComponent } from "./component/confirm-dialog/confirm-dialog.component";
 
 @NgModule({
     declarations: [
@@ -68,6 +69,7 @@ import { SharedInputComponent } from "./component/shared-input/shared-input.comp
         PageContainerComponent,
         ProgressSpinnerComponent,
         SharedInputComponent,
+        ConfirmDialogComponent,
     ],
     imports: [
         // modules
