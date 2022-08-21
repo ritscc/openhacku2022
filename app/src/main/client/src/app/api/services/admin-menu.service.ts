@@ -9,46 +9,42 @@ import { RequestBuilder } from "../request-builder";
 import { Observable } from "rxjs";
 import { map, filter } from "rxjs/operators";
 
-import { TransactionResponse } from "../models/transaction-response";
-import { TransactionsResponse } from "../models/transactions-response";
+import { MenuCreateRequest } from "../models/menu-create-request";
+import { MenusResponse } from "../models/menus-response";
 
 /**
- * 取引
+ * メニュー
  */
 @Injectable({
     providedIn: "root",
 })
-export class AdminTransactionService extends BaseService {
+export class AdminMenuService extends BaseService {
     constructor(config: ApiConfiguration, http: HttpClient) {
         super(config, http);
     }
 
     /**
-     * Path part for operation getTransactions
+     * Path part for operation getMenus1
      */
-    static readonly GetTransactionsPath = "/api/admin/shops/{shop_id}/transactions";
+    static readonly GetMenus1Path = "/api/admin/shops/{shop_id}/menus";
 
     /**
-     * 取引リスト取得API.
+     * メニューリスト取得API.
      *
-     * 取引リスト取得API
+     * メニューリスト取得API
      *
      * This method provides access to the full `HttpResponse`, allowing access to response headers.
-     * To access only the response body, use `getTransactions()` instead.
+     * To access only the response body, use `getMenus1()` instead.
      *
      * This method doesn't expect any request body.
      */
-    getTransactions$Response(params: {
+    getMenus1$Response(params: {
         /**
          * 店舗ID
          */
         shop_id: number;
-    }): Observable<StrictHttpResponse<TransactionsResponse>> {
-        const rb = new RequestBuilder(
-            this.rootUrl,
-            AdminTransactionService.GetTransactionsPath,
-            "get"
-        );
+    }): Observable<StrictHttpResponse<MenusResponse>> {
+        const rb = new RequestBuilder(this.rootUrl, AdminMenuService.GetMenus1Path, "get");
         if (params) {
             rb.path("shop_id", params.shop_id, {});
         }
@@ -63,133 +59,62 @@ export class AdminTransactionService extends BaseService {
             .pipe(
                 filter((r: any) => r instanceof HttpResponse),
                 map((r: HttpResponse<any>) => {
-                    return r as StrictHttpResponse<TransactionsResponse>;
+                    return r as StrictHttpResponse<MenusResponse>;
                 })
             );
     }
 
     /**
-     * 取引リスト取得API.
+     * メニューリスト取得API.
      *
-     * 取引リスト取得API
-     *
-     * This method provides access to only to the response body.
-     * To access the full response (for headers, for example), `getTransactions$Response()` instead.
-     *
-     * This method doesn't expect any request body.
-     */
-    getTransactions(params: {
-        /**
-         * 店舗ID
-         */
-        shop_id: number;
-    }): Observable<TransactionsResponse> {
-        return this.getTransactions$Response(params).pipe(
-            map((r: StrictHttpResponse<TransactionsResponse>) => r.body as TransactionsResponse)
-        );
-    }
-
-    /**
-     * Path part for operation getTransaction
-     */
-    static readonly GetTransactionPath = "/api/admin/shops/{shop_id}/transactions/{transaction_id}";
-
-    /**
-     * 取引取得API.
-     *
-     * 取引取得API
-     *
-     * This method provides access to the full `HttpResponse`, allowing access to response headers.
-     * To access only the response body, use `getTransaction()` instead.
-     *
-     * This method doesn't expect any request body.
-     */
-    getTransaction$Response(params: {
-        /**
-         * 店舗ID
-         */
-        shop_id: number;
-
-        /**
-         * 取引ID
-         */
-        transaction_id: number;
-    }): Observable<StrictHttpResponse<TransactionResponse>> {
-        const rb = new RequestBuilder(
-            this.rootUrl,
-            AdminTransactionService.GetTransactionPath,
-            "get"
-        );
-        if (params) {
-            rb.path("shop_id", params.shop_id, {});
-            rb.path("transaction_id", params.transaction_id, {});
-        }
-
-        return this.http
-            .request(
-                rb.build({
-                    responseType: "json",
-                    accept: "application/json",
-                })
-            )
-            .pipe(
-                filter((r: any) => r instanceof HttpResponse),
-                map((r: HttpResponse<any>) => {
-                    return r as StrictHttpResponse<TransactionResponse>;
-                })
-            );
-    }
-
-    /**
-     * 取引取得API.
-     *
-     * 取引取得API
+     * メニューリスト取得API
      *
      * This method provides access to only to the response body.
-     * To access the full response (for headers, for example), `getTransaction$Response()` instead.
+     * To access the full response (for headers, for example), `getMenus1$Response()` instead.
      *
      * This method doesn't expect any request body.
      */
-    getTransaction(params: {
+    getMenus1(params: {
+        /**
+         * 店舗ID
+         */
+        shop_id: number;
+    }): Observable<MenusResponse> {
+        return this.getMenus1$Response(params).pipe(
+            map((r: StrictHttpResponse<MenusResponse>) => r.body as MenusResponse)
+        );
+    }
+
+    /**
+     * Path part for operation createMenu
+     */
+    static readonly CreateMenuPath = "/api/admin/shops/{shop_id}/menus";
+
+    /**
+     * メニュー作成API.
+     *
+     * メニュー作成API
+     *
+     * This method provides access to the full `HttpResponse`, allowing access to response headers.
+     * To access only the response body, use `createMenu()` instead.
+     *
+     * This method sends `application/json` and handles request body of type `application/json`.
+     */
+    createMenu$Response(params: {
         /**
          * 店舗ID
          */
         shop_id: number;
 
         /**
-         * 取引ID
+         * メニュー作成リクエスト
          */
-        transaction_id: number;
-    }): Observable<TransactionResponse> {
-        return this.getTransaction$Response(params).pipe(
-            map((r: StrictHttpResponse<TransactionResponse>) => r.body as TransactionResponse)
-        );
-    }
-
-    /**
-     * Path part for operation deleteTransaction
-     */
-    static readonly DeleteTransactionPath =
-        "/api/admin/shops/{shop_id}/transactions/{transaction_id}";
-
-    /**
-     * This method provides access to the full `HttpResponse`, allowing access to response headers.
-     * To access only the response body, use `deleteTransaction()` instead.
-     *
-     * This method doesn't expect any request body.
-     */
-    deleteTransaction$Response(params: {
-        shop_id: number;
-        transaction_id: number;
+        body: MenuCreateRequest;
     }): Observable<StrictHttpResponse<void>> {
-        const rb = new RequestBuilder(
-            this.rootUrl,
-            AdminTransactionService.DeleteTransactionPath,
-            "delete"
-        );
+        const rb = new RequestBuilder(this.rootUrl, AdminMenuService.CreateMenuPath, "post");
         if (params) {
             rb.path("shop_id", params.shop_id, {});
-            rb.path("transaction_id", params.transaction_id, {});
+            rb.body(params.body, "application/json");
         }
 
         return this.http
@@ -210,13 +135,102 @@ export class AdminTransactionService extends BaseService {
     }
 
     /**
+     * メニュー作成API.
+     *
+     * メニュー作成API
+     *
      * This method provides access to only to the response body.
-     * To access the full response (for headers, for example), `deleteTransaction$Response()` instead.
+     * To access the full response (for headers, for example), `createMenu$Response()` instead.
+     *
+     * This method sends `application/json` and handles request body of type `application/json`.
+     */
+    createMenu(params: {
+        /**
+         * 店舗ID
+         */
+        shop_id: number;
+
+        /**
+         * メニュー作成リクエスト
+         */
+        body: MenuCreateRequest;
+    }): Observable<void> {
+        return this.createMenu$Response(params).pipe(
+            map((r: StrictHttpResponse<void>) => r.body as void)
+        );
+    }
+
+    /**
+     * Path part for operation deleteMenu
+     */
+    static readonly DeleteMenuPath = "/api/admin/shops/{shop_id}/menus/{menu_id}";
+
+    /**
+     * メニュー削除API.
+     *
+     * メニュー削除API
+     *
+     * This method provides access to the full `HttpResponse`, allowing access to response headers.
+     * To access only the response body, use `deleteMenu()` instead.
      *
      * This method doesn't expect any request body.
      */
-    deleteTransaction(params: { shop_id: number; transaction_id: number }): Observable<void> {
-        return this.deleteTransaction$Response(params).pipe(
+    deleteMenu$Response(params: {
+        /**
+         * 店舗ID
+         */
+        shop_id: number;
+
+        /**
+         * メニューID
+         */
+        menu_id: number;
+    }): Observable<StrictHttpResponse<void>> {
+        const rb = new RequestBuilder(this.rootUrl, AdminMenuService.DeleteMenuPath, "delete");
+        if (params) {
+            rb.path("shop_id", params.shop_id, {});
+            rb.path("menu_id", params.menu_id, {});
+        }
+
+        return this.http
+            .request(
+                rb.build({
+                    responseType: "text",
+                    accept: "*/*",
+                })
+            )
+            .pipe(
+                filter((r: any) => r instanceof HttpResponse),
+                map((r: HttpResponse<any>) => {
+                    return (r as HttpResponse<any>).clone({
+                        body: undefined,
+                    }) as StrictHttpResponse<void>;
+                })
+            );
+    }
+
+    /**
+     * メニュー削除API.
+     *
+     * メニュー削除API
+     *
+     * This method provides access to only to the response body.
+     * To access the full response (for headers, for example), `deleteMenu$Response()` instead.
+     *
+     * This method doesn't expect any request body.
+     */
+    deleteMenu(params: {
+        /**
+         * 店舗ID
+         */
+        shop_id: number;
+
+        /**
+         * メニューID
+         */
+        menu_id: number;
+    }): Observable<void> {
+        return this.deleteMenu$Response(params).pipe(
             map((r: StrictHttpResponse<void>) => r.body as void)
         );
     }
