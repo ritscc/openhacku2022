@@ -11,6 +11,7 @@ import { OrderComponent } from "@customer/component/order/order.component";
 import { MenusComponent } from "@customer/component/order/menus/menus.component";
 import { CartComponent } from "./component/order/cart/cart.component";
 import { OrderHistoryComponent } from "./component/order/order-history/order-history.component";
+import { TableNumberDialogComponent } from "./component/table-number-dialog/table-number-dialog.component";
 
 @NgModule({
     declarations: [
@@ -21,6 +22,7 @@ import { OrderHistoryComponent } from "./component/order/order-history/order-his
         MenusComponent,
         CartComponent,
         OrderHistoryComponent,
+        TableNumberDialogComponent,
     ],
     imports: [SharedModule],
 })
