@@ -1,6 +1,6 @@
 <mat-toolbar class="header" color="primary" fxLayout="row" fxLayoutAlign="space-between center">
-    <div>
-        <button (click)="sidenav.toggle()" mat-icon-button>
+    <div fxLayout="row" fxLayoutAlign="center">
+        <button (click)="sidenav.toggle()" [disabled]="!isSidenavValid" mat-icon-button>
             <mat-icon>menu</mat-icon>
         </button>
     </div>
@@ -8,7 +8,7 @@
 
 <mat-sidenav-container>
     <mat-sidenav #sidenav>
-        <mat-nav-list>
+        <mat-nav-list class="nav-list-wrapper">
             <a (click)="sidenav.close()" [routerLink]="'/dashboard'" mat-list-item>
                 <mat-icon>dashboard</mat-icon>
                 <span>ダッシュボード</span>
