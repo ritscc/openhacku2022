@@ -1,0 +1,16 @@
+<div
+    class="dialog-wrapper"
+    fxLayout="column"
+    fxLayoutAlign="space-between start"
+    fxLayoutGap="20px"
+>
+    <h2 class="dialog-wrapper__title" mat-dialog-title>{{ data.title }}</h2>
+    <mat-dialog-content>
+        <span>{{ data.message }}</span>
+    </mat-dialog-content>
+
+    <mat-dialog-actions fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+        <app-button (click)="confirm(true)" label="確認"></app-button>
+        <app-button (click)="confirm(false)" [reverseColor]="true" label="キャンセル"></app-button>
+    </mat-dialog-actions>
+</div>

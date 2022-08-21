@@ -65,9 +65,15 @@ export class CartComponent implements OnInit {
      * @param menu メニュー
      */
     deleteMenu(menu: Menu) {
-        this.menus = this.menus.filter((element) => element.id !== menu.id);
-        this.cartService.deleteMenu(menu);
-        this.alertService.success("カートから削除しました");
+        this.alertService
+            .confirm("削除確認", "このメニューを削除しますか？")
+            .subscribe((result) => {
+                if (result) {
+                    this.menus = this.menus.filter((element) => element.id !== menu.id);
+                    this.cartService.deleteMenu(menu);
+                    this.alertService.success("カートから削除しました");
+                }
+            });
     }
 
     changeMenuQuantity(menu: Menu) {
