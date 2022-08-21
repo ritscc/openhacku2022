@@ -34,7 +34,7 @@
                 ></app-shared-input>
             </div>
 
-            <div fxLayout="column" fxLayoutAlign="center start">
+            <div *ngIf="isQRCodeReaderRequire" fxLayout="column" fxLayoutAlign="center start">
                 <h4>QRコードを読み取ってください</h4>
                 <div class="camera-container" fxLayoutAlign="center center">
                     <zxing-scanner
@@ -44,10 +44,20 @@
                     ></zxing-scanner>
                     <mat-icon *ngIf="!isQRCodeReaderEnable">photo_camera</mat-icon>
                 </div>
+
                 <app-button
                     (click)="launchQRCodeReader()"
                     class="camera-launch-button"
                     label="カメラを起動"
+                    width="100%"
+                ></app-button>
+            </div>
+
+            <div *ngIf="!isQRCodeReaderRequire" fxLayout="column" fxLayoutAlign="center center">
+                <app-button
+                    (click)="successToEnterShop()"
+                    class="enter-shop-button"
+                    label="入店する"
                     width="100%"
                 ></app-button>
             </div>
