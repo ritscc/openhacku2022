@@ -16,9 +16,31 @@
                 >
                     <span class="menu-container__detail__name">{{ element.name }}</span>
 
-                    <span class="menu-container__detail__price"
-                        >￥{{ element.price | number }}</span
-                    >
+                    <div fxLayout="row" fxLayoutAlign="space-between center" style="width: 100%">
+                        <span class="menu-container__detail__price"
+                            >￥{{ element.price | number }}</span
+                        >
+
+                        <div
+                            fxLayout="row"
+                            fxLayoutAlign="end start"
+                            fxLayoutGap="13px"
+                            style="margin-right: 3px; height: 16px"
+                        >
+                            <mat-select
+                                *ngIf="element.isChecked"
+                                [(ngModel)]="element.quantity"
+                                class="menu-container__quantity"
+                            >
+                                <mat-option
+                                    *ngFor="let element of [1, 2, 3, 4, 5, 6, 7, 8, 9]"
+                                    [value]="element"
+                                    >{{ element | number }}個
+                                </mat-option>
+                            </mat-select>
+                            <mat-checkbox [(ngModel)]="element.isChecked"></mat-checkbox>
+                        </div>
+                    </div>
                 </div>
             </div>
             <mat-divider></mat-divider>
@@ -26,7 +48,12 @@
     </div>
 
     <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px" style="padding-bottom: 30px">
-        <app-button [reverseColor]="true" icon="add" label="カートに追加"></app-button>
-        <app-button label="注文する"></app-button>
+        <app-button
+            (click)="addMenusToCart()"
+            [reverseColor]="true"
+            icon="add"
+            label="カートに追加"
+        ></app-button>
+        <app-button (click)="order()" label="注文する"></app-button>
     </div>
 </div>
