@@ -9,6 +9,8 @@ import { QrDialogComponent } from "@customer/component/qr-dialog/qr-dialog.compo
 import { PaymentComponent } from "@customer/component/payment/payment.component";
 import { OrderComponent } from "@customer/component/order/order.component";
 import { MenusComponent } from "@customer/component/order/menus/menus.component";
+import { CartComponent } from "./component/order/cart/cart.component";
+import { OrderHistoryComponent } from "./component/order/order-history/order-history.component";
 
 @NgModule({
     declarations: [
@@ -17,6 +19,8 @@ import { MenusComponent } from "@customer/component/order/menus/menus.component"
         PaymentComponent,
         OrderComponent,
         MenusComponent,
+        CartComponent,
+        OrderHistoryComponent,
     ],
     imports: [SharedModule],
 })
