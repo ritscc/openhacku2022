@@ -6,7 +6,6 @@
     // 画面全体 - ヘッダーに縦幅を設定
     height: calc(var(--vh, 1vh) * 100 - 60px);
     width: 100vw;
-    overflow-y: auto !important;
 }
 
 .nav-list-wrapper a mat-icon {
