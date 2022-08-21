@@ -3,7 +3,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { FormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import { AlertService } from "@shared/service/alert.service";
 import { AuthService } from "@api/services/auth.service";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router, UrlSerializer, UrlTree } from "@angular/router";
 import { LoginRequest } from "@api/models/login-request";
 
 @Component({
@@ -22,12 +22,20 @@ export class HomeComponent implements OnInit {
      */
     isQRCodeReaderEnable: boolean = false;
 
+    /**
+     * QRコードリーダーで読み取る必要があるかどうか
+     */
+    isQRCodeReaderRequire: boolean = false;
+    preShopId!: number;
+
     constructor(
         private matDialog: MatDialog,
         private formBuilder: FormBuilder,
         private alertService: AlertService,
         private authService: AuthService,
-        private router: Router
+        private router: Router,
+        private route: ActivatedRoute,
+        private urlSerializer: UrlSerializer
     ) {}
 
     ngOnInit(): void {
@@ -35,6 +43,26 @@ export class HomeComponent implements OnInit {
         this.form = this.formBuilder.group({
             numberOfPeople: [1, [Validators.required, Validators.min(1)]],
         });
+
+        // 現在のURLを取得してパースする
+        this.route.queryParams.subscribe((params) =>
+            this.setIsQRCodeReaderRequire(params["shop_id"])
+        );
+    }
+
+    /**
+     * QRコードリーダーを起動する必要があるかチェックして結果を変数に代入
+     * @param shop_id shopのid
+     */
+    setIsQRCodeReaderRequire(shop_id: string | undefined): void {
+        // shop_idが指定されていた場合はQRコードリーダーは表示しない
+        if (typeof shop_id === "string") {
+            this.isQRCodeReaderRequire = false;
+            this.preShopId = Number(shop_id);
+            return;
+        }
+        // undefinedの場合はshop_idが指定されていないのでQRコードリーダーを表示
+        this.isQRCodeReaderRequire = true;
     }
 
     /**
@@ -45,7 +73,6 @@ export class HomeComponent implements OnInit {
             this.alertService.warn("来店人数を入力してください");
             return;
         }
-
         this.isQRCodeReaderEnable = true;
     }
 
@@ -55,8 +82,33 @@ export class HomeComponent implements OnInit {
      * @param content QRコードの中身
      */
     successToScanQRCode(content: string) {
+        // QRコードに書かれているURLからクエリパラメータのshopIdを取り出す
+        const url: string = content.replace("https://", "").replace("http://", "");
+        const tree: UrlTree = this.urlSerializer.parse(url);
+        const shopId: string | undefined = tree.queryParams["shop_id"];
+
+        if (!shopId) {
+            this.alertService.warn("不正なQRコードです");
+            return;
+        }
+
         const loginRequest: LoginRequest = {
-            shopId: Number(content),
+            shopId: Number(shopId),
+            numberOfPeople: this.form.value["numberOfPeople"],
+        };
+
+        this.authService.login({ body: loginRequest }).subscribe(() => {
+            this.alertService.success("ログインしました");
+            this.router.navigate(["dashboard"], { queryParamsHandling: "merge" });
+        });
+    }
+
+    /**
+     * 入店に成功(入店ボタンをクリックした場合に実行)
+     */
+    successToEnterShop(): void {
+        const loginRequest: LoginRequest = {
+            shopId: this.preShopId,
             numberOfPeople: this.form.value["numberOfPeople"],
         };
 
