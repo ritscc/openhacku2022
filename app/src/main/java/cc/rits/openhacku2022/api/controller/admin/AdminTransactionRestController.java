@@ -66,6 +66,13 @@ public class AdminTransactionRestController {
         return new TransactionResponse(this.adminTransactionService.getTransaction(shopId, transactionId, shop));
     }
 
+    /**
+     * 取引削除API
+     * 
+     * @param shopId 店舗ID
+     * @param transactionId 取引ID
+     * @param shop 店舗
+     */
     @DeleteMapping("/{transaction_id}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteTransaction( //
@@ -75,4 +82,20 @@ public class AdminTransactionRestController {
     ) {
         this.adminTransactionService.deleteTransaction(shopId, transactionId, shop);
     }
+
+    /**
+     * 全取引削除API
+     * 
+     * @param shopId 店舗ID
+     * @param shop 店舗
+     */
+    @DeleteMapping
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteTransactions( //
+        @PathVariable("shop_id") final Integer shopId, //
+        @Parameter(hidden = true) final ShopModel shop //
+    ) {
+        this.adminTransactionService.deleteTransactions(shopId, shop);
+    }
+
 }
