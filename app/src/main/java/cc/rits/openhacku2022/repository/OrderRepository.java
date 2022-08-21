@@ -53,6 +53,12 @@ public class OrderRepository {
         orderMenus.forEach(this.orderMenuMapper::insertSelective);
     }
 
+    /**
+     * 注文メニューを更新
+     * 
+     * @param orderId 注文ID
+     * @param orderMenuModel 注文メニュー
+     */
     public void updateOrderMenu(final Integer orderId, final OrderMenuModel orderMenuModel) {
         final var orderMenu = this.orderMenuFactory.createOrderMenu(orderId, orderMenuModel);
         this.orderMenuMapper.updateByPrimaryKeySelective(orderMenu);
