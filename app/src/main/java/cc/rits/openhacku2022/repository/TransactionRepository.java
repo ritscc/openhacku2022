@@ -71,4 +71,15 @@ public class TransactionRepository {
         this.transactionMapper.deleteByPrimaryKey(transactionModel.getId());
     }
 
+    /**
+     * 全ての取引を削除
+     * 
+     * @param shopId 店舗ID
+     */
+    public void deleteAll(final Integer shopId) {
+        final var example = new TransactionExample();
+        example.createCriteria().andShopIdEqualTo(shopId);
+        this.transactionMapper.deleteByExample(example);
+    }
+
 }

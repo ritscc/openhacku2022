@@ -96,4 +96,24 @@ public class AdminTransactionService {
         this.transactionRepository.delete(transaction);
     }
 
+    /**
+     * 全ての取引を削除
+     *
+     * @param shopId 店舗ID
+     * @param shop 店舗
+     */
+    public void deleteTransactions(final Integer shopId, final ShopModel shop) {
+        // 店舗の存在チェック
+        this.shopRepository.selectById(shopId) //
+            .orElseThrow(() -> new NotFoundException(ErrorCode.NOT_FOUND_SHOP));
+
+        // ログイン中の店舗と店舗IDが一致するかチェック
+        if (!Objects.equals(shop.getId(), shopId)) {
+            throw new ForbiddenException(ErrorCode.USER_HAS_NO_PERMISSION);
+        }
+
+        // 取引を削除
+        this.transactionRepository.deleteAll(shopId);
+    }
+
 }
