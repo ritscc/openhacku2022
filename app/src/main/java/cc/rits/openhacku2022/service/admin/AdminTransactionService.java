@@ -13,6 +13,7 @@ import cc.rits.openhacku2022.model.ShopModel;
 import cc.rits.openhacku2022.query_service.TransactionQueryService;
 import cc.rits.openhacku2022.query_service.dto.TransactionWithOrderDto;
 import cc.rits.openhacku2022.repository.ShopRepository;
+import cc.rits.openhacku2022.repository.TransactionRepository;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -24,6 +25,8 @@ import lombok.RequiredArgsConstructor;
 public class AdminTransactionService {
 
     private final ShopRepository shopRepository;
+
+    private final TransactionRepository transactionRepository;
 
     private final TransactionQueryService transactionQueryService;
 
@@ -66,6 +69,31 @@ public class AdminTransactionService {
         }
 
         return this.transactionQueryService.getTransaction(shopId, transactionId);
+    }
+
+    /**
+     * 取引を削除
+     *
+     * @param shopId 店舗ID
+     * @param transactionId 取引ID
+     * @param shop 店舗
+     */
+    public void deleteTransaction(final Integer shopId, final Integer transactionId, final ShopModel shop) {
+        // 店舗の存在チェック
+        this.shopRepository.selectById(shopId) //
+            .orElseThrow(() -> new NotFoundException(ErrorCode.NOT_FOUND_SHOP));
+
+        // ログイン中の店舗と店舗IDが一致するかチェック
+        if (!Objects.equals(shop.getId(), shopId)) {
+            throw new ForbiddenException(ErrorCode.USER_HAS_NO_PERMISSION);
+        }
+
+        // 取引を取得
+        final var transaction = this.transactionRepository.selectByIdAndShopId(transactionId, shopId) //
+            .orElseThrow(() -> new NotFoundException(ErrorCode.NOT_FOUND_TRANSACTION));
+
+        // 取引を削除
+        this.transactionRepository.delete(transaction);
     }
 
 }

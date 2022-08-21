@@ -66,4 +66,13 @@ public class AdminTransactionRestController {
         return new TransactionResponse(this.adminTransactionService.getTransaction(shopId, transactionId, shop));
     }
 
+    @DeleteMapping("/{transaction_id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteTransaction( //
+        @PathVariable("shop_id") final Integer shopId, //
+        @PathVariable("transaction_id") final Integer transactionId, //
+        @Parameter(hidden = true) final ShopModel shop //
+    ) {
+        this.adminTransactionService.deleteTransaction(shopId, transactionId, shop);
+    }
 }
