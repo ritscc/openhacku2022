@@ -4,7 +4,6 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
-import cc.rits.openhacku2022.db.entity.OrderMenuExample;
 import cc.rits.openhacku2022.db.mapper.OrderMapper;
 import cc.rits.openhacku2022.db.mapper.OrderMenuMapper;
 import cc.rits.openhacku2022.factory.OrderFactory;
@@ -56,11 +55,7 @@ public class OrderRepository {
 
     public void updateOrderMenu(final Integer orderId, final OrderMenuModel orderMenuModel) {
         final var orderMenu = this.orderMenuFactory.createOrderMenu(orderId, orderMenuModel);
-        final var example = new OrderMenuExample();
-        example.createCriteria() //
-            .andOrderIdEqualTo(orderId) //
-            .andMenuIdEqualTo(orderMenu.getMenuId());
-        this.orderMenuMapper.updateByExampleSelective(orderMenu, example);
+        this.orderMenuMapper.updateByPrimaryKeySelective(orderMenu);
     }
 
 }
