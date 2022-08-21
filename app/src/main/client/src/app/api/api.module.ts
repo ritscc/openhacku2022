@@ -4,8 +4,10 @@ import { NgModule, ModuleWithProviders, SkipSelf, Optional } from "@angular/core
 import { HttpClient } from "@angular/common/http";
 import { ApiConfiguration, ApiConfigurationParams } from "./api-configuration";
 
+import { AdminOrderService } from "./services/admin-order.service";
 import { OrderService } from "./services/order.service";
 import { AuthService } from "./services/auth.service";
+import { AdminMenuService } from "./services/admin-menu.service";
 import { AdminAuthService } from "./services/admin-auth.service";
 import { TransactionService } from "./services/transaction.service";
 import { MenuService } from "./services/menu.service";
@@ -20,8 +22,10 @@ import { AdminTransactionService } from "./services/admin-transaction.service";
     exports: [],
     declarations: [],
     providers: [
+        AdminOrderService,
         OrderService,
         AuthService,
+        AdminMenuService,
         AdminAuthService,
         TransactionService,
         MenuService,

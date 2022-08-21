@@ -5,6 +5,8 @@ import { AlertService } from "@shared/service/alert.service";
 import { CartService } from "@customer/service/cart.service";
 import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 import { MenuResponse } from "@api/models/menu-response";
+import { OrderCreateRequest } from "@api/models/order-create-request";
+import { OrderService } from "@api/services/order.service";
 
 type Menu = MenuResponse & {
     quantity: number;
@@ -26,7 +28,8 @@ export class CartComponent implements OnInit {
         private transactionService: TransactionService,
         private menuService: MenuService,
         private alertService: AlertService,
-        private cartService: CartService
+        private cartService: CartService,
+        private orderService: OrderService
     ) {}
 
     ngOnInit(): void {
@@ -85,6 +88,27 @@ export class CartComponent implements OnInit {
      * 注文する
      */
     order() {
-        this.alertService.warn("その機能は未実装です");
+        const requestBody: OrderCreateRequest = {
+            menus: this.menus.map((menu) => {
+                return { menuId: menu.id, quantity: menu.quantity };
+            }),
+        };
+
+        this.transactionService
+            .getLoginTransaction()
+            .pipe(untilDestroyed(this))
+            .subscribe((transaction) => {
+                this.orderService
+                    .createOrder({
+                        shop_id: transaction.shopId,
+                        body: requestBody,
+                    })
+                    .pipe(untilDestroyed(this))
+                    .subscribe(() => {
+                        this.menus = [];
+                        this.cartService.deleteAll();
+                        this.alertService.success("注文が完了しました");
+                    });
+            });
     }
 }
