@@ -134,6 +134,7 @@ class AdminTransactionRestController_IT extends BaseRestController_IT {
         response.orders*.menus*.id == [[1], [1, 2]]
         response.orders*.menus*.price == [[100], [100, 200]]
         response.orders*.menus*.quantity == [[3], [4, 5]]
+        Objects.nonNull(response.shopName)
     }
 
     def "取引取得API: 異常系 自分以外の店舗IDの場合は403エラー"() {
