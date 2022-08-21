@@ -44,25 +44,16 @@ export class HomeComponent implements OnInit {
             numberOfPeople: [1, [Validators.required, Validators.min(1)]],
         });
 
-        // 現在のURLを取得してパースする
-        this.route.queryParams.subscribe((params) =>
-            this.setIsQRCodeReaderRequire(params["shop_id"])
-        );
-    }
-
-    /**
-     * QRコードリーダーを起動する必要があるかチェックして結果を変数に代入
-     * @param shop_id shopのid
-     */
-    setIsQRCodeReaderRequire(shop_id: string | undefined): void {
-        // shop_idが指定されていた場合はQRコードリーダーは表示しない
-        if (typeof shop_id === "string") {
-            this.isQRCodeReaderRequire = false;
-            this.preShopId = Number(shop_id);
-            return;
-        }
-        // undefinedの場合はshop_idが指定されていないのでQRコードリーダーを表示
-        this.isQRCodeReaderRequire = true;
+        // 現在のURLを取得してプロパティを書き換える
+        this.route.queryParams.subscribe((params) => {
+            const shopId: string | undefined = params["shop_id"];
+            if (shopId) {
+                this.isQRCodeReaderRequire = false;
+                this.preShopId = Number(shopId);
+            } else {
+                this.isQRCodeReaderRequire = true;
+            }
+        });
     }
 
     /**
