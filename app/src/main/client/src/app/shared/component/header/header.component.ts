@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { NavigationEnd, Router } from "@angular/router";
+import { filter } from "rxjs/operators";
 
 @Component({
     selector: "app-header",
@@ -6,7 +8,24 @@ import { Component, OnInit } from "@angular/core";
     styleUrls: ["./header.component.scss"],
 })
 export class HeaderComponent implements OnInit {
-    constructor() {}
+    /**
+     * サイドナビを有効化するかどうか
+     */
+    isSidenavValid: boolean = false;
+
+    constructor(private router: Router) {
+        // ナビゲーション終了時にサイドナビの状態を定義
+        this.router.events
+            .pipe(filter((e) => e instanceof NavigationEnd))
+            .subscribe(() => this.setIsSidenavValid());
+    }
 
     ngOnInit(): void {}
+
+    /**
+     * サイドナビの状態をセットする
+     */
+    setIsSidenavValid(): void {
+        this.isSidenavValid = this.router.url !== "/";
+    }
 }

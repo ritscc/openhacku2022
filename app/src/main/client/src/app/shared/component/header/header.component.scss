@@ -7,3 +7,7 @@
     height: calc(100vh - 60px);
     overflow-y: auto !important;
 }
+
+.nav-list-wrapper a mat-icon {
+    margin-right: 10px;
+}
