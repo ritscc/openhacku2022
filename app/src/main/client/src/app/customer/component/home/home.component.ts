@@ -92,29 +92,33 @@ export class HomeComponent implements OnInit {
             return;
         }
 
-        const loginRequest: LoginRequest = {
-            shopId: Number(shopId),
-            numberOfPeople: this.form.value["numberOfPeople"],
-        };
-
-        this.authService.login({ body: loginRequest }).subscribe(() => {
-            this.alertService.success("ログインしました");
-            this.router.navigate(["dashboard"], { queryParamsHandling: "merge" });
-        });
+        this.login(Number(shopId));
     }
 
     /**
-     * 入店に成功(入店ボタンをクリックした場合に実行)
+     * 入店に成功 (入店ボタンをクリックした場合に実行)
      */
     successToEnterShop(): void {
-        const loginRequest: LoginRequest = {
-            shopId: this.preShopId,
-            numberOfPeople: this.form.value["numberOfPeople"],
-        };
+        this.login(this.preShopId);
+    }
 
-        this.authService.login({ body: loginRequest }).subscribe(() => {
-            this.alertService.success("ログインしました");
-            this.router.navigate(["dashboard"], { queryParamsHandling: "merge" });
-        });
+    /**
+     * ログイン処理
+     * @param shopId ショップのID
+     */
+    login(shopId: number): void {
+        if (this.form.valid) {
+            const loginRequest: LoginRequest = {
+                shopId: shopId,
+                numberOfPeople: this.form.value["numberOfPeople"],
+            };
+
+            this.authService.login({ body: loginRequest }).subscribe(() => {
+                this.alertService.success("ログインしました");
+                this.router.navigate(["dashboard"], { queryParamsHandling: "merge" });
+            });
+        } else {
+            this.alertService.warn("来客人数を入力してください");
+        }
     }
 }
