@@ -1,32 +1,30 @@
-<!-- レシート生成 -->
 <div class="sheet-container">
-    <div fxLayout="column" fxLayoutAlign="space-around center">
-        <h2>店の名前</h2>
+    <div *ngIf="transaction" fxLayout="column" fxLayoutAlign="space-around center">
+        <h2>{{ transaction.shopName }}</h2>
 
-        <div class="orders">
-            <!-- TODO: 実際はループさせる -->
-            <div fxLayout="row" fxLayoutAlign="space-between center">
-                <div>商品.name</div>
-                <div>商品.value</div>
+        <div *ngIf="menus.length !== 0" class="orders">
+            <div *ngFor="let element of menus" fxLayout="row" fxLayoutAlign="space-between center">
+                <div>{{ element.name }}</div>
+                <div>¥ {{ element.price }}</div>
             </div>
         </div>
 
         <div class="additional">
             <div fxLayout="row" fxLayoutAlign="space-between center">
                 <div>小計</div>
-                <div>￥オーダー総額</div>
+                <div>¥ {{ getTotalPrice() }}</div>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between center">
                 <div>内税対象額</div>
-                <div>￥同じ額</div>
+                <div>¥ {{ getTotalPrice() }}</div>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between center">
                 <div>内税</div>
-                <div>￥内税対象額×0.1</div>
+                <div>¥ {{ getTaxAmount() }}</div>
             </div>
             <div class="total" fxLayout="row" fxLayoutAlign="space-between center">
                 <div>合計</div>
-                <div>￥内税対象額×1.1</div>
+                <div>¥ {{ getTotalPrice() + getTaxAmount() }}</div>
             </div>
         </div>
     </div>
