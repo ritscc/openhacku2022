@@ -1,8 +1,5 @@
 package cc.rits.openhacku2022.api.request;
 
-import java.util.List;
-
-import cc.rits.openhacku2022.enums.OrderStatusEnum;
 import cc.rits.openhacku2022.exception.BadRequestException;
 import cc.rits.openhacku2022.exception.BaseException;
 import cc.rits.openhacku2022.exception.ErrorCode;
@@ -25,7 +22,6 @@ public class OrderStatusUpdateRequest implements BaseRequest {
      * 注文ステータス
      */
     @Schema(required = true)
-    List<OrderCreateRequest.OrderMenuRequest> menus;
     Integer status;
 
     @Override

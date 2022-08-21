@@ -14,7 +14,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
 /**
- * 注文コントロラー(管理者)
+ * 注文コントローラ(管理者)
  */
 @Tag(name = "Admin Order", description = "注文")
 @RestController
