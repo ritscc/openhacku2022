@@ -3,6 +3,7 @@ package cc.rits.openhacku2022.query_service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import cc.rits.openhacku2022.db.mapper.ShopMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +22,8 @@ import lombok.RequiredArgsConstructor;
 public class TransactionQueryService {
 
     private final TransactionMapper transactionMapper;
+
+    private final ShopMapper shopMapper;
 
     /**
      * 取引リストを取得
@@ -44,6 +47,10 @@ public class TransactionQueryService {
     public TransactionWithOrderDto getTransaction(final Integer shopId, final Integer transactionId) {
         final var result = this.transactionMapper.selectByIdAndShopId(transactionId, shopId) //
             .orElseThrow(() -> new NotFoundException(ErrorCode.NOT_FOUND_TRANSACTION));
+
+        // NOTE: 店舗名が稀にnullになるバグ対策
+        final var shop = this.shopMapper.selectByPrimaryKey(shopId);
+        result.setShopName(shop.getName());
         return new TransactionWithOrderDto(result);
     }
 

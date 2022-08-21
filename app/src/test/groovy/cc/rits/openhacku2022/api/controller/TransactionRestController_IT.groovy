@@ -51,6 +51,7 @@ class TransactionRestController_IT extends BaseRestController_IT {
         response.orders*.menus*.id == [[1], [1, 2]]
         response.orders*.menus*.price == [[100], [100, 200]]
         response.orders*.menus*.quantity == [[3], [4, 5]]
+        Objects.nonNull(response.shopName)
     }
 
     def "ログイン取引取得API: 異常系 ログインしていない場合は401エラー"() {
