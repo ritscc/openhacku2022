@@ -1,4 +1,4 @@
-<mat-tab-group mat-stretch-tabs style="height: 100%">
+<mat-tab-group (selectedTabChange)="switchTab()" mat-stretch-tabs style="height: 100%">
     <mat-tab label="メニュー">
         <app-menus></app-menus>
     </mat-tab>
