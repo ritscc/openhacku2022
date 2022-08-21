@@ -1,5 +1,6 @@
 package cc.rits.openhacku2022.model;
 
+import cc.rits.openhacku2022.db.entity.OrderMenu;
 import cc.rits.openhacku2022.enums.OrderStatusEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,5 +31,11 @@ public class OrderMenuModel {
      */
     @Builder.Default
     private OrderStatusEnum status = OrderStatusEnum.ACCEPTED;
+
+    public OrderMenuModel(final OrderMenu orderMenu) {
+        this.menuId = orderMenu.getMenuId();
+        this.quantity = orderMenu.getQuantity();
+        this.status = OrderStatusEnum.find(orderMenu.getStatus());
+    }
 
 }
