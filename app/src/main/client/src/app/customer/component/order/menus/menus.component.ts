@@ -5,6 +5,8 @@ import { TransactionService } from "@api/services/transaction.service";
 import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 import { AlertService } from "@shared/service/alert.service";
 import { CartService } from "@customer/service/cart.service";
+import { OrderCreateRequest } from "@api/models/order-create-request";
+import { OrderService } from "@api/services/order.service";
 
 type Menu = MenuResponse & {
     isChecked: boolean;
@@ -27,7 +29,8 @@ export class MenusComponent implements OnInit {
         private transactionService: TransactionService,
         private menuService: MenuService,
         private alertService: AlertService,
-        private cartService: CartService
+        private cartService: CartService,
+        private orderService: OrderService
     ) {}
 
     ngOnInit(): void {
@@ -64,11 +67,8 @@ export class MenusComponent implements OnInit {
             });
             this.cartService.addMenus(savedMenus).subscribe(() => {
                 // 成功を通知 & メニュー選択状態をリセット
+                this.resetMenuSelection();
                 this.alertService.success("カートに追加しました");
-                this.menus.forEach((menu) => {
-                    menu.isChecked = false;
-                    menu.quantity = 1;
-                });
             });
         }
     }
@@ -77,6 +77,38 @@ export class MenusComponent implements OnInit {
      * 注文する
      */
     order() {
-        this.alertService.warn("その機能は未実装です");
+        const requestBody: OrderCreateRequest = {
+            menus: this.menus
+                .filter((menu) => menu.isChecked && menu.quantity > 0)
+                .map((menu) => {
+                    return { menuId: menu.id, quantity: menu.quantity };
+                }),
+        };
+
+        this.transactionService
+            .getLoginTransaction()
+            .pipe(untilDestroyed(this))
+            .subscribe((transaction) => {
+                this.orderService
+                    .createOrder({
+                        shop_id: transaction.shopId,
+                        body: requestBody,
+                    })
+                    .pipe(untilDestroyed(this))
+                    .subscribe(() => {
+                        this.resetMenuSelection();
+                        this.alertService.success("注文が完了しました");
+                    });
+            });
+    }
+
+    /**
+     * メニュー選択状態をリセット
+     */
+    resetMenuSelection(): void {
+        this.menus.forEach((menu) => {
+            menu.isChecked = false;
+            menu.quantity = 1;
+        });
     }
 }

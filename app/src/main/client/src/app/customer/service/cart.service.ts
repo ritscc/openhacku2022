@@ -60,6 +60,13 @@ export class CartService {
         });
     }
 
+    /**
+     * カートの中身を全削除
+     */
+    deleteAll(): void {
+        localStorage.removeItem(this.MENUS_KEY);
+    }
+
     updateMenu(menu: OrderMenuRequest): void {
         this.getMenus().subscribe((menus) => {
             menus = menus.filter((element) => element.menuId !== menu.menuId);
