@@ -26,10 +26,6 @@ export class HeaderComponent implements OnInit {
      * サイドナビの状態をセットする
      */
     setIsSidenavValid(): void {
-        this.isSidenavValid = true;
-        // ホームルートにいる場合、サイドナビを無効化
-        if (this.router.url === "/") {
-            this.isSidenavValid = false;
-        }
+        this.isSidenavValid = this.router.url !== "/";
     }
 }
