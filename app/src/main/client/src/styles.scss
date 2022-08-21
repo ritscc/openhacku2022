@@ -21,6 +21,11 @@ body {
     min-height: calc(var(--vh, 1vh) * 100);
 }
 
+.main-content {
+    // 画面全体 - ヘッダーに縦幅を設定
+    height: calc(100vh - 60px);
+}
+
 .mat-snack-bar-container {
     padding: 0 !important;
     min-height: 50px !important;
