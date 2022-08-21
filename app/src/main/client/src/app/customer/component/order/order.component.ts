@@ -2,7 +2,12 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { MenusComponent } from "@customer/component/order/menus/menus.component";
 import { CartComponent } from "@customer/component/order/cart/cart.component";
 import { OrderHistoryComponent } from "@customer/component/order/order-history/order-history.component";
+import { MatDialog } from "@angular/material/dialog";
+import { TableNumberDialogComponent } from "@customer/component/table-number-dialog/table-number-dialog.component";
+import { TransactionService } from "@api/services/transaction.service";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 
+@UntilDestroy()
 @Component({
     selector: "app-order",
     templateUrl: "./order.component.html",
@@ -13,9 +18,18 @@ export class OrderComponent implements OnInit {
     @ViewChild(CartComponent) cartComponent!: CartComponent;
     @ViewChild(OrderHistoryComponent) orderHistoryComponent!: OrderHistoryComponent;
 
-    constructor() {}
+    constructor(private matDialog: MatDialog, private transactionService: TransactionService) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.transactionService
+            .getLoginTransaction()
+            .pipe(untilDestroyed(this))
+            .subscribe((response) => {
+                this.matDialog.open(TableNumberDialogComponent, {
+                    data: { tableNumber: response.tableId },
+                });
+            });
+    }
 
     /**
      * タブ切り替え時に呼ばれる
