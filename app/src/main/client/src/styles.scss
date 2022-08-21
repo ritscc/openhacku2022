@@ -18,8 +18,6 @@ body {
     @include font-color-black;
     word-wrap: break-word;
     font-family: Roboto, "Helvetica Neue", sans-serif;
-    min-height: calc(var(--vh, 1vh) * 100);
-    overflow: hidden;
 }
 
 .mat-snack-bar-container {
