@@ -38,3 +38,33 @@ body {
 .mat-sidenav-content {
     background-color: white;
 }
+
+.mat-tab-body-wrapper {
+    height: 100% !important;
+}
+
+.menu-container {
+    height: 120px;
+    margin: 0 10px 0 10px;
+}
+
+.menu-container__image {
+    height: 100px;
+    width: 130px;
+    object-fit: cover;
+}
+
+.menu-container__detail {
+    height: 80px;
+    width: 100%;
+}
+
+.menu-container__detail__name {
+    font-size: 0.9rem;
+}
+
+.menu-container__quantity {
+    padding: 0 0 0 5px;
+    border: solid 2px #808080;
+    border-radius: 2px;
+}

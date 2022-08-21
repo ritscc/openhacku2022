@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
 import { OrderMenuRequest } from "@api/models/order-menu-request";
 import { map } from "rxjs/operators";
+import { MenuResponse } from "@api/models/menu-response";
 
 @Injectable({
     providedIn: "root",
@@ -43,5 +44,29 @@ export class CartService {
                 localStorage.setItem(this.MENUS_KEY, JSON.stringify(localStorageMenus));
             })
         );
+    }
+
+    /**
+     * メニューを削除
+     *
+     * @param menu メニュー
+     */
+    deleteMenu(menu: MenuResponse): void {
+        this.getMenus().subscribe((menus) => {
+            menus = menus.filter((element) => element.menuId !== menu.id);
+
+            // ローカルストレージにメニューを追加
+            localStorage.setItem(this.MENUS_KEY, JSON.stringify(menus));
+        });
+    }
+
+    updateMenu(menu: OrderMenuRequest): void {
+        this.getMenus().subscribe((menus) => {
+            menus = menus.filter((element) => element.menuId !== menu.menuId);
+            menus.push(menu);
+
+            // ローカルストレージにメニューを追加
+            localStorage.setItem(this.MENUS_KEY, JSON.stringify(menus));
+        });
     }
 }
