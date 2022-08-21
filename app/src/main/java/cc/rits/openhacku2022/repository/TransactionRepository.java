@@ -36,6 +36,23 @@ public class TransactionRepository {
     }
 
     /**
+     * 取引IDと店舗IDから取引を取得
+     *
+     * @param id 取引ID
+     * @param shopId 店舗ID
+     * @return 取引
+     */
+    public Optional<TransactionModel> selectByIdAndShopId(final Integer id, final Integer shopId) {
+        final var example = new TransactionExample();
+        example.createCriteria() //
+            .andIdEqualTo(id) //
+            .andShopIdEqualTo(shopId);
+        return this.transactionMapper.selectByExample(example).stream() //
+            .map(TransactionModel::new) //
+            .findFirst();
+    }
+
+    /**
      * 取引を作成
      * 
      * @param transactionModel 取引
