@@ -5,4 +5,5 @@
 .main-content {
     // 画面全体 - ヘッダーに縦幅を設定
     height: calc(100vh - 60px);
+    overflow-y: auto !important;
 }

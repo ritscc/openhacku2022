@@ -19,11 +19,7 @@ body {
     word-wrap: break-word;
     font-family: Roboto, "Helvetica Neue", sans-serif;
     min-height: calc(var(--vh, 1vh) * 100);
-}
-
-.main-content {
-    // 画面全体 - ヘッダーに縦幅を設定
-    height: calc(100vh - 60px);
+    overflow: hidden;
 }
 
 .mat-snack-bar-container {
