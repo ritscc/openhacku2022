@@ -82,7 +82,7 @@
                  LEFT JOIN order_menu ON order_menu.order_id = `order`.id
                  LEFT JOIN menu ON menu.id = order_menu.menu_id
                  LEFT JOIN shop_table ON shop_table.id = transaction.table_id
-                 LEFT JOIN shop ON shop.id = transaction.id
+                 LEFT JOIN shop ON shop.id = transaction.shop_id
         WHERE transaction.shop_id = #{shopId}
     </select>
 
