@@ -25,6 +25,15 @@ public class AdminOrderRestController {
 
     private final AdminOrderService adminOrderService;
 
+    /**
+     * 注文ステータス更新API(管理者)
+     *
+     * @param shopId 店舗ID
+     * @param orderId 注文ID
+     * @param menuId メニューID
+     * @param requestBody 注文ステータス更新リクエスト
+     * @param shop 店舗
+     */
     @PutMapping("/{order_id}/menus/{menu_id}")
     @ResponseStatus(HttpStatus.OK)
     public void updateOrderStatus( //
