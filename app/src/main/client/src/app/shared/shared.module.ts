@@ -38,6 +38,7 @@ import { MatTabsModule } from "@angular/material/tabs";
 import { ZXingScannerModule } from "@zxing/ngx-scanner";
 import { MatStepperModule } from "@angular/material/stepper";
 import { QRCodeModule } from "angularx-qrcode";
+import { MatBadgeModule } from "@angular/material/badge";
 
 // pipes
 import { NumberPipe } from "@shared/pipe/number.pipe";
@@ -111,6 +112,7 @@ import { ConfirmDialogComponent } from "./component/confirm-dialog/confirm-dialo
         ZXingScannerModule,
         MatStepperModule,
         QRCodeModule,
+        MatBadgeModule,
     ],
     exports: [
         CommonModule,
@@ -150,6 +152,7 @@ import { ConfirmDialogComponent } from "./component/confirm-dialog/confirm-dialo
         MatStepperModule,
         QRCodeModule,
         ZXingScannerModule,
+        MatBadgeModule,
 
         // pipes
         NumberPipe,

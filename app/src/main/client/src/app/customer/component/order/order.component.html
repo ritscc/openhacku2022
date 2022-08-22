@@ -2,7 +2,16 @@
     <mat-tab label="メニュー">
         <app-menus></app-menus>
     </mat-tab>
-    <mat-tab label="カート">
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <span
+                [matBadgeHidden]="numberOfMenusInCart === 0"
+                [matBadge]="numberOfMenusInCart"
+                matBadgeColor="warn"
+                matBadgeOverlap="false"
+                >カート</span
+            >
+        </ng-template>
         <app-cart></app-cart>
     </mat-tab>
     <mat-tab label="注文履歴">
