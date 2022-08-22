@@ -1,9 +1,18 @@
 <mat-tab-group (selectedTabChange)="switchTab()" mat-stretch-tabs style="height: 100%">
     <mat-tab label="メニュー">
-        <app-menus></app-menus>
+        <app-menus (cartEventEmitter)="cartEventEmitter()"></app-menus>
     </mat-tab>
-    <mat-tab label="カート">
-        <app-cart></app-cart>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <span
+                [matBadgeHidden]="numberOfMenusInCart === 0"
+                [matBadge]="numberOfMenusInCart"
+                matBadgeColor="warn"
+                matBadgeOverlap="false"
+                >カート</span
+            >
+        </ng-template>
+        <app-cart (cartEventEmitter)="cartEventEmitter()"></app-cart>
     </mat-tab>
     <mat-tab label="注文履歴">
         <app-order-history></app-order-history>

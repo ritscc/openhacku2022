@@ -6,6 +6,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { TableNumberDialogComponent } from "@customer/component/table-number-dialog/table-number-dialog.component";
 import { TransactionService } from "@api/services/transaction.service";
 import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+import { CartService } from "@customer/service/cart.service";
 
 @UntilDestroy()
 @Component({
@@ -18,9 +19,19 @@ export class OrderComponent implements OnInit {
     @ViewChild(CartComponent) cartComponent!: CartComponent;
     @ViewChild(OrderHistoryComponent) orderHistoryComponent!: OrderHistoryComponent;
 
-    constructor(private matDialog: MatDialog, private transactionService: TransactionService) {}
+    /**
+     * カートに入ったメニューリスト
+     */
+    numberOfMenusInCart: number = 0;
+
+    constructor(
+        private matDialog: MatDialog,
+        private transactionService: TransactionService,
+        private cartService: CartService
+    ) {}
 
     ngOnInit(): void {
+        // テーブル番号を取得 & 表示
         this.transactionService
             .getLoginTransaction()
             .pipe(untilDestroyed(this))
@@ -29,6 +40,8 @@ export class OrderComponent implements OnInit {
                     data: { tableNumber: response.tableId },
                 });
             });
+
+        this.loadNumberOfMenusInCart();
     }
 
     /**
@@ -38,5 +51,28 @@ export class OrderComponent implements OnInit {
         this.menusComponent.ngOnInit();
         this.cartComponent.ngOnInit();
         this.orderHistoryComponent.ngOnInit();
+    }
+
+    /**
+     * カートの中身変更イベントを通知するEventEmitter
+     */
+    cartEventEmitter(): void {
+        this.loadNumberOfMenusInCart();
+    }
+
+    /**
+     * カートに入ったメニュー数を取得
+     */
+    loadNumberOfMenusInCart(): void {
+        this.cartService
+            .getMenus()
+            .pipe(untilDestroyed(this))
+            .subscribe((menus) => {
+                this.numberOfMenusInCart = menus
+                    .map((menu) => menu.quantity)
+                    .reduce((accumulator, current) => {
+                        return accumulator + current;
+                    }, 0);
+            });
     }
 }
