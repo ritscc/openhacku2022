@@ -41,7 +41,29 @@ export class OrderComponent implements OnInit {
                 });
             });
 
-        // カートに入ったメニュー数を取得
+        this.loadNumberOfMenusInCart();
+    }
+
+    /**
+     * タブ切り替え時に呼ばれる
+     */
+    switchTab(): void {
+        this.menusComponent.ngOnInit();
+        this.cartComponent.ngOnInit();
+        this.orderHistoryComponent.ngOnInit();
+    }
+
+    /**
+     * カートの中身変更イベントを通知するEventEmitter
+     */
+    cartEventEmitter(): void {
+        this.loadNumberOfMenusInCart();
+    }
+
+    /**
+     * カートに入ったメニュー数を取得
+     */
+    loadNumberOfMenusInCart(): void {
         this.cartService
             .getMenus()
             .pipe(untilDestroyed(this))
@@ -52,14 +74,5 @@ export class OrderComponent implements OnInit {
                         return accumulator + current;
                     }, 0);
             });
-    }
-
-    /**
-     * タブ切り替え時に呼ばれる
-     */
-    switchTab(): void {
-        this.menusComponent.ngOnInit();
-        this.cartComponent.ngOnInit();
-        this.orderHistoryComponent.ngOnInit();
     }
 }

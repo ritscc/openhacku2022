@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { MenuResponse } from "@api/models/menu-response";
 import { MenuService } from "@api/services/menu.service";
 import { TransactionService } from "@api/services/transaction.service";
@@ -20,6 +20,11 @@ type Menu = MenuResponse & {
     styleUrls: ["./menus.component.scss"],
 })
 export class MenusComponent implements OnInit {
+    /**
+     * カートの中身変更イベントを通知するEventEmitter
+     */
+    @Output() cartEventEmitter: EventEmitter<void> = new EventEmitter<void>();
+
     /**
      * メニューリスト
      */
@@ -68,6 +73,7 @@ export class MenusComponent implements OnInit {
             this.cartService.addMenus(savedMenus).subscribe(() => {
                 // 成功を通知 & メニュー選択状態をリセット
                 this.resetMenuSelection();
+                this.cartEventEmitter.emit();
                 this.alertService.success("カートに追加しました");
             });
         }
@@ -97,6 +103,7 @@ export class MenusComponent implements OnInit {
                     .pipe(untilDestroyed(this))
                     .subscribe(() => {
                         this.resetMenuSelection();
+                        this.cartEventEmitter.emit();
                         this.alertService.success("注文が完了しました");
                     });
             });
