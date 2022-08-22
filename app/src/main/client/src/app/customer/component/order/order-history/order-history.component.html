@@ -1,1 +1,52 @@
-<p>order-history works!</p>
+<div fxLayout="column" fxLayoutGap="30px">
+    <div *ngIf="menus.length === 0" fxLayout="column" fxLayoutAlign="start center">
+        <mat-icon class="menu-icon">menu_book</mat-icon>
+        まだ注文履歴はありません。<br />左上のメニュー欄から注文できます。
+    </div>
+    <div>
+        <div *ngFor="let element of menus">
+            <div
+                class="menu-container"
+                fxLayout="row"
+                fxLayoutAlign="space-between center"
+                fxLayoutGap="10px"
+            >
+                <img [src]="element.imageUrl" class="menu-container__image" />
+
+                <div
+                    class="menu-container__detail"
+                    fxLayout="column"
+                    fxLayoutAlign="space-between start"
+                >
+                    <span class="menu-container__detail__name">{{ element.name }}</span>
+
+                    <div fxLayout="row" fxLayoutAlign="space-between center" style="width: 100%">
+                        <span class="menu-container__detail__price"
+                            >￥{{ element.price | number }}</span
+                        >
+
+                        <div
+                            fxLayout="row"
+                            fxLayoutAlign="end center"
+                            fxLayoutGap="13px"
+                            style="margin-right: 30px; height: 16px"
+                        >
+                            <mat-select
+                                [(ngModel)]="element.quantity"
+                                [disabled]="true"
+                                class="menu-container__quantity"
+                            >
+                                <mat-option
+                                    *ngFor="let element of [1, 2, 3, 4, 5, 6, 7, 8, 9]"
+                                    [value]="element"
+                                    >{{ element | number }}個
+                                </mat-option>
+                            </mat-select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <mat-divider></mat-divider>
+        </div>
+    </div>
+</div>
