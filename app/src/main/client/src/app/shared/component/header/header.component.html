@@ -10,11 +10,15 @@
     <mat-sidenav #sidenav>
         <mat-nav-list class="nav-list-wrapper">
             <a (click)="sidenav.close()" [routerLink]="'/dashboard'" mat-list-item>
-                <mat-icon>dashboard</mat-icon>
-                <span>ダッシュボード</span>
+                <mat-icon>menu_book</mat-icon>
+                <span>メニュー</span>
+            </a>
+            <a (click)="sidenav.close()" mat-list-item>
+                <mat-icon>campaign</mat-icon>
+                <span>店員呼出</span>
             </a>
             <a (click)="sidenav.close()" [routerLink]="'/dashboard/payment'" mat-list-item>
-                <mat-icon>attach_money</mat-icon>
+                <mat-icon>paid</mat-icon>
                 <span>お会計</span>
             </a>
         </mat-nav-list>
