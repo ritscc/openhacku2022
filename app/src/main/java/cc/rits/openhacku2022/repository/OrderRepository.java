@@ -1,6 +1,8 @@
 package cc.rits.openhacku2022.repository;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
 
@@ -26,6 +28,18 @@ public class OrderRepository {
     private final OrderFactory orderFactory;
 
     private final OrderMenuFactory orderMenuFactory;
+
+    /**
+     * 注文リストを取得
+     * 
+     * @param transactionId 取引ID
+     * @return 注文リスト
+     */
+    public List<OrderModel> selectByTransactionId(final Integer transactionId) {
+        return this.orderMapper.selectByTransactionId(transactionId).stream() //
+            .map(OrderModel::new) //
+            .collect(Collectors.toList());
+    }
 
     /**
      * 注文を取得

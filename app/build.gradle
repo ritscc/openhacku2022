@@ -109,6 +109,9 @@ dependencies {
     // mysql
     implementation "mysql:mysql-connector-java:8.0.29"
 
+    // stripe
+    implementation "com.stripe:stripe-java:21.2.0"
+
     // swagger
     implementation "io.springfox:springfox-boot-starter:3.0.0"
     implementation "org.springdoc:springdoc-openapi-ui:1.6.9"
