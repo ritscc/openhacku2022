@@ -66,6 +66,7 @@ out/
 ### Application property ###
 app/src/main/resources/application-prod.yml
 app/src/main/resources/application-dev.yml
+app/src/main/resources/application-local.yml
 
 ## Static contents
 app/src/main/resources/static/*
