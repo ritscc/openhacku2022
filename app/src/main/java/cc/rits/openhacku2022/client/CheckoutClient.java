@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
  */
 @Component
 @RequiredArgsConstructor
-public class PaymentClient {
+public class CheckoutClient {
 
     private final StripeProperty stripeProperty;
 
@@ -57,7 +57,6 @@ public class PaymentClient {
             final var session = Session.create(sessionCreateParams);
             return "redirect:" + session.getUrl();
         } catch (StripeException exception) {
-            System.out.println(exception.getMessage());
             throw new InternalServerErrorException(ErrorCode.UNEXPECTED_ERROR);
         }
     }

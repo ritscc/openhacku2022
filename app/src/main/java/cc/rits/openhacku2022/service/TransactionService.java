@@ -3,7 +3,7 @@ package cc.rits.openhacku2022.service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import cc.rits.openhacku2022.client.PaymentClient;
+import cc.rits.openhacku2022.client.CheckoutClient;
 import cc.rits.openhacku2022.enums.OrderStatusEnum;
 import cc.rits.openhacku2022.exception.BadRequestException;
 import cc.rits.openhacku2022.exception.ErrorCode;
@@ -25,7 +25,7 @@ public class TransactionService {
 
     private final OrderRepository orderRepository;
 
-    private final PaymentClient paymentClient;
+    private final CheckoutClient checkoutClient;
 
     /**
      * 取引を取得
@@ -64,7 +64,7 @@ public class TransactionService {
             .mapToLong(amount -> amount) //
             .sum();
 
-        return paymentClient.send(paymentAmount);
+        return checkoutClient.send(paymentAmount);
     }
 
 }

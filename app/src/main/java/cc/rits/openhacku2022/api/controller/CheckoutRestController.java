@@ -15,7 +15,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
 /**
- * 取引コントローラ
+ * 決済コントローラ
  */
 @Tag(name = "Checkout", description = "支払い")
 @RestController

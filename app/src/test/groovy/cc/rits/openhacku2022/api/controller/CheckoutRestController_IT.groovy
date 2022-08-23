@@ -39,12 +39,9 @@ class CheckoutRestController_IT extends BaseRestController_IT {
         }
         // @formatter:on
 
-        when:
+        expect:
         final request = this.postRequest(POST_CHECKOUT_PATH)
-        final response = this.execute(request, HttpStatus.SEE_OTHER)
-
-        then:
-        response.getResponse().getContentAsString() == ""
+        this.execute(request, HttpStatus.SEE_OTHER)
     }
 
     def "支払いAPI: 異常系 注文をしていない場合は400エラー"() {
