@@ -34,12 +34,7 @@
 <div fxLayout="row" fxLayoutAlign="center">
     <div fxLayout="row" fxLayoutAlign="space-around center">
         <button [routerLink]="'/dashboard'" class="next-button" mat-raised-button>戻る</button>
-        <button
-            (click)="openQrcodeDialog('1')"
-            class="next-button"
-            color="accent"
-            mat-raised-button
-        >
+        <button (click)="onClickPayment()" class="next-button" color="accent" mat-raised-button>
             お会計
         </button>
     </div>

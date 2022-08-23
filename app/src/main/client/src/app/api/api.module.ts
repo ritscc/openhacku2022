@@ -7,12 +7,12 @@ import { ApiConfiguration, ApiConfigurationParams } from "./api-configuration";
 import { AdminOrderService } from "./services/admin-order.service";
 import { OrderService } from "./services/order.service";
 import { AuthService } from "./services/auth.service";
-import { CheckoutService } from "./services/checkout.service";
 import { AdminMenuService } from "./services/admin-menu.service";
 import { AdminAuthService } from "./services/admin-auth.service";
 import { TransactionService } from "./services/transaction.service";
 import { MenuService } from "./services/menu.service";
 import { HealthCheckService } from "./services/health-check.service";
+import { CheckoutService } from "./services/checkout.service";
 import { AdminTransactionService } from "./services/admin-transaction.service";
 import { AdminShopService } from "./services/admin-shop.service";
 
@@ -27,12 +27,12 @@ import { AdminShopService } from "./services/admin-shop.service";
         AdminOrderService,
         OrderService,
         AuthService,
-        CheckoutService,
         AdminMenuService,
         AdminAuthService,
         TransactionService,
         MenuService,
         HealthCheckService,
+        CheckoutService,
         AdminTransactionService,
         AdminShopService,
         ApiConfiguration,
