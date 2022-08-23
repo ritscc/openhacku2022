@@ -48,7 +48,14 @@
             </div>
             <mat-divider></mat-divider>
         </div>
-        <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px" style="padding-top: 30px">
+        <div fxLayout="row" fxLayoutAlign="center">
+            <div class="total-payment">合計金額</div>
+            <div class="total-payment" fxLayout="row" fxLayoutAlign="center end">
+                ￥{{ getTotalPrice() }}
+                <div style="font-size: 12px; margin: 0 0 3px 10px">(税抜)</div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px" style="padding-top: 10px">
             <app-button [routerLink]="'/dashboard/payment'" label="お会計"></app-button>
         </div>
     </div>
