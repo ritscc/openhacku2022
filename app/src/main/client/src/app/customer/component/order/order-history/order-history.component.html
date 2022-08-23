@@ -24,6 +24,9 @@
                         <span class="menu-container__detail__price"
                             >￥{{ element.price | number }}</span
                         >
+                        <div *ngIf="element.status === 0" class="menu-status-0">受付中</div>
+                        <div *ngIf="element.status === 1" class="menu-status-1">準備中</div>
+                        <div *ngIf="element.status === 2" class="menu-status-2">提供済</div>
 
                         <div
                             fxLayout="row"

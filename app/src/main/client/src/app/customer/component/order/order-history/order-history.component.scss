@@ -10,3 +10,48 @@
     font-size: 18px;
     margin: 20px;
 }
+
+.menu-status-0 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    font-weight: bold;
+    width: 50px;
+    height: 20px;
+    border-radius: 10px;
+    color: indianred;
+    border: solid 2px indianred;
+    margin: 0 15px;
+}
+
+.menu-status-1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    font-weight: bold;
+    width: 50px;
+    height: 20px;
+    border-radius: 10px;
+    color: #beb938;
+    border: solid 2px #beb938;
+    margin: 0 15px;
+}
+
+.menu-status-2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    font-weight: bold;
+    width: 50px;
+    height: 20px;
+    border-radius: 10px;
+    color: green;
+    border: solid 2px green;
+    margin: 0 15px;
+}

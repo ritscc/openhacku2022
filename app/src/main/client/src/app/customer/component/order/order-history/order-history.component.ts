@@ -29,11 +29,14 @@ export class OrderHistoryComponent implements OnInit {
     }
 
     /**
-     * menusにメニューを追加 このとき同じメニューの重複を削除
+     * menusにメニューを追加
+     * このとき同じメニューの重複を足し合わせ、ステータスごとに分ける
      * @param menu 追加するメニューオブジェクト
      */
     addMenu(menu: OrderMenuResponse): void {
-        const existingMenu = this.menus.filter((element) => element.id === menu.id)[0];
+        const existingMenu = this.menus.filter(
+            (element) => element.id === menu.id && element.status === menu.status
+        )[0];
         if (existingMenu) {
             this.menus[this.menus.indexOf(existingMenu)].quantity += menu.quantity;
         } else {
