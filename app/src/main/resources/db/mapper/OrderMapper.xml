@@ -17,10 +17,29 @@
                         order_menu.order_id AS order_menu__order_id,
                         order_menu.menu_id  AS order_menu__menu_id,
                         order_menu.quantity AS order_menu__quantity,
-                        order_menu.status   AS order_menu__status
+                        order_menu.status   AS order_menu__status,
+
+                        menu.price          AS order_menu__menu__price
         FROM `order`
                  LEFT JOIN order_menu ON order_menu.order_id = `order`.id
+                 LEFT JOIN menu ON menu.id = order_menu.menu_id
         WHERE `order`.id = #{orderId}
+    </select>
+
+    <select id="selectByTransactionId" parameterType="java.lang.Integer"
+            resultMap="OrderWithOrderMenusResultMap">
+        SELECT DISTINCT `order`.*,
+
+                        order_menu.order_id AS order_menu__order_id,
+                        order_menu.menu_id  AS order_menu__menu_id,
+                        order_menu.quantity AS order_menu__quantity,
+                        order_menu.status   AS order_menu__status,
+
+                        menu.price          AS order_menu__menu__price
+        FROM `order`
+                 LEFT JOIN order_menu ON order_menu.order_id = `order`.id
+                 LEFT JOIN menu ON menu.id = order_menu.menu_id
+        WHERE `order`.transaction_id = #{transactionId}
     </select>
 
 </mapper>

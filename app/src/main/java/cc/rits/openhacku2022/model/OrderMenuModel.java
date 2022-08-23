@@ -1,6 +1,6 @@
 package cc.rits.openhacku2022.model;
 
-import cc.rits.openhacku2022.db.entity.OrderMenu;
+import cc.rits.openhacku2022.db.entity.join.OrderMenuWitMenu;
 import cc.rits.openhacku2022.enums.OrderStatusEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,6 +22,11 @@ public class OrderMenuModel {
     private Integer menuId;
 
     /**
+     * 価格
+     */
+    private Integer price;
+
+    /**
      * 個数
      */
     private Integer quantity;
@@ -32,8 +37,9 @@ public class OrderMenuModel {
     @Builder.Default
     private OrderStatusEnum status = OrderStatusEnum.ACCEPTED;
 
-    public OrderMenuModel(final OrderMenu orderMenu) {
+    public OrderMenuModel(final OrderMenuWitMenu orderMenu) {
         this.menuId = orderMenu.getMenuId();
+        this.price = orderMenu.getMenu().getPrice();
         this.quantity = orderMenu.getQuantity();
         this.status = OrderStatusEnum.find(orderMenu.getStatus());
     }

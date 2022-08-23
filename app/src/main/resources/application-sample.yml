@@ -10,3 +10,11 @@ gcp:
   cloud-storage:
     enabled: false
     bucket-name: GCP_BUCKET_NAME
+
+stripe:
+  checkout:
+    enabled: false
+    success-url: STRIPE_SUCCESS_URL
+    cancel-url: STRIPE_CANCEL_URL
+    product-id: STRIPE_PRODUCT_ID
+  secret-key: STRIPE_SECRET_KEY

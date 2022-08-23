@@ -37,6 +37,8 @@ public enum ErrorCode {
 
     INVALID_ORDER_STATUS(HttpStatus.BAD_REQUEST, "exception.bad_request.invalid_order_status"),
 
+    ORDERS_ARE_NOT_COMPLETED(HttpStatus.BAD_REQUEST, "exception.bad_request.orders_are_not_completed"),
+
     /**
      * 401 Unauthorized
      */

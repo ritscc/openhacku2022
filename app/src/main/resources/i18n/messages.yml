@@ -11,6 +11,7 @@ exception:
     invalid_menu_name: "不正な名前です"
     invalid_menu_price: "不正な金額です"
     invalid_order_status: "不正な注文ステータスです"
+    orders_are_not_completed: "注文を完了させてください"
   unauthorized:
     user_not_logged_in: "ユーザはログインしていません"
     incorrect_code_or_password: "店舗コードかパスワードが間違っています"
