@@ -43,8 +43,13 @@ export class PaymentComponent implements OnInit {
             });
     }
 
-    openQrcodeDialog(): void {
-        this.dialog.open(QrDialogComponent, { data: "1" });
+    /**
+     * QRコードダイアログを開く
+     *
+     * @param QRコード情報に載せたい文字列
+     */
+    openQrcodeDialog(content: string): void {
+        this.dialog.open(QrDialogComponent, { data: content });
     }
 
     /**
