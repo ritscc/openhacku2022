@@ -15,11 +15,11 @@ export class OrderHistoryComponent implements OnInit {
     constructor(private transactionService: TransactionService) {}
 
     ngOnInit(): void {
-        this.menus = [];
         this.transactionService
             .getLoginTransaction()
             .pipe(untilDestroyed(this))
             .subscribe((response) => {
+                this.menus = [];
                 response.orders.forEach((order) => {
                     order.menus.forEach((menu) => {
                         this.addMenu(menu);

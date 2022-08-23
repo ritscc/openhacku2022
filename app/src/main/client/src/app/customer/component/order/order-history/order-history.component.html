@@ -3,7 +3,7 @@
         <mat-icon class="menu-icon">menu_book</mat-icon>
         まだ注文履歴はありません。<br />左上のメニュー欄から注文できます。
     </div>
-    <div>
+    <div *ngIf="menus.length !== 0">
         <div *ngFor="let element of menus">
             <div
                 class="menu-container"
@@ -47,6 +47,9 @@
                 </div>
             </div>
             <mat-divider></mat-divider>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px" style="padding-top: 30px">
+            <app-button [routerLink]="'/dashboard/payment'" label="お会計"></app-button>
         </div>
     </div>
 </div>
