@@ -13,13 +13,13 @@
                 <mat-icon>menu_book</mat-icon>
                 <span>メニュー</span>
             </a>
+            <a (click)="sidenav.close()" [routerLink]="'/dashboard/payment'" mat-list-item>
+                <mat-icon>shopping_basket</mat-icon>
+                <span>お会計</span>
+            </a>
             <a (click)="sidenav.close()" mat-list-item>
                 <mat-icon>campaign</mat-icon>
                 <span>店員呼出</span>
-            </a>
-            <a (click)="sidenav.close()" [routerLink]="'/dashboard/payment'" mat-list-item>
-                <mat-icon>paid</mat-icon>
-                <span>お会計</span>
             </a>
         </mat-nav-list>
     </mat-sidenav>

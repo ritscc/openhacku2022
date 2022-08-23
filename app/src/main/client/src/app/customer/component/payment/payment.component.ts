@@ -4,6 +4,8 @@ import { QrDialogComponent } from "@customer/component/qr-dialog/qr-dialog.compo
 import { TransactionResponse } from "@api/models/transaction-response";
 import { TransactionService } from "@api/services/transaction.service";
 import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+import { Router } from "@angular/router";
+import { AlertService } from "@shared/service/alert.service";
 
 type OrderMenu = {
     name: string;
@@ -24,7 +26,12 @@ export class PaymentComponent implements OnInit {
 
     menus: OrderMenu[] = [];
 
-    constructor(public dialog: MatDialog, private transactionService: TransactionService) {}
+    constructor(
+        public dialog: MatDialog,
+        private transactionService: TransactionService,
+        private router: Router,
+        private alertService: AlertService
+    ) {}
 
     ngOnInit(): void {
         this.transactionService
@@ -32,6 +39,11 @@ export class PaymentComponent implements OnInit {
             .pipe(untilDestroyed(this))
             .subscribe((response) => {
                 this.transaction = response;
+
+                if (response.orders.length === 0) {
+                    this.alertService.warn("注文を済ませてください");
+                    this.router.navigate(["dashboard"]);
+                }
 
                 response.orders.forEach((order) => {
                     order.menus.forEach((menu) => {
