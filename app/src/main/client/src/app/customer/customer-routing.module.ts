@@ -5,6 +5,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { HomeComponent } from "@customer/component/home/home.component";
 import { OrderComponent } from "@customer/component/order/order.component";
 import { PaymentComponent } from "@customer/component/payment/payment.component";
+import { SuccessComponent } from "@customer/component/payment/success/success.component";
 
 const routes: Routes = [
     {
@@ -20,7 +21,16 @@ const routes: Routes = [
             },
             {
                 path: "payment",
-                component: PaymentComponent,
+                children: [
+                    {
+                        path: "",
+                        component: PaymentComponent,
+                    },
+                    {
+                        path: "success",
+                        component: SuccessComponent,
+                    },
+                ],
             },
         ],
     },
