@@ -40,4 +40,17 @@ export class OrderHistoryComponent implements OnInit {
             this.menus.push(menu);
         }
     }
+
+    /**
+     * 合計金額を返す
+     *
+     * @return 合計金額
+     */
+    getTotalPrice(): number {
+        return this.menus
+            .map((menu) => menu.price * menu.quantity)
+            .reduce((accumulator, current) => {
+                return accumulator + current;
+            }, 0);
+    }
 }
