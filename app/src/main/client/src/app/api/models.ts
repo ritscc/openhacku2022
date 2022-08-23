@@ -10,3 +10,4 @@ export { TransactionResponse } from "./models/transaction-response";
 export { MenuResponse } from "./models/menu-response";
 export { MenusResponse } from "./models/menus-response";
 export { TransactionsResponse } from "./models/transactions-response";
+export { ShopResponse } from "./models/shop-response";

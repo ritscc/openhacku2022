@@ -29,15 +29,34 @@ export class AdminOrderService extends BaseService {
         "/api/admin/shops/{shop_id}/orders/{order_id}/menus/{menu_id}";
 
     /**
+     * 注文ステータス更新API(管理者).
+     *
+     * 注文ステータス更新API(管理者)
+     *
      * This method provides access to the full `HttpResponse`, allowing access to response headers.
      * To access only the response body, use `updateOrderStatus()` instead.
      *
      * This method sends `application/json` and handles request body of type `application/json`.
      */
     updateOrderStatus$Response(params: {
+        /**
+         * 店舗ID
+         */
         shop_id: number;
+
+        /**
+         * 注文ID
+         */
         order_id: number;
+
+        /**
+         * メニューID
+         */
         menu_id: number;
+
+        /**
+         * 注文ステータス更新リクエスト
+         */
         body: OrderStatusUpdateRequest;
     }): Observable<StrictHttpResponse<void>> {
         const rb = new RequestBuilder(this.rootUrl, AdminOrderService.UpdateOrderStatusPath, "put");
@@ -66,15 +85,34 @@ export class AdminOrderService extends BaseService {
     }
 
     /**
+     * 注文ステータス更新API(管理者).
+     *
+     * 注文ステータス更新API(管理者)
+     *
      * This method provides access to only to the response body.
      * To access the full response (for headers, for example), `updateOrderStatus$Response()` instead.
      *
      * This method sends `application/json` and handles request body of type `application/json`.
      */
     updateOrderStatus(params: {
+        /**
+         * 店舗ID
+         */
         shop_id: number;
+
+        /**
+         * 注文ID
+         */
         order_id: number;
+
+        /**
+         * メニューID
+         */
         menu_id: number;
+
+        /**
+         * 注文ステータス更新リクエスト
+         */
         body: OrderStatusUpdateRequest;
     }): Observable<void> {
         return this.updateOrderStatus$Response(params).pipe(
