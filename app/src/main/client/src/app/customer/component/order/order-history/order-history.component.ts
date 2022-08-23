@@ -16,16 +16,28 @@ export class OrderHistoryComponent implements OnInit {
 
     ngOnInit(): void {
         this.menus = [];
-        // 購入履歴を取得
         this.transactionService
             .getLoginTransaction()
             .pipe(untilDestroyed(this))
             .subscribe((response) => {
                 response.orders.forEach((order) => {
                     order.menus.forEach((menu) => {
-                        this.menus.push(menu);
+                        this.addMenu(menu);
                     });
                 });
             });
+    }
+
+    /**
+     * menusにメニューを追加 このとき同じメニューの重複を削除
+     * @param menu 追加するメニューオブジェクト
+     */
+    addMenu(menu: OrderMenuResponse): void {
+        const existingMenu = this.menus.filter((element) => element.id === menu.id)[0];
+        if (existingMenu) {
+            this.menus[this.menus.indexOf(existingMenu)].quantity += menu.quantity;
+        } else {
+            this.menus.push(menu);
+        }
     }
 }
