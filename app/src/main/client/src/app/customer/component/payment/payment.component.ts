@@ -1,11 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
-import { QrDialogComponent } from "@customer/component/qr-dialog/qr-dialog.component";
 import { TransactionResponse } from "@api/models/transaction-response";
 import { TransactionService } from "@api/services/transaction.service";
 import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 import { Router } from "@angular/router";
 import { AlertService } from "@shared/service/alert.service";
+import { CheckoutService } from "@api/services/checkout.service";
 
 type OrderMenu = {
     name: string;
@@ -30,7 +30,8 @@ export class PaymentComponent implements OnInit {
         public dialog: MatDialog,
         private transactionService: TransactionService,
         private router: Router,
-        private alertService: AlertService
+        private alertService: AlertService,
+        private checkoutService: CheckoutService
     ) {}
 
     ngOnInit(): void {
@@ -41,7 +42,7 @@ export class PaymentComponent implements OnInit {
                 this.transaction = response;
 
                 if (response.orders.length === 0) {
-                    this.alertService.warn("注文を済ませてください");
+                    this.alertService.warn("注文を完了してください");
                     this.router.navigate(["dashboard"]);
                 }
 
@@ -56,12 +57,15 @@ export class PaymentComponent implements OnInit {
     }
 
     /**
-     * QRコードダイアログを開く
-     *
-     * @param QRコード情報に載せたい文字列
+     * 決済する
      */
-    openQrcodeDialog(content: string): void {
-        this.dialog.open(QrDialogComponent, { data: content });
+    onClickPayment(): void {
+        this.checkoutService
+            .checkout({})
+            .pipe(untilDestroyed(this))
+            .subscribe((response) => {
+                window.location.href = response.redirectUrl;
+            });
     }
 
     /**

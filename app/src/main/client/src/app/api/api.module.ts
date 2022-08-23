@@ -12,7 +12,9 @@ import { AdminAuthService } from "./services/admin-auth.service";
 import { TransactionService } from "./services/transaction.service";
 import { MenuService } from "./services/menu.service";
 import { HealthCheckService } from "./services/health-check.service";
+import { CheckoutService } from "./services/checkout.service";
 import { AdminTransactionService } from "./services/admin-transaction.service";
+import { AdminShopService } from "./services/admin-shop.service";
 
 /**
  * Module that provides all services and configuration.
@@ -30,7 +32,9 @@ import { AdminTransactionService } from "./services/admin-transaction.service";
         TransactionService,
         MenuService,
         HealthCheckService,
+        CheckoutService,
         AdminTransactionService,
+        AdminShopService,
         ApiConfiguration,
     ],
 })

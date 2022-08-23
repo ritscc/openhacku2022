@@ -30,32 +30,31 @@ public class CheckoutClient {
      * @return 支払いURL
      */
     public String send(final Long paymentAmount) {
-
-        if (!stripeProperty.getCheckout().isEnabled()) {
+        if (!this.stripeProperty.getCheckout().isEnabled()) {
             return "";
         }
 
         // リダイレクト処理を設定
-        Stripe.apiKey = stripeProperty.getSecretKey();
+        Stripe.apiKey = this.stripeProperty.getSecretKey();
         final var priceCreateParams = PriceCreateParams.builder() //
             .setCurrency("JPY") //
             .setUnitAmount(paymentAmount) //
-            .setProduct(stripeProperty.getCheckout().getProductId()) //
+            .setProduct(this.stripeProperty.getCheckout().getProductId()) //
             .build();
 
         try {
             final var price = Price.create(priceCreateParams);
             final var sessionCreateParams = SessionCreateParams.builder() //
                 .setMode(SessionCreateParams.Mode.PAYMENT) //
-                .setSuccessUrl(stripeProperty.getCheckout().getSuccessUrl()) //
-                .setCancelUrl(stripeProperty.getCheckout().getCancelUrl()) //
+                .setSuccessUrl(this.stripeProperty.getCheckout().getSuccessUrl()) //
+                .setCancelUrl(this.stripeProperty.getCheckout().getCancelUrl()) //
                 .addLineItem(SessionCreateParams.LineItem.builder() //
                     .setQuantity(1L) //
                     .setPrice(price.getId()) //
                     .build()) //
                 .build();
             final var session = Session.create(sessionCreateParams);
-            return "redirect:" + session.getUrl();
+            return session.getUrl();
         } catch (StripeException exception) {
             throw new InternalServerErrorException(ErrorCode.UNEXPECTED_ERROR);
         }

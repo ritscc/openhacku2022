@@ -40,11 +40,13 @@ $ docker compose up -d
 デフォルトで使用されるポート番号は`8080`です。`-Dserver.port=XXXX`オプションを付けることでポート番号を変更できます。
 
 ```sh
-# 1. run .jar file
+# 1. ローカル実行する場合、application-sample.ymlを参考にapplication-local.ymlを記述してください
+
+# 2. run .jar file
 # -Dspring.profiles.activeを指定しない場合はlocalになる
 $ java -jar morningexpress-<version>.jar  # -Dspring.profiles.active=<environment>
 
-# 2. run on dev environment
+# 3. run on dev environment
 $ ./gradlew bootRun
 ```
 

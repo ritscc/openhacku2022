@@ -1,5 +1,6 @@
 package cc.rits.openhacku2022.api.controller
 
+import cc.rits.openhacku2022.api.response.CheckoutResponse
 import cc.rits.openhacku2022.enums.OrderStatusEnum
 import cc.rits.openhacku2022.exception.BadRequestException
 import cc.rits.openhacku2022.exception.ErrorCode
@@ -12,6 +13,7 @@ import org.springframework.http.HttpStatus
  * CheckoutRestControllerの統合テスト
  */
 class CheckoutRestController_IT extends BaseRestController_IT {
+
     // API PATH
     static final String BASE_PATH = "/api/checkout"
     static final String POST_CHECKOUT_PATH = BASE_PATH
@@ -39,9 +41,13 @@ class CheckoutRestController_IT extends BaseRestController_IT {
         }
         // @formatter:on
 
-        expect:
-        final request = this.postRequest(POST_CHECKOUT_PATH)
-        this.execute(request, HttpStatus.SEE_OTHER)
+        when:
+        final request = this.getRequest(POST_CHECKOUT_PATH)
+        final response = this.execute(request, HttpStatus.OK, CheckoutResponse)
+
+        then:
+        // テスト環境は決済を無効にしているので、空文字を期待する
+        response.redirectUrl == ""
     }
 
     def "支払いAPI: 異常系 注文をしていない場合は400エラー"() {
@@ -49,7 +55,7 @@ class CheckoutRestController_IT extends BaseRestController_IT {
         this.login()
 
         expect:
-        final request = this.postRequest(POST_CHECKOUT_PATH)
+        final request = this.getRequest(POST_CHECKOUT_PATH)
         this.execute(request, new BadRequestException(ErrorCode.ORDERS_ARE_NOT_COMPLETED))
     }
 
@@ -77,13 +83,13 @@ class CheckoutRestController_IT extends BaseRestController_IT {
         // @formatter:on
 
         expect:
-        final request = this.postRequest(POST_CHECKOUT_PATH)
+        final request = this.getRequest(POST_CHECKOUT_PATH)
         this.execute(request, new BadRequestException(ErrorCode.ORDERS_ARE_NOT_COMPLETED))
     }
 
     def "支払いAPI: 異常系 ログインしていない場合は401エラー"() {
         expect:
-        final request = this.postRequest(POST_CHECKOUT_PATH)
+        final request = this.getRequest(POST_CHECKOUT_PATH)
         this.execute(request, new UnauthorizedException(ErrorCode.USER_NOT_LOGGED_IN))
     }
 
