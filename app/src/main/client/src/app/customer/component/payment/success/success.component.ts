@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { AuthService } from "@api/services/auth.service";
 
 @Component({
     selector: "app-success",
@@ -6,7 +7,9 @@ import { Component, OnInit } from "@angular/core";
     styleUrls: ["./success.component.scss"],
 })
 export class SuccessComponent implements OnInit {
-    constructor() {}
+    constructor(private authService: AuthService) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.authService.logout({}).subscribe();
+    }
 }
