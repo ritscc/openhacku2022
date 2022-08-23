@@ -50,7 +50,7 @@ ext {
 
     // application property file
     BASE_PROPERTY_FILE = "application.yml"
-    ENVIRONMENT = System.getProperty("spring.profiles.active") ?: "local"
+    ENVIRONMENT = System.getProperty("spring.profiles.active") ?: "sample"
     EXTENSION_PROPERTY_FILE = "application-${ENVIRONMENT}.yml"
 
     // application property
