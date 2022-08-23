@@ -22,29 +22,12 @@
 
                     <div fxLayout="row" fxLayoutAlign="space-between center" style="width: 100%">
                         <span class="menu-container__detail__price"
-                            >￥{{ element.price | number }}</span
+                            >￥{{ element.price | number }} × {{ element.quantity }}</span
                         >
-                        <div *ngIf="element.status === 0" class="menu-status-0">受付中</div>
-                        <div *ngIf="element.status === 1" class="menu-status-1">準備中</div>
-                        <div *ngIf="element.status === 2" class="menu-status-2">提供済</div>
-
-                        <div
-                            fxLayout="row"
-                            fxLayoutAlign="end center"
-                            fxLayoutGap="13px"
-                            style="margin-right: 30px; height: 16px"
-                        >
-                            <mat-select
-                                [(ngModel)]="element.quantity"
-                                [disabled]="true"
-                                class="menu-container__quantity"
-                            >
-                                <mat-option
-                                    *ngFor="let element of [1, 2, 3, 4, 5, 6, 7, 8, 9]"
-                                    [value]="element"
-                                    >{{ element | number }}個
-                                </mat-option>
-                            </mat-select>
+                        <div>
+                            <div *ngIf="element.status === 0" class="menu-status-0">準備中</div>
+                            <div *ngIf="element.status === 1" class="menu-status-1">準備中</div>
+                            <div *ngIf="element.status === 2" class="menu-status-2">提供済</div>
                         </div>
                     </div>
                 </div>
