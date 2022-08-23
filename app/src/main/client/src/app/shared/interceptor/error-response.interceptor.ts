@@ -9,7 +9,7 @@ import {
 import { Observable } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { AlertService } from "@shared/service/alert.service";
-import { ActivatedRoute, Router } from "@angular/router";
+import { Router } from "@angular/router";
 
 type ErrorResponse = {
     code: number;
@@ -18,11 +18,7 @@ type ErrorResponse = {
 
 @Injectable()
 export class ErrorResponseInterceptor implements HttpInterceptor {
-    constructor(
-        private alertService: AlertService,
-        private router: Router,
-        private activatedRoute: ActivatedRoute
-    ) {}
+    constructor(private alertService: AlertService, private router: Router) {}
 
     intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
         return next.handle(request).pipe(
