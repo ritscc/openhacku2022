@@ -2,6 +2,7 @@
     <div>
         <div *ngFor="let element of menus">
             <div
+                (click)="(element.isChecked)"
                 class="menu-container"
                 fxLayout="row"
                 fxLayoutAlign="space-between center"

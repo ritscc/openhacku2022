@@ -9,7 +9,7 @@ import {
 import { Observable } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { AlertService } from "@shared/service/alert.service";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 type ErrorResponse = {
     code: number;
@@ -18,7 +18,11 @@ type ErrorResponse = {
 
 @Injectable()
 export class ErrorResponseInterceptor implements HttpInterceptor {
-    constructor(private alertService: AlertService, private router: Router) {}
+    constructor(
+        private alertService: AlertService,
+        private router: Router,
+        private activatedRoute: ActivatedRoute
+    ) {}
 
     intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
         return next.handle(request).pipe(
@@ -29,7 +33,13 @@ export class ErrorResponseInterceptor implements HttpInterceptor {
 
                 // 不正な認証情報
                 if (error.status === 401) {
-                    this.router.navigate(["/"], {
+                    // adminがURLに含まれている場合は遷移先を変更する
+                    const href: string = this.router.url;
+                    let commands: string[] = ["/"];
+                    if (href.match(/admin/)) {
+                        commands = ["/", "admin", "login"];
+                    }
+                    this.router.navigate(commands, {
                         queryParams: { shop: null },
                         queryParamsHandling: "merge",
                     });

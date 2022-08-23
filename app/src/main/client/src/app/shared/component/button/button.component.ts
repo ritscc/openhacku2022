@@ -36,6 +36,11 @@ export class ButtonComponent implements OnInit {
      */
     @Input() reverseColor: boolean = false;
 
+    /**
+     * ボタンの背景色
+     */
+    @Input() color: "primary" | "accent" | "warn" = "primary";
+
     constructor() {}
 
     ngOnInit(): void {}

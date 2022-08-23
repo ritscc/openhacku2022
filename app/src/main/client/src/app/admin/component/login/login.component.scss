@@ -1,0 +1,26 @@
+.icon {
+    display: block;
+    height: 90px;
+    margin: 30px auto;
+}
+
+.title {
+    margin-top: 16px;
+    font-size: 18px;
+    color: #202020;
+}
+
+.form-wrapper {
+    max-width: 270px;
+    padding: 0.5em 1em;
+    margin-top: 40px;
+    color: #5d627b;
+    background: white;
+    border-top: solid 5px #5d627b;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+}
+
+.form-wrapper p {
+    margin: 0;
+    padding: 0;
+}

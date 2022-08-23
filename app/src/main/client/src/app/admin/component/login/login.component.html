@@ -1,0 +1,43 @@
+<div fxLayout="column" fxLayoutAlign="start center">
+    <div class="form-wrapper">
+        <div class="title" fxLayout="row" fxLayoutAlign="center">
+            <strong>管理者ログイン画面</strong>
+        </div>
+
+        <form [formGroup]="form">
+            <mat-form-field [style.width.px]="264" appearance="standard">
+                <mat-label>店舗コード</mat-label>
+                <input formControlName="code" matInput placeholder="AABB123" required />
+                <mat-error *ngIf="form.invalid">店舗コードを入力してください</mat-error>
+            </mat-form-field>
+
+            <mat-form-field [style.width.px]="264" appearance="standard">
+                <mat-label>PASSWORD</mat-label>
+                <input
+                    [type]="hide ? 'password' : 'text'"
+                    formControlName="password"
+                    matInput
+                    required
+                />
+                <button
+                    (click)="hide = !hide"
+                    [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide"
+                    mat-icon-button
+                    matSuffix
+                >
+                    <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+                </button>
+            </mat-form-field>
+
+            <div fxLayout="row" fxLayoutAlign="center" style="margin: 10px">
+                <app-button
+                    (click)="login()"
+                    label="サインイン"
+                    type="submit"
+                    width="70vw"
+                ></app-button>
+            </div>
+        </form>
+    </div>
+</div>
