@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping(path = "/api/checkout", produces = MediaType.TEXT_PLAIN_VALUE)
 @Validated
 @RequiredArgsConstructor
-public class CheckoutController {
+public class CheckoutRestController {
 
     private final TransactionService transactionService;
 

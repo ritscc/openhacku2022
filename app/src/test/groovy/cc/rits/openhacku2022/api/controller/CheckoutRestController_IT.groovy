@@ -9,9 +9,9 @@ import cc.rits.openhacku2022.helper.TableHelper
 import org.springframework.http.HttpStatus
 
 /**
- * CheckoutControllerの統合テスト
+ * CheckoutRestControllerの統合テスト
  */
-class CheckoutController_IT extends BaseRestController_IT {
+class CheckoutRestController_IT extends BaseRestController_IT {
     // API PATH
     static final String BASE_PATH = "/api/checkout"
     static final String POST_CHECKOUT_PATH = BASE_PATH
