@@ -1,5 +1,9 @@
 <div fxLayout="column" fxLayoutGap="30px">
-    <div>
+    <div *ngIf="menus.length === 0" fxLayout="column" fxLayoutAlign="start center">
+        <mat-icon class="menu-icon">menu_book</mat-icon>
+        まだカートに何も入っていません。<br />左上のメニュー欄から注文できます。
+    </div>
+    <div *ngIf="menus.length !== 0">
         <div *ngFor="let element of menus">
             <div
                 class="menu-container"
@@ -47,9 +51,8 @@
             </div>
             <mat-divider></mat-divider>
         </div>
-    </div>
-
-    <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px" style="padding-bottom: 30px">
-        <app-button (click)="order()" label="注文する"></app-button>
+        <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px" style="padding-bottom: 30px">
+            <app-button (click)="order()" label="注文する"></app-button>
+        </div>
     </div>
 </div>
