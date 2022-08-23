@@ -29,10 +29,10 @@ export class ErrorResponseInterceptor implements HttpInterceptor {
 
                 // 不正な認証情報
                 if (error.status === 401) {
-                    // adminがURLに含まれている場合は遷移先を変更する
-                    // this.router.urlは"/admin/login"のように出力される
-                    const conditions = this.router.url.split("/")[1] === "admin";
-                    const commands = conditions ? ["/", "admin", "login"] : ["/"];
+                    // URLが/admin以下すべての場合に遷移先を変更する
+                    const currentUrl = this.router.url;
+                    const commands =
+                        currentUrl.split("/")[1] === "admin" ? ["admin", "login"] : ["/"];
                     this.router.navigate(commands, {
                         queryParams: { shop: null },
                         queryParamsHandling: "merge",
