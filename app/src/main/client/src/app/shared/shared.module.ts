@@ -3,7 +3,6 @@ import { CommonModule, DatePipe } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterTestingModule } from "@angular/router/testing";
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
-import { environment } from "src/environments/environment";
 import { ApiConfiguration } from "@api/api-configuration";
 
 // UI modules
@@ -165,7 +164,7 @@ import { ConfirmDialogComponent } from "./component/confirm-dialog/confirm-dialo
         SharedInputComponent,
     ],
     providers: [
-        { provide: ApiConfiguration, useValue: { rootUrl: environment.API_ROOT_URL } },
+        { provide: ApiConfiguration, useValue: { rootUrl: "" } },
         { provide: MAT_DATE_LOCALE, useValue: "ja-JP" },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorResponseInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: CredentialsInterceptor, multi: true },
