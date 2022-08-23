@@ -67,6 +67,9 @@ out/
 app/src/main/resources/application-prod.yml
 app/src/main/resources/application-dev.yml
 
+## Static contents
+app/src/main/resources/static/*
+
 # MySQL
 mysql/db
 mysql/log

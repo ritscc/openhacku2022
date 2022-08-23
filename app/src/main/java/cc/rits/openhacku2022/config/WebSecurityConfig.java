@@ -29,7 +29,7 @@ public class WebSecurityConfig {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().antMatchers("/v3/api-docs/**", "/swagger-resources/**", "/swagger-ui/**", "/webjars/**");
+        return (web) -> web.ignoring().antMatchers("**.**", "/v3/api-docs/**", "/swagger-resources/**", "/swagger-ui/**", "/webjars/**");
     }
 
     @Bean
@@ -39,9 +39,10 @@ public class WebSecurityConfig {
 
         // アクセス許可
         http.authorizeRequests() //
-            .antMatchers("/api/admin/login").permitAll() //
+            .antMatchers("/", "/api/admin/login").permitAll() //
             .antMatchers("/api/admin/**").hasRole("ADMIN") //
             .antMatchers("/api/**").permitAll() //
+            .antMatchers("/**").permitAll() //
             .anyRequest().authenticated() //
             .and().exceptionHandling().authenticationEntryPoint(this.authenticationEntryPoint);
 
