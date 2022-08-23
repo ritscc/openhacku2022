@@ -13,7 +13,7 @@ exception:
     invalid_order_status: "不正な注文ステータスです"
   unauthorized:
     user_not_logged_in: "ユーザはログインしていません"
-    incorrect_code_or_password: "店舗コードかパスワードが間違っています"
+    incorrect_code_or_password: "認証コードが間違っています"
   forbidden:
     user_has_no_permission: "その動作は許可されていません"
   not_found:
