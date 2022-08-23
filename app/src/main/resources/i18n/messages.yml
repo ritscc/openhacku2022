@@ -14,7 +14,7 @@ exception:
     orders_are_not_completed: "注文を完了させてください"
   unauthorized:
     user_not_logged_in: "ユーザはログインしていません"
-    incorrect_code_or_password: "店舗コードかパスワードが間違っています"
+    incorrect_code_or_password: "認証コードが間違っています"
   forbidden:
     user_has_no_permission: "その動作は許可されていません"
   not_found:
