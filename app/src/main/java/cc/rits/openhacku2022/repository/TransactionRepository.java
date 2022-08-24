@@ -86,11 +86,11 @@ public class TransactionRepository {
     }
 
     /**
-     * 全ての取引を削除
+     * 店舗IDから取引を削除
      * 
      * @param shopId 店舗ID
      */
-    public void deleteAll(final Integer shopId) {
+    public void deleteByShopId(final Integer shopId) {
         final var example = new TransactionExample();
         example.createCriteria().andShopIdEqualTo(shopId);
         this.transactionMapper.deleteByExample(example);

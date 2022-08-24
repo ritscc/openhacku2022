@@ -77,7 +77,7 @@ public class TransactionService {
     /**
      * 期限切れの取引を削除
      */
-    public void deleteExpiredTransaction() {
+    public void deleteExpiredTransactions() {
         final var transactions = this.transactionRepository.selectAll();
         transactions.stream() //
             .filter(transaction -> this.sessionRepository.findByPrincipalName(transaction.getCode()).isEmpty()) //

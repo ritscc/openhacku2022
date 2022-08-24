@@ -97,7 +97,7 @@ public class AdminTransactionService {
     }
 
     /**
-     * 全ての取引を削除
+     * 店舗の全取引を削除
      *
      * @param shopId 店舗ID
      * @param shop 店舗
@@ -112,8 +112,8 @@ public class AdminTransactionService {
             throw new ForbiddenException(ErrorCode.USER_HAS_NO_PERMISSION);
         }
 
-        // 取引を削除
-        this.transactionRepository.deleteAll(shopId);
+        // 店舗の全取引を削除
+        this.transactionRepository.deleteByShopId(shopId);
     }
 
 }
