@@ -86,8 +86,4 @@
         WHERE transaction.shop_id = #{shopId}
     </select>
 
-    <select id="selectAll" resultMap="BaseResultMap">
-        SELECT * FROM transaction
-    </select>
-
 </mapper>

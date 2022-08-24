@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import cc.rits.openhacku2022.service.BatchService;
+import cc.rits.openhacku2022.service.TransactionService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
@@ -21,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class BatchRestController {
 
-    private final BatchService batchService;
+    private final TransactionService transactionService;
 
     /**
      * 期限切れ取引削除API
@@ -29,7 +29,7 @@ public class BatchRestController {
     @PostMapping("/delete_expired_transactions")
     @ResponseStatus(HttpStatus.OK)
     public void deleteExpiredTransaction() {
-        this.batchService.deleteExpiredTransaction();
+        this.transactionService.deleteExpiredTransaction();
     }
 
 }

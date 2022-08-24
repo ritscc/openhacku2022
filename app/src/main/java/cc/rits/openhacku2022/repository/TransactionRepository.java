@@ -60,7 +60,8 @@ public class TransactionRepository {
      * @return 取引リスト
      */
     public List<TransactionModel> selectAll() {
-        return this.transactionMapper.selectAll().stream() //
+        final var example = new TransactionExample();
+        return this.transactionMapper.selectByExample(example).stream() //
             .map(TransactionModel::new) //
             .collect(Collectors.toList());
     }
