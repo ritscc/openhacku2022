@@ -1,29 +1,31 @@
-<mat-toolbar class="header" color="primary" fxLayout="row" fxLayoutAlign="space-between center">
-    <div fxLayout="row" fxLayoutAlign="center">
-        <button (click)="sidenav.toggle()" [disabled]="!isSidenavValid" mat-icon-button>
-            <mat-icon>menu</mat-icon>
-        </button>
-    </div>
-</mat-toolbar>
+<div class="page-content">
+    <mat-toolbar class="header" color="primary" fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxLayout="row" fxLayoutAlign="center">
+            <button (click)="sidenav.toggle()" [disabled]="!isSidenavValid" mat-icon-button>
+                <mat-icon>menu</mat-icon>
+            </button>
+        </div>
+    </mat-toolbar>
 
-<mat-sidenav-container>
-    <mat-sidenav #sidenav>
-        <mat-nav-list class="nav-list-wrapper">
-            <a (click)="sidenav.close()" [routerLink]="'/dashboard'" mat-list-item>
-                <mat-icon>menu_book</mat-icon>
-                <span>メニュー</span>
-            </a>
-            <a (click)="sidenav.close()" [routerLink]="'/dashboard/payment'" mat-list-item>
-                <mat-icon>shopping_basket</mat-icon>
-                <span>お会計</span>
-            </a>
-            <a (click)="sidenav.close()" mat-list-item>
-                <mat-icon>campaign</mat-icon>
-                <span>店員呼出</span>
-            </a>
-        </mat-nav-list>
-    </mat-sidenav>
-    <mat-sidenav-content class="main-content">
-        <router-outlet></router-outlet>
-    </mat-sidenav-content>
-</mat-sidenav-container>
+    <mat-sidenav-container>
+        <mat-sidenav #sidenav>
+            <mat-nav-list class="nav-list-wrapper">
+                <a (click)="sidenav.close()" [routerLink]="'/dashboard'" mat-list-item>
+                    <mat-icon>menu_book</mat-icon>
+                    <span>メニュー</span>
+                </a>
+                <a (click)="sidenav.close()" [routerLink]="'/dashboard/payment'" mat-list-item>
+                    <mat-icon>shopping_basket</mat-icon>
+                    <span>お会計</span>
+                </a>
+                <a (click)="sidenav.close()" mat-list-item>
+                    <mat-icon>campaign</mat-icon>
+                    <span>店員呼出</span>
+                </a>
+            </mat-nav-list>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>
