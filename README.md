@@ -43,11 +43,10 @@ $ docker compose up -d
 # 1. ローカル実行する場合、application-sample.ymlを参考にapplication-local.ymlを記述してください
 
 # 2. run .jar file
-# -Dspring.profiles.activeを指定しない場合はlocalになる
-$ java -jar morningexpress-<version>.jar  # -Dspring.profiles.active=<environment>
+$ java -jar morningexpress-<version>.jar -Dspring.profiles.active=local
 
-# 3. run on dev environment
-$ ./gradlew bootRun
+# 3. run with bootRun
+$ ./gradlew bootRun -Dspring.profiles.active=local
 ```
 
 ### 依存関係のアップデート
