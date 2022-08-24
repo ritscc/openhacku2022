@@ -1,6 +1,8 @@
 package cc.rits.openhacku2022.repository;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
 
@@ -50,6 +52,18 @@ public class TransactionRepository {
         return this.transactionMapper.selectByExample(example).stream() //
             .map(TransactionModel::new) //
             .findFirst();
+    }
+
+    /**
+     * 全ての取引を取得
+     * 
+     * @return 取引リスト
+     */
+    public List<TransactionModel> selectAll() {
+        final var example = new TransactionExample();
+        return this.transactionMapper.selectByExample(example).stream() //
+            .map(TransactionModel::new) //
+            .collect(Collectors.toList());
     }
 
     /**

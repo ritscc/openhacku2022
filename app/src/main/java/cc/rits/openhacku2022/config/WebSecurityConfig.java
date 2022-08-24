@@ -5,8 +5,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.session.FindByIndexNameSessionRepository;
+import org.springframework.session.Session;
+import org.springframework.session.security.SpringSessionBackedSessionRegistry;
 
 import cc.rits.openhacku2022.auth.AdminAuthenticationProvider;
 import cc.rits.openhacku2022.auth.AdminUserDetailsService;
@@ -40,6 +44,7 @@ public class WebSecurityConfig {
         // アクセス許可
         http.authorizeRequests() //
             .antMatchers("/", "/api/admin/login").permitAll() //
+            .antMatchers("/api/batch/*").permitAll() //
             .antMatchers("/api/admin/**").hasRole("ADMIN") //
             .antMatchers("/api/**").permitAll() //
             .antMatchers("/**").permitAll() //
@@ -55,6 +60,11 @@ public class WebSecurityConfig {
         authenticationProvider.setUserDetailsService(this.userDetailsService);
         authenticationProvider.setPasswordEncoder(this.passwordEncoder);
         return authenticationProvider;
+    }
+
+    @Bean
+    public <S extends Session> SessionRegistry sessionRegistry(final FindByIndexNameSessionRepository<S> sessionRepository) {
+        return new SpringSessionBackedSessionRegistry<>(sessionRepository);
     }
 
 }
