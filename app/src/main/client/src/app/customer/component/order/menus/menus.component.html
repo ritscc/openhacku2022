@@ -7,17 +7,27 @@
                 fxLayoutAlign="space-between center"
                 fxLayoutGap="10px"
             >
-                <img [src]="element.imageUrl" class="menu-container__image" />
+                <img
+                    (click)="element.isChecked = !element.isChecked"
+                    [src]="element.imageUrl"
+                    class="menu-container__image"
+                />
 
                 <div
                     class="menu-container__detail"
                     fxLayout="column"
                     fxLayoutAlign="space-between start"
                 >
-                    <span class="menu-container__detail__name">{{ element.name }}</span>
+                    <span
+                        (click)="element.isChecked = !element.isChecked"
+                        class="menu-container__detail__name"
+                        >{{ element.name }}</span
+                    >
 
                     <div fxLayout="row" fxLayoutAlign="space-between center" style="width: 100%">
-                        <span class="menu-container__detail__price"
+                        <span
+                            (click)="element.isChecked = !element.isChecked"
+                            class="menu-container__detail__price"
                             >￥{{ element.price | number }}</span
                         >
 
