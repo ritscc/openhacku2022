@@ -46,6 +46,7 @@ class TransactionRestController_IT extends BaseRestController_IT {
         then:
         response.id == 1
         response.tableId == 1
+        response.tableNumber == 1
         response.orders*.id == [1, 2]
         response.orders*.id == [1, 2]
         response.orders*.menus*.id == [[1], [1, 2]]
