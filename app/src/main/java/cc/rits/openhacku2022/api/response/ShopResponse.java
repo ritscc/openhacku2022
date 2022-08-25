@@ -1,5 +1,8 @@
 package cc.rits.openhacku2022.api.response;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import cc.rits.openhacku2022.model.ShopModel;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
@@ -34,10 +37,19 @@ public class ShopResponse {
     @Schema(required = true)
     private String code;
 
+    /**
+     * テーブルリスト
+     */
+    @Schema(required = true)
+    private List<TableResponse> tables;
+
     public ShopResponse(final ShopModel shopModel) {
         this.id = shopModel.getId();
         this.name = shopModel.getName();
         this.code = shopModel.getCode();
+        this.tables = shopModel.getTables().stream() //
+            .map(TableResponse::new) //
+            .collect(Collectors.toList());
     }
 
 }

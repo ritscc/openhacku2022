@@ -39,9 +39,7 @@ public class ShopRepository {
      * @return 店舗
      */
     public Optional<ShopModel> selectByCode(final String code) {
-        final var example = new ShopExample();
-        example.createCriteria().andCodeEqualTo(code);
-        return this.shopMapper.selectByExample(example).stream() //
+        return this.shopMapper.selectByCode(code).stream() //
             .map(ShopModel::new) //
             .findFirst();
     }

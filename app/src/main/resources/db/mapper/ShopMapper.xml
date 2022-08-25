@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.rits.openhacku2022.db.mapper.ShopMapper">
+    <resultMap id="BaseResultMap" type="cc.rits.openhacku2022.db.entity.Shop"
+               extends="cc.rits.openhacku2022.db.mapper.base.ShopBaseMapper.BaseResultMap"/>
+    <resultMap id="ShopTableResultMap" type="cc.rits.openhacku2022.db.entity.ShopTable"
+               extends="cc.rits.openhacku2022.db.mapper.base.ShopTableBaseMapper.BaseResultMap"/>
+    <resultMap id="ShopWithTablesResultMap" type="cc.rits.openhacku2022.db.entity.join.ShopWithTables"
+               extends="BaseResultMap">
+        <collection property="tables" resultMap="ShopTableResultMap" columnPrefix="table__">
+        </collection>
+    </resultMap>
+
+    <select id="selectByCode" parameterType="java.lang.String" resultMap="ShopWithTablesResultMap">
+        SELECT DISTINCT shop.*,
+                        shop_table.id       AS table__id,
+                        shop_table.shop_id  AS table__shop_id,
+                        shop_table.number   AS table__number,
+                        shop_table.capacity AS table__capacity
+        FROM shop
+                 LEFT JOIN shop_table ON shop_table.shop_id = shop.id
+        WHERE shop.code = #{code}
+    </select>
+</mapper>
