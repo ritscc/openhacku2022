@@ -11,6 +11,7 @@ const routes: Routes = [
     {
         path: "",
         component: HomeComponent,
+        data: { title: "" },
     },
     {
         path: "dashboard",
@@ -18,6 +19,7 @@ const routes: Routes = [
             {
                 path: "",
                 component: OrderComponent,
+                data: { title: "注文画面" },
             },
             {
                 path: "payment",
@@ -25,10 +27,12 @@ const routes: Routes = [
                     {
                         path: "",
                         component: PaymentComponent,
+                        data: { title: "お会計" },
                     },
                     {
                         path: "success",
                         component: SuccessComponent,
+                        data: { title: "お会計" },
                     },
                 ],
             },
