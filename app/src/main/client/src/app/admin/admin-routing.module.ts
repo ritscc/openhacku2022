@@ -4,12 +4,22 @@ import { RouterModule, Routes } from "@angular/router";
 // components
 import { LoginComponent } from "@admin/component/login/login.component";
 import { MenusComponent } from "@admin/component/menus/menus.component";
+import { MenuCreateFormComponent } from "@admin/component/menu-create-form/menu-create-form.component";
 
 const routes: Routes = [
     { path: "login", component: LoginComponent },
     {
         path: "menus",
-        component: MenusComponent,
+        children: [
+            {
+                path: "",
+                component: MenusComponent,
+            },
+            {
+                path: "new",
+                component: MenuCreateFormComponent,
+            },
+        ],
     },
     { path: "**", redirectTo: "menus", pathMatch: "full" },
 ];

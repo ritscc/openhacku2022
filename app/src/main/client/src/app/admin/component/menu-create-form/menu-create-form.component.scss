@@ -1,0 +1,14 @@
+@import "src/styles.scss";
+
+.image-container {
+    @include font-color-gray;
+    width: 100%;
+    min-height: 100px;
+    background-color: #efefef;
+    margin-bottom: 20px;
+}
+
+.menu-image {
+    width: 100%;
+    object-fit: cover;
+}
