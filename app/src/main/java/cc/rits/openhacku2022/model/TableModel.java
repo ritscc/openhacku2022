@@ -2,7 +2,6 @@ package cc.rits.openhacku2022.model;
 
 import java.util.Objects;
 
-import cc.rits.openhacku2022.db.entity.ShopTable;
 import cc.rits.openhacku2022.db.entity.join.ShopTableWithTransaction;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -49,13 +48,6 @@ public class TableModel {
         this.tableNumber = shopTable.getNumber();
         this.capacity = shopTable.getCapacity();
         this.isUsed = Objects.nonNull(shopTable.getTransactionId());
-    }
-
-    public TableModel(final ShopTable shopTable) {
-        this.id = shopTable.getId();
-        this.shopId = shopTable.getShopId();
-        this.tableNumber = shopTable.getNumber();
-        this.capacity = shopTable.getCapacity();
     }
 
     /**

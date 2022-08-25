@@ -2,11 +2,8 @@ package cc.rits.openhacku2022.api.controller.admin
 
 import cc.rits.openhacku2022.api.controller.BaseRestController_IT
 import cc.rits.openhacku2022.api.response.ShopResponse
-import cc.rits.openhacku2022.enums.OrderStatusEnum
 import cc.rits.openhacku2022.exception.ErrorCode
 import cc.rits.openhacku2022.exception.UnauthorizedException
-import cc.rits.openhacku2022.helper.DateHelper
-import cc.rits.openhacku2022.helper.RandomHelper
 import cc.rits.openhacku2022.helper.TableHelper
 import org.springframework.http.HttpStatus
 
@@ -41,6 +38,7 @@ class AdminShopRestController_IT extends BaseRestController_IT {
         response.tables*.id == [1, 2]
         response.tables*.tableNumber == [1, 2]
         response.tables*.capacity == [4, 5]
+        response.tables*.isUsed == [false, false]
     }
 
     def "店舗取得API: 異常系 ログインしていない場合は401エラー"() {

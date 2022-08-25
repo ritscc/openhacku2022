@@ -3,7 +3,6 @@ package cc.rits.openhacku2022.db.entity.join;
 import java.util.List;
 
 import cc.rits.openhacku2022.db.entity.Shop;
-import cc.rits.openhacku2022.db.entity.ShopTable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -19,6 +18,6 @@ public class ShopWithTables extends Shop {
     /**
      * テーブルリスト
      */
-    List<ShopTable> tables;
+    List<ShopTableWithTransaction> tables;
 
 }

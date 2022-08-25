@@ -3,8 +3,8 @@
 <mapper namespace="cc.rits.openhacku2022.db.mapper.ShopMapper">
     <resultMap id="BaseResultMap" type="cc.rits.openhacku2022.db.entity.Shop"
                extends="cc.rits.openhacku2022.db.mapper.base.ShopBaseMapper.BaseResultMap"/>
-    <resultMap id="ShopTableResultMap" type="cc.rits.openhacku2022.db.entity.ShopTable"
-               extends="cc.rits.openhacku2022.db.mapper.base.ShopTableBaseMapper.BaseResultMap"/>
+    <resultMap id="ShopTableResultMap" type="cc.rits.openhacku2022.db.entity.join.ShopTableWithTransaction"
+               extends="cc.rits.openhacku2022.db.mapper.ShopTableMapper.ShopTableWithTransactionResultMap"/>
     <resultMap id="ShopWithTablesResultMap" type="cc.rits.openhacku2022.db.entity.join.ShopWithTables"
                extends="BaseResultMap">
         <collection property="tables" resultMap="ShopTableResultMap" columnPrefix="table__">
@@ -16,9 +16,12 @@
                         shop_table.id       AS table__id,
                         shop_table.shop_id  AS table__shop_id,
                         shop_table.number   AS table__number,
-                        shop_table.capacity AS table__capacity
+                        shop_table.capacity AS table__capacity,
+
+                        transaction.id      AS table__transaction__id
         FROM shop
                  LEFT JOIN shop_table ON shop_table.shop_id = shop.id
+                 LEFT JOIN transaction ON transaction.table_id = shop_table.id
         WHERE shop.code = #{code}
     </select>
 </mapper>
