@@ -2,9 +2,9 @@
 /* eslint-disable */
 
 /**
- * メニュー作成リクエスト
+ * メニュー作成/更新リクエスト
  */
-export interface MenuCreateRequest {
+export interface MenuUpsertRequest {
     /**
      * 画像(Base64)
      */

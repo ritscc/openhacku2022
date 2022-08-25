@@ -20,6 +20,10 @@
                     <mat-icon>{{ element.icon }}</mat-icon>
                     <span>{{ element.label }}</span>
                 </a>
+                <a (click)="deleteAllTransactions(); sidenav.close()" *ngIf="isAdmin" mat-list-item>
+                    <mat-icon>delete</mat-icon>
+                    <span>全取引削除</span>
+                </a>
                 <a (click)="logout(); sidenav.close()" *ngIf="isAdmin" mat-list-item>
                     <mat-icon>logout</mat-icon>
                     <span>ログアウト</span>
