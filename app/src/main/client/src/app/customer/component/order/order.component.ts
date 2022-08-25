@@ -39,7 +39,7 @@ export class OrderComponent implements OnInit {
                 .pipe(untilDestroyed(this))
                 .subscribe((response) => {
                     this.matDialog.open(TableNumberDialogComponent, {
-                        data: { tableNumber: response.tableNumber },
+                        data: { shopName: response.shopName, tableNumber: response.tableNumber },
                     });
                     localStorage.setItem(environment.SHOW_TABLE_NUMBER_KEY, "disable");
                 });
