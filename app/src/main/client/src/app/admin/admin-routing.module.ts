@@ -1,14 +1,15 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-
 // components
 import { LoginComponent } from "@admin/component/login/login.component";
+import { OrdersComponent } from "@admin/component/orders/orders.component";
 import { MenusComponent } from "@admin/component/menus/menus.component";
 import { MenuCreateFormComponent } from "@admin/component/menu-create-form/menu-create-form.component";
 import { ShopComponent } from "@admin/component/shop/shop.component";
 
 const routes: Routes = [
     { path: "login", component: LoginComponent, data: { title: "店舗ログイン" } },
+    { path: "orders", component: OrdersComponent, data: { title: "注文管理" } },
     {
         path: "shop",
         component: ShopComponent,
@@ -27,6 +28,7 @@ const routes: Routes = [
                 component: MenuCreateFormComponent,
                 data: { title: "メニュー登録" },
             },
+            { path: "**", redirectTo: "menus", pathMatch: "full" },
         ],
     },
     { path: "**", redirectTo: "shop", pathMatch: "full" },

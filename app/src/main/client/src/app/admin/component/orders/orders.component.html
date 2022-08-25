@@ -1,0 +1,162 @@
+<mat-tab-group (selectedTabChange)="switchTab()" mat-stretch-tabs style="height: 100%">
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <span
+                [matBadgeHidden]="numberOfCompleteOrders === 0"
+                [matBadge]="numberOfCompleteOrders"
+                matBadgeColor="warn"
+                matBadgeOverlap="false"
+                >準備中</span
+            >
+        </ng-template>
+        <mat-list>
+            <div *ngIf="orderMenus.length !== 0">
+                <div *ngFor="let element of getInCompleteOrders()">
+                    <div
+                        class="menu-container"
+                        fxLayout="row"
+                        fxLayoutAlign="space-between center"
+                        fxLayoutGap="10px"
+                    >
+                        <img [src]="element.imageUrl" class="menu-container__image" />
+
+                        <div
+                            class="menu-container__detail"
+                            fxLayout="column"
+                            fxLayoutAlign="space-between start"
+                        >
+                            <span class="menu-container__detail__name" style="font-size: 14px">
+                                {{ element.name }}
+                            </span>
+                            <div
+                                fxLayout="row"
+                                fxLayoutAlign="space-between end"
+                                style="width: 100%"
+                            >
+                                <div
+                                    fxLayout="column"
+                                    fxLayoutAlign="space-between"
+                                    style="height: 100%"
+                                >
+                                    <span
+                                        class="menu-container__detail__price"
+                                        style="font-size: 22px"
+                                    >
+                                        ×{{ element.quantity | number }}
+                                    </span>
+                                    <div
+                                        fxLayout="row"
+                                        fxLayoutAlign="center center"
+                                        fxLayoutGap="3px"
+                                        style="font-size: 13px; padding-top: 12px"
+                                    >
+                                        <mat-icon class="timer-icon">timer</mat-icon>
+                                        <div class="ordered-date">
+                                            {{ element.orderedDate | date: "HH:mm" }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div fxLayout="column" fxLayoutAlign="end" style="height: 100%">
+                                    <div
+                                        fxLayout="row"
+                                        fxLayoutAlign="end center"
+                                        fxLayoutGap="13px"
+                                        style="margin-right: 3px; height: 16px"
+                                    >
+                                        <div
+                                            (click)="updateOrder(element)"
+                                            class="menu-status"
+                                            fxLayout="row"
+                                            fxLayoutAlign="space-between center"
+                                            fxLayoutGap="5px"
+                                        >
+                                            <div>テーブル{{ element.tableNumber }}</div>
+                                            <mat-icon class="check-icon">check_circle</mat-icon>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <mat-divider></mat-divider>
+                </div>
+            </div>
+        </mat-list>
+    </mat-tab>
+
+    <mat-tab label="提供済">
+        <mat-list>
+            <div *ngIf="orderMenus.length !== 0">
+                <div *ngFor="let element of getInCompletedOrders()">
+                    <div
+                        class="menu-container"
+                        fxLayout="row"
+                        fxLayoutAlign="space-between center"
+                        fxLayoutGap="10px"
+                    >
+                        <img [src]="element.imageUrl" class="menu-container__image" />
+
+                        <div
+                            class="menu-container__detail"
+                            fxLayout="column"
+                            fxLayoutAlign="space-between start"
+                        >
+                            <span class="menu-container__detail__name" style="font-size: 14px">
+                                {{ element.name }}
+                            </span>
+                            <div
+                                fxLayout="row"
+                                fxLayoutAlign="space-between end"
+                                style="width: 100%"
+                            >
+                                <div
+                                    fxLayout="column"
+                                    fxLayoutAlign="space-between"
+                                    style="height: 100%"
+                                >
+                                    <span
+                                        class="menu-container__detail__price"
+                                        style="font-size: 22px"
+                                    >
+                                        ×{{ element.quantity | number }}
+                                    </span>
+                                    <div
+                                        fxLayout="row"
+                                        fxLayoutAlign="center center"
+                                        fxLayoutGap="3px"
+                                        style="font-size: 13px; padding-top: 12px"
+                                    >
+                                        <mat-icon class="timer-icon">timer</mat-icon>
+                                        <div class="ordered-date">
+                                            {{ element.orderedDate | date: "HH:mm" }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div fxLayout="column" fxLayoutAlign="end" style="height: 100%">
+                                    <div
+                                        fxLayout="row"
+                                        fxLayoutAlign="end center"
+                                        fxLayoutGap="13px"
+                                        style="margin-right: 3px; height: 16px"
+                                    >
+                                        <div
+                                            class="menu-status"
+                                            fxLayout="row"
+                                            fxLayoutAlign="space-between center"
+                                            fxLayoutGap="5px"
+                                            style="color: #3a74ca; border: solid 2px #3a74ca"
+                                        >
+                                            <div>テーブル{{ element.tableNumber }}</div>
+                                            <mat-icon class="check-icon">check_circle</mat-icon>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <mat-divider></mat-divider>
+                </div>
+            </div>
+        </mat-list>
+    </mat-tab>
+</mat-tab-group>
