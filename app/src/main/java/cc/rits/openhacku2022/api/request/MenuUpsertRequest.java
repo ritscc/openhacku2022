@@ -11,13 +11,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * メニュー作成リクエスト
+ * メニュー作成/更新リクエスト
  */
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class MenuCreateRequest implements BaseRequest {
+public class MenuUpsertRequest implements BaseRequest {
 
     /**
      * 名前

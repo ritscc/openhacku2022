@@ -1,7 +1,7 @@
 package cc.rits.openhacku2022.service.admin
 
 import cc.rits.openhacku2022.BaseSpecification
-import cc.rits.openhacku2022.api.request.MenuCreateRequest
+import cc.rits.openhacku2022.api.request.MenuUpsertRequest
 import cc.rits.openhacku2022.exception.BaseException
 import cc.rits.openhacku2022.exception.ErrorCode
 import cc.rits.openhacku2022.exception.ForbiddenException
@@ -76,7 +76,7 @@ class AdminMenuService_UT extends BaseSpecification {
     def "createMenu: メニューを作成"() {
         given:
         final shop = RandomHelper.mock(ShopModel)
-        final requestBody = RandomHelper.mock(MenuCreateRequest)
+        final requestBody = RandomHelper.mock(MenuUpsertRequest)
 
         when:
         this.sut.createMenu(shop.id, requestBody, shop)
@@ -90,7 +90,7 @@ class AdminMenuService_UT extends BaseSpecification {
     def "createMenu: 店舗が存在しない場合は404エラー"() {
         given:
         final shop = RandomHelper.mock(ShopModel)
-        final requestBody = RandomHelper.mock(MenuCreateRequest)
+        final requestBody = RandomHelper.mock(MenuUpsertRequest)
 
         when:
         this.sut.createMenu(shop.id, requestBody, shop)
@@ -104,7 +104,7 @@ class AdminMenuService_UT extends BaseSpecification {
     def "createMenu: ログイン店舗以外の場合は403エラー"() {
         given:
         final shop = Spy(ShopModel)
-        final requestBody = RandomHelper.mock(MenuCreateRequest)
+        final requestBody = RandomHelper.mock(MenuUpsertRequest)
 
         when:
         this.sut.createMenu(1, requestBody, shop)
@@ -126,7 +126,7 @@ class AdminMenuService_UT extends BaseSpecification {
 
         then:
         1 * this.shopRepository.selectById(shop.id) >> Optional.of(shop)
-        1 * this.menuRepository.selectById(menu.id) >> Optional.of(menu)
+        1 * this.menuRepository.selectByIdAndShopId(menu.id, shop.id) >> Optional.of(menu)
         1 * this.menuRepository.deleteById(menu.id)
     }
 
@@ -140,7 +140,7 @@ class AdminMenuService_UT extends BaseSpecification {
 
         then:
         1 * this.shopRepository.selectById(shop.id) >> Optional.of(shop)
-        1 * this.menuRepository.selectById(menu.id) >> Optional.empty()
+        1 * this.menuRepository.selectByIdAndShopId(menu.id, shop.id) >> Optional.empty()
         final BaseException exception = thrown()
         verifyException(exception, new NotFoundException(ErrorCode.NOT_FOUND_MENU))
     }
@@ -166,6 +166,71 @@ class AdminMenuService_UT extends BaseSpecification {
 
         when:
         this.sut.deleteMenu(1, menu.id, shop)
+
+        then:
+        1 * this.shopRepository.selectById(1) >> Optional.of(shop)
+        1 * shop.id >> 2
+        final BaseException exception = thrown()
+        verifyException(exception, new ForbiddenException(ErrorCode.USER_HAS_NO_PERMISSION))
+    }
+
+    def "updateMenu: メニューを更新"() {
+        given:
+        final shop = RandomHelper.mock(ShopModel)
+        final menu = RandomHelper.mock(MenuModel)
+        final requestBody = RandomHelper.mock(MenuUpsertRequest)
+
+        when:
+        this.sut.updateMenu(shop.id, menu.id, requestBody, shop)
+
+        then:
+        1 * this.shopRepository.selectById(shop.id) >> Optional.of(shop)
+        1 * this.fileStorageUtil.upload(_) >> RandomHelper.alphanumeric(255)
+        1 * this.menuRepository.selectByIdAndShopId(menu.id, shop.id) >> Optional.of(menu)
+        1 * this.menuRepository.update(_)
+    }
+
+    def "updateMenu: 店舗が存在しない場合は404エラー"() {
+        given:
+        final shop = RandomHelper.mock(ShopModel)
+        final menu = RandomHelper.mock(MenuModel)
+        final requestBody = RandomHelper.mock(MenuUpsertRequest)
+
+
+        when:
+        this.sut.updateMenu(shop.id, menu.id, requestBody, shop)
+
+        then:
+        1 * this.shopRepository.selectById(shop.id) >> Optional.empty()
+        final BaseException exception = thrown()
+        verifyException(exception, new NotFoundException(ErrorCode.NOT_FOUND_SHOP))
+    }
+
+    def "updateMenu: メニューが存在しない場合は404エラー"() {
+        given:
+        final shop = RandomHelper.mock(ShopModel)
+        final menu = RandomHelper.mock(MenuModel)
+        final requestBody = RandomHelper.mock(MenuUpsertRequest)
+
+        when:
+        this.sut.updateMenu(shop.id, menu.id, requestBody, shop)
+
+        then:
+        1 * this.shopRepository.selectById(shop.id) >> Optional.of(shop)
+        1 * this.fileStorageUtil.upload(_) >> RandomHelper.alphanumeric(255)
+        1 * this.menuRepository.selectByIdAndShopId(menu.id, shop.id) >> Optional.empty()
+        final BaseException exception = thrown()
+        verifyException(exception, new NotFoundException(ErrorCode.NOT_FOUND_MENU))
+    }
+
+    def "updateMenu: ログイン店舗以外の場合は403エラー"() {
+        given:
+        final shop = Spy(ShopModel)
+        final menu = RandomHelper.mock(MenuModel)
+        final requestBody = RandomHelper.mock(MenuUpsertRequest)
+
+        when:
+        this.sut.updateMenu(1, menu.id, requestBody, shop)
 
         then:
         1 * this.shopRepository.selectById(1) >> Optional.of(shop)
