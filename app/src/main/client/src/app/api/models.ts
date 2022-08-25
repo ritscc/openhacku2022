@@ -12,3 +12,4 @@ export { MenusResponse } from "./models/menus-response";
 export { CheckoutResponse } from "./models/checkout-response";
 export { TransactionsResponse } from "./models/transactions-response";
 export { ShopResponse } from "./models/shop-response";
+export { TableResponse } from "./models/table-response";

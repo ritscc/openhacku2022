@@ -23,10 +23,10 @@ public class TableResponse {
     Integer id;
 
     /**
-     * 店舗ID
+     * テーブル番号
      */
     @Schema(required = true)
-    Integer shopId;
+    Integer tableNumber;
 
     /**
      * 座れる人数
@@ -42,7 +42,7 @@ public class TableResponse {
 
     public TableResponse(final TableModel table) {
         this.id = table.getId();
-        this.shopId = table.getShopId();
+        this.tableNumber = table.getTableNumber();
         this.capacity = table.getCapacity();
         this.isUsed = table.getIsUsed();
     }
