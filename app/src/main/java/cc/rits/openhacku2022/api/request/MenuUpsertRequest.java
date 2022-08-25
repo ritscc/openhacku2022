@@ -11,7 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * メニュー作成リクエスト
+ * メニュー作成/更新リクエスト
  */
 @Data
 @Builder
