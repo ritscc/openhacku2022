@@ -1,5 +1,6 @@
 package cc.rits.openhacku2022.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import cc.rits.openhacku2022.db.entity.join.ShopTableWithTransaction;
@@ -15,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class TableModel {
+public class TableModel implements Serializable {
 
     /**
      * テーブルID
