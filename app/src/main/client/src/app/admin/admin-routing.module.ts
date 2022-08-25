@@ -11,7 +11,7 @@ const routes: Routes = [
         path: "menus",
         component: MenusComponent,
     },
-    { path: "**", redirectTo: "login", pathMatch: "full" },
+    { path: "**", redirectTo: "menus", pathMatch: "full" },
 ];
 
 @NgModule({

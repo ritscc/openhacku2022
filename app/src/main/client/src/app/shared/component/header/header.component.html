@@ -10,17 +10,18 @@
     <mat-sidenav-container class="sidenav-container">
         <mat-sidenav #sidenav>
             <mat-nav-list class="nav-list-wrapper">
-                <a (click)="sidenav.close()" [routerLink]="'/dashboard'" mat-list-item>
-                    <mat-icon>menu_book</mat-icon>
-                    <span>メニュー</span>
+                <a
+                    (click)="sidenav.close()"
+                    *ngFor="let element of isAdmin ? adminNavs : customerNavs"
+                    [routerLink]="element.url"
+                    mat-list-item
+                >
+                    <mat-icon>{{ element.icon }}</mat-icon>
+                    <span>{{ element.label }}</span>
                 </a>
-                <a (click)="sidenav.close()" [routerLink]="'/dashboard/payment'" mat-list-item>
-                    <mat-icon>shopping_basket</mat-icon>
-                    <span>お会計</span>
-                </a>
-                <a (click)="sidenav.close()" mat-list-item>
-                    <mat-icon>campaign</mat-icon>
-                    <span>店員呼出</span>
+                <a (click)="logout(); sidenav.close()" *ngIf="isAdmin" mat-list-item>
+                    <mat-icon>logout</mat-icon>
+                    <span>ログアウト</span>
                 </a>
             </mat-nav-list>
         </mat-sidenav>
