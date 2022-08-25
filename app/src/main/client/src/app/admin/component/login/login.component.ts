@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
 
             this.adminAuthService.login1({ body: adminLoginRequest }).subscribe(() => {
                 this.alertService.success("ログインしました");
-                this.router.navigate(["admin/dashboard"], { queryParamsHandling: "merge" });
+                this.router.navigate(["admin/orders"], { queryParamsHandling: "merge" });
             });
         } else {
             this.alertService.warn("正しいコードを入力してください");
