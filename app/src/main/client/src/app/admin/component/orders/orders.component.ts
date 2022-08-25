@@ -9,6 +9,7 @@ import { OrderStatusEnum } from "@shared/enums/order-status.enum";
 
 type OrderMenu = OrderMenuResponse & {
     orderId: number;
+    orderedDate: string;
     tableNumber: number;
 };
 
@@ -20,6 +21,7 @@ type OrderMenu = OrderMenuResponse & {
 })
 export class OrdersComponent implements OnInit {
     orderMenus: OrderMenu[] = [];
+    numberOfCompleteOrders: number = 0;
 
     constructor(
         private adminTransactionService: AdminTransactionService,
@@ -52,9 +54,8 @@ export class OrdersComponent implements OnInit {
                                     order.menus.map((menu) => {
                                         const result = menu as OrderMenu;
                                         result["orderId"] = order.id;
+                                        result["orderedDate"] = order.orderedDate;
                                         result["tableNumber"] = transaction.tableNumber;
-                                        console.log(result);
-
                                         return result;
                                     })
                                 );
@@ -68,9 +69,11 @@ export class OrdersComponent implements OnInit {
      * 準備中のオーダーを取得する
      */
     getInCompleteOrders(): OrderMenu[] {
-        return this.orderMenus.filter(
+        const orders = this.orderMenus.filter(
             (orderMenu) => orderMenu.status !== OrderStatusEnum.COMPLETED
         );
+        this.numberOfCompleteOrders = orders.length;
+        return orders;
     }
 
     /**
@@ -113,7 +116,8 @@ export class OrdersComponent implements OnInit {
      * 準備中タグに入った商品数を取得
      * TODO: バッチ未作成であるため、バッチを作成したらこの関数も作成する
      */
-    // loadNumberOfMenusInPreparation(): void {
+    loadNumberOfCompleteOrders(): void {}
+
     //     this.cartService
     //         .getMenus()
     //         .pipe(untilDestroyed(this))
