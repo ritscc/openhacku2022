@@ -29,7 +29,7 @@ public class BatchRestController {
     @PostMapping("/delete_expired_transactions")
     @ResponseStatus(HttpStatus.OK)
     public void deleteExpiredTransaction() {
-        this.transactionService.deleteExpiredTransaction();
+        this.transactionService.deleteExpiredTransactions();
     }
 
 }
