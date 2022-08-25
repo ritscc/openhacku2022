@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class MenuCreateRequest implements BaseRequest {
+public class MenuUpsertRequest implements BaseRequest {
 
     /**
      * 名前

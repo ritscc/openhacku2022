@@ -7,7 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import cc.rits.openhacku2022.api.request.MenuCreateRequest;
+import cc.rits.openhacku2022.api.request.MenuUpsertRequest;
 import cc.rits.openhacku2022.api.response.MenuResponse;
 import cc.rits.openhacku2022.api.response.MenusResponse;
 import cc.rits.openhacku2022.api.validation.RequestValidation;
@@ -59,7 +59,7 @@ public class AdminMenuRestController {
     @ResponseStatus(HttpStatus.OK)
     public void createMenu( //
         @PathVariable("shop_id") Integer shopId, //
-        @RequestValidation @RequestBody final MenuCreateRequest requestBody, //
+        @RequestValidation @RequestBody final MenuUpsertRequest requestBody, //
         @Parameter(hidden = true) final ShopModel shop //
     ) {
         this.adminMenuService.createMenu(shopId, requestBody, shop);
@@ -80,6 +80,25 @@ public class AdminMenuRestController {
         @Parameter(hidden = true) final ShopModel shop //
     ) {
         this.adminMenuService.deleteMenu(shopId, menuId, shop);
+    }
+
+    /**
+     * メニュー更新API
+     * 
+     * @param shopId 店舗ID
+     * @param menuId メニューID
+     * @param requestBody メニュー更新リクエスト
+     * @param shop 店舗
+     */
+    @PutMapping("/{menu_id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateMenu( //
+        @PathVariable("shop_id") final Integer shopId, //
+        @PathVariable("menu_id") final Integer menuId, //
+        @RequestValidation @RequestBody final MenuUpsertRequest requestBody, //
+        @Parameter(hidden = true) final ShopModel shop //
+    ) {
+        this.adminMenuService.updateMenu(shopId, menuId, requestBody, shop);
     }
 
 }
