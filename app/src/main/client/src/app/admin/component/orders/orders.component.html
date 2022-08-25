@@ -1,4 +1,35 @@
-<mat-tab-group>
-    <mat-tab label="First">準備中</mat-tab>
-    <mat-tab label="Second">提供済</mat-tab>
+<mat-tab-group (selectedTabChange)="switchTab()" mat-stretch-tabs style="height: 100%">
+    <mat-tab label="準備中">
+        <mat-list>
+            <div *ngIf="orderMenus.length !== 0">
+                <div *ngFor="let element of getInCompleteOrders()">
+                    <mat-list-item class="item">
+                        <div
+                            fxLayout="row"
+                            fxLayoutAlign="space-between center"
+                            style="width: 100%"
+                        >
+                            <div style="margin: 0 5px">
+                                {{ element.name }}×{{ element.quantity }}
+                            </div>
+                            <div fxLayout="row" fxLayoutAlign="end center">
+                                <div style="margin: 0 10px">{{ element.tableNumber }}</div>
+                                <button
+                                    (click)="updateOrder(element)"
+                                    class="provided-button"
+                                    mat-stroked-button
+                                    style="margin: auto 10px auto auto"
+                                >
+                                    提供済
+                                </button>
+                            </div>
+                        </div>
+                    </mat-list-item>
+                    <mat-divider></mat-divider>
+                </div>
+            </div>
+        </mat-list>
+    </mat-tab>
+
+    <mat-tab label="提供済"></mat-tab>
 </mat-tab-group>

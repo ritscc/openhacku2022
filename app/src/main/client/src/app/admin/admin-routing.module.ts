@@ -22,9 +22,10 @@ const routes: Routes = [
                 component: MenuCreateFormComponent,
                 data: { title: "メニュー登録" },
             },
+            { path: "**", redirectTo: "menus", pathMatch: "full" },
         ],
     },
-    { path: "**", redirectTo: "menus", pathMatch: "full" },
+    { path: "**", redirectTo: "login", pathMatch: "full" },
 ];
 
 @NgModule({
