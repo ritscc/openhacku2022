@@ -28,10 +28,10 @@ class AuthRestController_IT extends BaseRestController_IT {
             1  | ""   | ""   | ""
         }
         TableHelper.insert sql, "shop_table", {
-            id | shop_id | capacity
-            1  | 1       | 3
-            2  | 1       | 2
-            3  | 1       | 1
+            id | shop_id | number | capacity
+            1  | 1       | 1      | 3
+            2  | 1       | 2      | 2
+            3  | 1       | 3      | 1
         }
         // @formatter:on
 
@@ -61,8 +61,8 @@ class AuthRestController_IT extends BaseRestController_IT {
             1  | ""   | ""   | ""
         }
         TableHelper.insert sql, "shop_table", {
-            id | shop_id | capacity
-            1  | 1       | 4
+            id | shop_id | number | capacity
+            1  | 1       | 1      | 4
         }
         // @formatter:on
 
@@ -89,9 +89,9 @@ class AuthRestController_IT extends BaseRestController_IT {
             1  | ""   | ""   | ""
         }
         TableHelper.insert sql, "shop_table", {
-            id | shop_id | capacity
-            1  | 1       | 3
-            2  | 1       | 4
+            id | shop_id | number |capacity
+            1  | 1       | 1      | 3
+            2  | 1       | 2      | 4
         }
         TableHelper.insert sql, "transaction", {
             id | shop_id | table_id | code | number_of_people

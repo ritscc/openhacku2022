@@ -38,6 +38,12 @@ public class TransactionResponse {
     Integer tableId;
 
     /**
+     * テーブル番号
+     */
+    @Schema(required = true)
+    Integer tableNumber;
+
+    /**
      * 取引コード
      */
     @Schema(required = true)
@@ -65,6 +71,7 @@ public class TransactionResponse {
         this.id = transaction.getId();
         this.shopId = transaction.getShopId();
         this.tableId = transaction.getTableId();
+        this.tableNumber = transaction.getTableNumber();
         this.code = transaction.getCode();
         this.numberOfPeople = transaction.getNumberOfPeople();
         this.shopName = transaction.getShopName();

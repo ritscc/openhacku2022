@@ -34,6 +34,11 @@ public class TransactionWithOrderDto {
     private Integer tableId;
 
     /**
+     * テーブル番号
+     */
+    private Integer tableNumber;
+
+    /**
      * 店舗名
      */
     private String shopName;
@@ -57,6 +62,7 @@ public class TransactionWithOrderDto {
         this.id = transaction.getId();
         this.shopId = transaction.getShopId();
         this.tableId = transaction.getTableId();
+        this.tableNumber = transaction.getTable().getNumber();
         this.shopName = transaction.getShopName();
         this.code = transaction.getCode();
         this.numberOfPeople = transaction.getNumberOfPeople();

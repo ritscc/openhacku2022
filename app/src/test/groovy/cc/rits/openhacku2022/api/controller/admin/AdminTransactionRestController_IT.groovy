@@ -30,9 +30,9 @@ class AdminTransactionRestController_IT extends BaseRestController_IT {
 
         // @formatter:off
         TableHelper.insert sql, "shop_table", {
-            id | shop_id | capacity
-            1  | 1       | 4
-            2  | 1       | 8
+            id | shop_id | number | capacity
+            1  | 1       | 1      | 4
+            2  | 1       | 2      | 8
         }
         TableHelper.insert sql, "transaction", {
             id | shop_id | table_id | code                | number_of_people
@@ -69,6 +69,7 @@ class AdminTransactionRestController_IT extends BaseRestController_IT {
         then:
         response.transactions*.id == [1, 2]
         response.transactions*.tableId == [1, 2]
+        response.transactions*.tableNumber == [1, 2]
         response.transactions*.orders*.id == [[1, 2], [3]]
         response.transactions*.orders*.menus*.id == [[[1], [1, 2]], [[1, 2, 3]]]
         response.transactions*.orders*.menus*.price == [[[100], [100, 200]], [[100, 200, 300]]]
@@ -97,8 +98,8 @@ class AdminTransactionRestController_IT extends BaseRestController_IT {
 
         // @formatter:off
         TableHelper.insert sql, "shop_table", {
-            id | shop_id | capacity
-            1  | 1       | 4
+            id | shop_id | number | capacity
+            1  | 1       | 1      | 4
         }
         TableHelper.insert sql, "transaction", {
             id | shop_id | table_id | code                | number_of_people
@@ -129,6 +130,7 @@ class AdminTransactionRestController_IT extends BaseRestController_IT {
         then:
         response.id == 1
         response.tableId == 1
+        response.tableNumber == 1
         response.orders*.id == [1, 2]
         response.orders*.id == [1, 2]
         response.orders*.menus*.id == [[1], [1, 2]]
@@ -175,8 +177,8 @@ class AdminTransactionRestController_IT extends BaseRestController_IT {
 
         // @formatter:off
         TableHelper.insert sql, "shop_table", {
-            id | shop_id | capacity
-            1  | 1       | 4
+            id | shop_id | number | capacity
+            1  | 1       | 1      | 4
         }
         TableHelper.insert sql, "transaction", {
             id | shop_id | table_id | code                | number_of_people
@@ -206,8 +208,8 @@ class AdminTransactionRestController_IT extends BaseRestController_IT {
 
         // @formatter:off
         TableHelper.insert sql, "shop_table", {
-            id | shop_id | capacity
-            1  | 1       | 4
+            id | shop_id | number | capacity
+            1  | 1       | 1      | 4
         }
         TableHelper.insert sql, "transaction", {
             id | shop_id | table_id | code                | number_of_people
@@ -260,8 +262,8 @@ class AdminTransactionRestController_IT extends BaseRestController_IT {
 
         // @formatter:off
         TableHelper.insert sql, "shop_table", {
-            id | shop_id | capacity
-            1  | 1       | 4
+            id | shop_id | number | capacity
+            1  | 1       | 1      | 4
         }
         TableHelper.insert sql, "transaction", {
             id | shop_id | table_id | code                | number_of_people
@@ -291,9 +293,9 @@ class AdminTransactionRestController_IT extends BaseRestController_IT {
 
         // @formatter:off
         TableHelper.insert sql, "shop_table", {
-            id | shop_id | capacity
-            1  | 1       | 4
-            2  | 1       | 8
+            id | shop_id | number | capacity
+            1  | 1       | 1      | 4
+            2  | 1       | 2      | 8
         }
         TableHelper.insert sql, "transaction", {
             id | shop_id | table_id | code                | number_of_people

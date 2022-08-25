@@ -40,4 +40,9 @@ export interface TransactionResponse {
      * テーブルID
      */
     tableId: number;
+
+    /**
+     * テーブル番号
+     */
+    tableNumber: number;
 }

@@ -1,9 +1,10 @@
 <div class="page-content">
     <mat-toolbar class="header" color="primary" fxLayout="row" fxLayoutAlign="space-between center">
-        <div fxLayout="row" fxLayoutAlign="center">
+        <div fxLayout="row" fxLayout="row" fxLayoutAlign="center center">
             <button (click)="sidenav.toggle()" [disabled]="!isSidenavValid" mat-icon-button>
                 <mat-icon>menu</mat-icon>
             </button>
+            <h2 *ngIf="title" class="header-title">{{ title }}</h2>
         </div>
     </mat-toolbar>
 
@@ -18,6 +19,10 @@
                 >
                     <mat-icon>{{ element.icon }}</mat-icon>
                     <span>{{ element.label }}</span>
+                </a>
+                <a (click)="deleteAllTransactions(); sidenav.close()" *ngIf="isAdmin" mat-list-item>
+                    <mat-icon>delete</mat-icon>
+                    <span>全取引削除</span>
                 </a>
                 <a (click)="logout(); sidenav.close()" *ngIf="isAdmin" mat-list-item>
                     <mat-icon>logout</mat-icon>

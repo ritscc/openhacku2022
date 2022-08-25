@@ -34,8 +34,8 @@ class AdminOrderRestController_IT extends BaseRestController_IT {
 
         // @formatter:off
         TableHelper.insert sql, "shop_table", {
-            id | shop_id | capacity
-            1  | 1       | 4
+            id | shop_id | number | capacity
+            1  | 1       | 1      | 4
         }
         TableHelper.insert sql, "transaction", {
             id | shop_id | table_id | code                | number_of_people
@@ -98,8 +98,8 @@ class AdminOrderRestController_IT extends BaseRestController_IT {
 
         // @formatter:off
         TableHelper.insert sql, "shop_table", {
-            id | shop_id | capacity
-            1  | 1       | 4
+            id | shop_id | number | capacity
+            1  | 1       | 1      | 4
         }
         TableHelper.insert sql, "transaction", {
             id | shop_id | table_id | code                | number_of_people

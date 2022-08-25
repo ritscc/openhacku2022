@@ -5,10 +5,10 @@ import { HttpClient } from "@angular/common/http";
 import { ApiConfiguration, ApiConfigurationParams } from "./api-configuration";
 
 import { AdminOrderService } from "./services/admin-order.service";
+import { AdminMenuService } from "./services/admin-menu.service";
 import { OrderService } from "./services/order.service";
 import { AuthService } from "./services/auth.service";
 import { BatchService } from "./services/batch.service";
-import { AdminMenuService } from "./services/admin-menu.service";
 import { AdminAuthService } from "./services/admin-auth.service";
 import { TransactionService } from "./services/transaction.service";
 import { MenuService } from "./services/menu.service";
@@ -26,10 +26,10 @@ import { AdminShopService } from "./services/admin-shop.service";
     declarations: [],
     providers: [
         AdminOrderService,
+        AdminMenuService,
         OrderService,
         AuthService,
         BatchService,
-        AdminMenuService,
         AdminAuthService,
         TransactionService,
         MenuService,

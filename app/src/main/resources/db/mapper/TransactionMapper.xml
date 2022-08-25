@@ -38,6 +38,7 @@
 
                         shop_table.id          AS table__id,
                         shop_table.shop_id     AS table__shop_id,
+                        shop_table.number      AS table__number,
                         shop_table.capacity    AS table__capacity,
 
                         shop.name              AS shop__name
@@ -73,6 +74,7 @@
 
                         shop_table.id          AS table__id,
                         shop_table.shop_id     AS table__shop_id,
+                        shop_table.number      AS table__number,
                         shop_table.capacity    AS table__capacity,
 
                         shop.name              AS shop__name

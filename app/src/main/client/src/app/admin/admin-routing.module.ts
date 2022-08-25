@@ -7,19 +7,20 @@ import { MenusComponent } from "@admin/component/menus/menus.component";
 import { MenuCreateFormComponent } from "@admin/component/menu-create-form/menu-create-form.component";
 
 const routes: Routes = [
-    { path: "login", component: LoginComponent },
-    { path: "orders", component: OrdersComponent },
-    { path: "**", redirectTo: "login", pathMatch: "full" },
+    { path: "login", component: LoginComponent, data: { title: "店舗ログイン" } },
+    { path: "orders", component: OrdersComponent, data: { title: "注文管理" } },
     {
         path: "menus",
         children: [
             {
                 path: "",
                 component: MenusComponent,
+                data: { title: "メニュー管理" },
             },
             {
                 path: "new",
                 component: MenuCreateFormComponent,
+                data: { title: "メニュー登録" },
             },
         ],
     },

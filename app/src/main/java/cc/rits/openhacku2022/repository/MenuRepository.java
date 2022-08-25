@@ -45,10 +45,11 @@ public class MenuRepository {
      * @param id メニューID
      * @return メニュー
      */
-    public Optional<MenuModel> selectById(final Integer id) {
+    public Optional<MenuModel> selectByIdAndShopId(final Integer id, final Integer shopId) {
         final var example = new MenuExample();
-        example.createCriteria().andIdEqualTo(id);
-
+        example.createCriteria() //
+            .andIdEqualTo(id) //
+            .andShopIdEqualTo(shopId);
         return this.menuMapper.selectByExample(example).stream() //
             .map(MenuModel::new) //
             .findFirst();
@@ -71,6 +72,16 @@ public class MenuRepository {
      */
     public void deleteById(final Integer id) {
         this.menuMapper.deleteByPrimaryKey(id);
+    }
+
+    /**
+     * メニューを更新
+     * 
+     * @param menuModel メニュー
+     */
+    public void update(final MenuModel menuModel) {
+        final var menu = this.menuFactory.createMenu(menuModel);
+        this.menuMapper.updateByPrimaryKeySelective(menu);
     }
 
 }

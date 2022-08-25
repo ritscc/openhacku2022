@@ -4,6 +4,9 @@ import { filter } from "rxjs/operators";
 import { AdminAuthService } from "@api/services/admin-auth.service";
 import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 import { AlertService } from "@shared/service/alert.service";
+import { TitleService } from "@shared/service/title.service";
+import { AdminTransactionService } from "@api/services";
+import { AdminShopService } from "@api/services/admin-shop.service";
 
 type Nav = {
     label: string;
@@ -18,6 +21,11 @@ type Nav = {
     styleUrls: ["./header.component.scss"],
 })
 export class HeaderComponent implements OnInit {
+    /**
+     * ヘッダータイトル
+     */
+    title!: string;
+
     /**
      * 管理者フラグ
      */
@@ -49,6 +57,11 @@ export class HeaderComponent implements OnInit {
      */
     adminNavs: Nav[] = [
         {
+            label: "店舗情報",
+            icon: "store",
+            url: "/admin/shop",
+        },
+        {
             label: "メニュー",
             icon: "menu_book",
             url: "/admin/menus",
@@ -68,7 +81,10 @@ export class HeaderComponent implements OnInit {
     constructor(
         private router: Router,
         private adminAuthService: AdminAuthService,
-        private alertService: AlertService
+        private alertService: AlertService,
+        private titleService: TitleService,
+        private adminShopService: AdminShopService,
+        private adminTransactionService: AdminTransactionService
     ) {
         // ナビゲーション終了時にサイドナビの状態を定義
         this.router.events
@@ -78,6 +94,10 @@ export class HeaderComponent implements OnInit {
 
     ngOnInit(): void {
         this.isAdmin = this.router.url.split("/")[1] === "admin";
+
+        this.titleService.getTitle().subscribe((title) => {
+            this.title = title;
+        });
     }
 
     /**
@@ -87,6 +107,32 @@ export class HeaderComponent implements OnInit {
         this.isSidenavValid = this.router.url !== "/";
     }
 
+    /**
+     * 全取引を削除する
+     */
+    deleteAllTransactions(): void {
+        this.alertService.confirm("削除確認", "全取引を削除しますか？").subscribe((result) => {
+            if (!result) {
+                return;
+            }
+
+            this.adminShopService
+                .getShop()
+                .pipe(untilDestroyed(this))
+                .subscribe((shop) => {
+                    this.adminTransactionService
+                        .deleteTransactions({ shop_id: shop.id })
+                        .pipe(untilDestroyed(this))
+                        .subscribe(() => {
+                            this.alertService.success("全取引を削除しました");
+                        });
+                });
+        });
+    }
+
+    /**
+     * ログアウト
+     */
     logout(): void {
         this.adminAuthService
             .logout1()
