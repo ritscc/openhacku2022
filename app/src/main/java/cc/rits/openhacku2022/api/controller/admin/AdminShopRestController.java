@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import cc.rits.openhacku2022.api.response.ShopResponse;
 import cc.rits.openhacku2022.model.ShopModel;
-import cc.rits.openhacku2022.service.admin.AdminShopService;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -25,8 +24,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AdminShopRestController {
 
-    private final AdminShopService adminShopService;
-
     /**
      * 店舗取得API(管理者)
      * 
@@ -38,6 +35,6 @@ public class AdminShopRestController {
     public ShopResponse getShop( //
         @Parameter(hidden = true) final ShopModel shop //
     ) {
-        return new ShopResponse(this.adminShopService.getShop(shop));
+        return new ShopResponse(shop);
     }
 }

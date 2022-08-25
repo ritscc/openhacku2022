@@ -1,6 +1,8 @@
 package cc.rits.openhacku2022.repository;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
 
@@ -53,6 +55,18 @@ public class TransactionRepository {
     }
 
     /**
+     * 全ての取引を取得
+     * 
+     * @return 取引リスト
+     */
+    public List<TransactionModel> selectAll() {
+        final var example = new TransactionExample();
+        return this.transactionMapper.selectByExample(example).stream() //
+            .map(TransactionModel::new) //
+            .collect(Collectors.toList());
+    }
+
+    /**
      * 取引を作成
      * 
      * @param transactionModel 取引
@@ -72,11 +86,11 @@ public class TransactionRepository {
     }
 
     /**
-     * 全ての取引を削除
+     * 店舗IDから取引を削除
      * 
      * @param shopId 店舗ID
      */
-    public void deleteAll(final Integer shopId) {
+    public void deleteByShopId(final Integer shopId) {
         final var example = new TransactionExample();
         example.createCriteria().andShopIdEqualTo(shopId);
         this.transactionMapper.deleteByExample(example);

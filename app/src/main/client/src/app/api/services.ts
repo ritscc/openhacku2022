@@ -1,6 +1,7 @@
 export { AdminOrderService } from "./services/admin-order.service";
 export { OrderService } from "./services/order.service";
 export { AuthService } from "./services/auth.service";
+export { BatchService } from "./services/batch.service";
 export { AdminMenuService } from "./services/admin-menu.service";
 export { AdminAuthService } from "./services/admin-auth.service";
 export { TransactionService } from "./services/transaction.service";

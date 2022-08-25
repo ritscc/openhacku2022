@@ -1,5 +1,7 @@
 package cc.rits.openhacku2022.model;
 
+import java.io.Serializable;
+
 import cc.rits.openhacku2022.db.entity.Shop;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,27 +15,27 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ShopModel {
+public class ShopModel implements Serializable {
 
     /**
      * 店舗ID
      */
-    private Integer id;
+    Integer id;
 
     /**
      * 店舗名
      */
-    private String name;
+    String name;
 
     /**
      * 店舗コード
      */
-    private String code;
+    String code;
 
     /**
      * パスワード
      */
-    private String password;
+    String password;
 
     public ShopModel(final Shop shop) {
         this.id = shop.getId();

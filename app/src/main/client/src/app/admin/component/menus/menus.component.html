@@ -1,0 +1,53 @@
+<div fxLayout="column" fxLayoutGap="30px">
+    <div>
+        <div *ngFor="let element of menus">
+            <div
+                class="menu-container"
+                fxLayout="row"
+                fxLayoutAlign="space-between center"
+                fxLayoutGap="10px"
+            >
+                <img [src]="element.imageUrl" class="menu-container__image" />
+
+                <div
+                    class="menu-container__detail"
+                    fxLayout="column"
+                    fxLayoutAlign="space-between start"
+                >
+                    <span class="menu-container__detail__name">{{ element.name }}</span>
+
+                    <div fxLayout="row" fxLayoutAlign="space-between center" style="width: 100%">
+                        <div
+                            fxLayout="row"
+                            fxLayoutAlign="space-between center"
+                            style="width: 100%"
+                        >
+                            <span class="menu-container__detail__price"
+                                >￥{{ element.price | number }}</span
+                            >
+                        </div>
+
+                        <div fxLayout="row">
+                            <button (click)="editMenu(element)" color="accent" mat-icon-button>
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                            <button (click)="deleteMenu(element)" color="accent" mat-icon-button>
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <mat-divider></mat-divider>
+        </div>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="center" style="padding-bottom: 30px">
+        <app-button
+            [routerLink]="'new'"
+            icon="add"
+            label="新規登録"
+            queryParamsHandling="merge"
+        ></app-button>
+    </div>
+</div>

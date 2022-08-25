@@ -16,16 +16,16 @@ class AdminShopRestController_IT extends BaseRestController_IT {
 
     def "店舗取得API: 正常系 管理者が自身の店舗を取得できる"() {
         given:
-        this.loginShop()
+        final shop = this.loginShop()
 
         when:
         final request = this.getRequest(GET_SHOP_PATH)
         final response = this.execute(request, HttpStatus.OK, ShopResponse)
 
         then:
-        response.id == 1
-        Objects.nonNull(response.name)
-        Objects.nonNull(response.code)
+        response.id == shop.id
+        response.name == shop.name
+        response.code == shop.code
     }
 
     def "店舗取得API: 異常系 ログインしていない場合は401エラー"() {

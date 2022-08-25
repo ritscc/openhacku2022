@@ -7,6 +7,7 @@ import { TableNumberDialogComponent } from "@customer/component/table-number-dia
 import { TransactionService } from "@api/services/transaction.service";
 import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 import { CartService } from "@customer/service/cart.service";
+import { environment } from "src/environments/environment";
 
 @UntilDestroy()
 @Component({
@@ -32,14 +33,17 @@ export class OrderComponent implements OnInit {
 
     ngOnInit(): void {
         // テーブル番号を取得 & 表示
-        this.transactionService
-            .getLoginTransaction()
-            .pipe(untilDestroyed(this))
-            .subscribe((response) => {
-                this.matDialog.open(TableNumberDialogComponent, {
-                    data: { tableNumber: response.tableId },
+        if (localStorage.getItem(environment.SHOW_TABLE_NUMBER_KEY) === "enable") {
+            this.transactionService
+                .getLoginTransaction()
+                .pipe(untilDestroyed(this))
+                .subscribe((response) => {
+                    this.matDialog.open(TableNumberDialogComponent, {
+                        data: { tableNumber: response.tableId },
+                    });
+                    localStorage.setItem(environment.SHOW_TABLE_NUMBER_KEY, "disable");
                 });
-            });
+        }
 
         this.loadNumberOfMenusInCart();
     }

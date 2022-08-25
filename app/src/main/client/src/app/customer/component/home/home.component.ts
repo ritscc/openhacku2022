@@ -5,6 +5,7 @@ import { AlertService } from "@shared/service/alert.service";
 import { AuthService } from "@api/services/auth.service";
 import { ActivatedRoute, Router, UrlSerializer, UrlTree } from "@angular/router";
 import { LoginRequest } from "@api/models/login-request";
+import { environment } from "src/environments/environment";
 
 @Component({
     selector: "app-home",
@@ -105,6 +106,7 @@ export class HomeComponent implements OnInit {
             };
 
             this.authService.login({ body: loginRequest }).subscribe(() => {
+                localStorage.setItem(environment.SHOW_TABLE_NUMBER_KEY, "enable");
                 this.alertService.success("ログインしました");
                 this.router.navigate(["dashboard"], { queryParamsHandling: "merge" });
             });

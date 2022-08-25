@@ -1,0 +1,44 @@
+<form
+    (ngSubmit)="onSubmit()"
+    [formGroup]="form"
+    fxLayout="column"
+    fxLayoutAlign="start center"
+    fxLayoutGap="10px"
+    style="margin-top: 20px"
+>
+    <div style="width: 80%">
+        <span>メニュー名</span>
+        <app-shared-input formControlName="name" label="name"></app-shared-input>
+    </div>
+
+    <div style="width: 80%">
+        <span>画像</span>
+        <input
+            #fileInput
+            (change)="onSelectFile($event)"
+            (click)="onClickFileSelectButton($event)"
+            accept="image/*"
+            hidden
+            type="file"
+        />
+        <div
+            (click)="fileInput.click()"
+            *ngIf="!imageSrc"
+            class="image-container"
+            fxLayoutAlign="center center"
+        >
+            <mat-icon>photo_camera</mat-icon>
+        </div>
+        <img (click)="fileInput.click()" *ngIf="imageSrc" [src]="imageSrc" class="menu-image" />
+    </div>
+
+    <div style="width: 80%">
+        <span>料金</span>
+        <app-shared-input formControlName="price" label="price" type="number"></app-shared-input>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px">
+        <app-button (click)="onCancel()" [reverseColor]="true" label="キャンセル"></app-button>
+        <app-button label="確認" type="submit"></app-button>
+    </div>
+</form>
