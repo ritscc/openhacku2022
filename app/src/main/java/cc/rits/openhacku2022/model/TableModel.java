@@ -28,6 +28,11 @@ public class TableModel {
     private Integer shopId;
 
     /**
+     * テーブル番号
+     */
+    private Integer tableNumber;
+
+    /**
      * 座れる人数
      */
     private Integer capacity;
@@ -40,6 +45,7 @@ public class TableModel {
     public TableModel(final ShopTableWithTransaction shopTable) {
         this.id = shopTable.getId();
         this.shopId = shopTable.getShopId();
+        this.tableNumber = shopTable.getNumber();
         this.capacity = shopTable.getCapacity();
         this.isUsed = Objects.nonNull(shopTable.getTransactionId());
     }

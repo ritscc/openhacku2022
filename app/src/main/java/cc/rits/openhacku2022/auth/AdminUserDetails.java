@@ -26,6 +26,7 @@ public class AdminUserDetails extends ShopModel implements UserDetails {
         this.setName(shop.getName());
         this.setCode(shop.getCode());
         this.setPassword(shop.getPassword());
+        this.setTables(shop.getTables());
         this.authorities = authorities;
     }
 
