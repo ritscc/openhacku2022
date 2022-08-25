@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
             };
 
             this.adminAuthService.login1({ body: adminLoginRequest }).subscribe(() => {
-                this.alertService.success("ログインしました");
+                this.alertService.success("ログインに成功しました");
                 this.router.navigate(["admin/dashboard"], { queryParamsHandling: "merge" });
             });
         } else {
