@@ -1,0 +1,32 @@
+@import "src/styles.scss";
+
+.icon {
+    height: 150px;
+    margin-top: 10px;
+}
+
+.shop-name {
+    margin: 0 10px 0 10px;
+}
+
+.image-container {
+    @include font-color-gray;
+    min-height: 100px;
+    background-color: #efefef;
+    margin: 0 10px 0 10px;
+}
+
+.table-status {
+    padding: 2px 5px 2px 5px;
+    border-radius: 30px;
+}
+
+.used-table {
+    border: 2px solid #509b52;
+    color: #509b52;
+}
+
+.unused-table {
+    border: 2px solid #beb938;
+    color: #beb938;
+}

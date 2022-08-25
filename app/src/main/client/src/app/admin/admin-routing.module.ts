@@ -5,9 +5,15 @@ import { RouterModule, Routes } from "@angular/router";
 import { LoginComponent } from "@admin/component/login/login.component";
 import { MenusComponent } from "@admin/component/menus/menus.component";
 import { MenuCreateFormComponent } from "@admin/component/menu-create-form/menu-create-form.component";
+import { ShopComponent } from "@admin/component/shop/shop.component";
 
 const routes: Routes = [
     { path: "login", component: LoginComponent, data: { title: "店舗ログイン" } },
+    {
+        path: "shop",
+        component: ShopComponent,
+        data: { title: "店舗情報" },
+    },
     {
         path: "menus",
         children: [
@@ -23,7 +29,7 @@ const routes: Routes = [
             },
         ],
     },
-    { path: "**", redirectTo: "menus", pathMatch: "full" },
+    { path: "**", redirectTo: "shop", pathMatch: "full" },
 ];
 
 @NgModule({

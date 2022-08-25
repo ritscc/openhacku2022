@@ -1,0 +1,63 @@
+<mat-tab-group mat-stretch-tabs style="height: 100%">
+    <mat-tab label="基本情報">
+        <div
+            *ngIf="shop"
+            fxLayout="column"
+            fxLayoutAlign="start center"
+            fxLayoutGap="30px"
+            style="margin: 20px"
+        >
+            <div fxLayout="column" style="width: 100%">
+                <img class="icon" src="assets/images/biwacode-icon.svg" />
+
+                <h3>店舗名</h3>
+                <span class="shop-name">{{ shop.name }}</span>
+
+                <h3>店舗画像</h3>
+                <div class="image-container" fxLayoutAlign="center center">
+                    <mat-icon>photo_camera</mat-icon>
+                </div>
+            </div>
+
+            <app-button (click)="onClickEditShop()" label="店舗情報編集"></app-button>
+        </div>
+    </mat-tab>
+
+    <mat-tab label="テーブル">
+        <div
+            *ngIf="shop"
+            fxLayout="column"
+            fxLayoutAlign="start center"
+            fxLayoutGap="30px"
+            style="margin: 20px"
+        >
+            <div fxLayout="column" style="width: 100%">
+                <img class="icon" src="assets/images/biwacode-icon.svg" />
+
+                <h3>テーブル</h3>
+                <div
+                    fxLayout="column"
+                    fxLayoutAlign="start"
+                    fxLayoutGap="10px"
+                    style="margin: 0 10px 0 10px"
+                >
+                    <div
+                        *ngFor="let table of tables"
+                        fxLayout="row"
+                        fxLayoutAlign="space-between center"
+                    >
+                        <span> {{ table.tableNumber }}番テーブル（{{ table.capacity }}人）</span>
+                        <span
+                            [class.unused-table]="!table.isUsed"
+                            [class.used-table]="table.isUsed"
+                            class="table-status"
+                            >{{ table.isUsed ? "使用中" : "未使用" }}</span
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <app-button (click)="onClickEditTables()" label="テーブル編集"></app-button>
+        </div>
+    </mat-tab>
+</mat-tab-group>
