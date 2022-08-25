@@ -6,7 +6,7 @@ import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 import { AlertService } from "@shared/service/alert.service";
 import { Router } from "@angular/router";
 import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
-import { MenuCreateRequest } from "@api/models/menu-create-request";
+import { MenuUpsertRequest } from "@api/models/menu-upsert-request";
 
 @UntilDestroy()
 @Component({
@@ -54,7 +54,7 @@ export class MenuCreateFormComponent implements OnInit {
                 return;
             }
 
-            const requestBody: MenuCreateRequest = {
+            const requestBody: MenuUpsertRequest = {
                 name: this.form.value["name"],
                 price: this.form.value["price"],
                 image: this.image,
