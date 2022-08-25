@@ -4,7 +4,8 @@ import { filter } from "rxjs/operators";
 import { AdminAuthService } from "@api/services/admin-auth.service";
 import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 import { AlertService } from "@shared/service/alert.service";
-import { AdminTransactionService } from "@api/services/admin-transaction.service";
+import { TitleService } from "@shared/service/title.service";
+import { AdminTransactionService } from "@api/services";
 import { AdminShopService } from "@api/services/admin-shop.service";
 
 type Nav = {
@@ -20,6 +21,11 @@ type Nav = {
     styleUrls: ["./header.component.scss"],
 })
 export class HeaderComponent implements OnInit {
+    /**
+     * ヘッダータイトル
+     */
+    title!: string;
+
     /**
      * 管理者フラグ
      */
@@ -75,9 +81,10 @@ export class HeaderComponent implements OnInit {
     constructor(
         private router: Router,
         private adminAuthService: AdminAuthService,
+        private alertService: AlertService,
+        private titleService: TitleService,
         private adminShopService: AdminShopService,
-        private adminTransactionService: AdminTransactionService,
-        private alertService: AlertService
+        private adminTransactionService: AdminTransactionService
     ) {
         // ナビゲーション終了時にサイドナビの状態を定義
         this.router.events
@@ -87,6 +94,10 @@ export class HeaderComponent implements OnInit {
 
     ngOnInit(): void {
         this.isAdmin = this.router.url.split("/")[1] === "admin";
+
+        this.titleService.getTitle().subscribe((title) => {
+            this.title = title;
+        });
     }
 
     /**
