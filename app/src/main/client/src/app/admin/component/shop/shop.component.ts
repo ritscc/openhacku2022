@@ -33,7 +33,6 @@ export class ShopComponent implements OnInit {
                 this.tables = response.tables.sort((a, b) =>
                     a.tableNumber > b.tableNumber ? 1 : -1
                 );
-                this.tables[1].isUsed = true;
             });
     }
 
