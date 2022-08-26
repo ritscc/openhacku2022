@@ -37,6 +37,11 @@ public class StripeProperty {
         String productId;
 
         /**
+         * 税率ID
+         */
+        String taxId;
+
+        /**
          * 支払い成功時のリダイレクトURL
          */
         String successUrl;

@@ -51,6 +51,7 @@ public class CheckoutClient {
                 .addLineItem(SessionCreateParams.LineItem.builder() //
                     .setQuantity(1L) //
                     .setPrice(price.getId()) //
+                    .addTaxRate(this.stripeProperty.getCheckout().getTaxId()) //
                     .build()) //
                 .build();
             final var session = Session.create(sessionCreateParams);
