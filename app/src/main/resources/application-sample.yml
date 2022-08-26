@@ -18,4 +18,5 @@ stripe:
     success-url: STRIPE_SUCCESS_URL
     cancel-url: STRIPE_CANCEL_URL
     product-id: STRIPE_PRODUCT_ID
+    tax-id: STRIPE_TAX_ID
   secret-key: STRIPE_SECRET_KEY
